@@ -13,4 +13,4 @@ def docs_view(request):
             'doc': inspect.getdoc(func)
         })
 
-    return render(request, 'docs/docs.html', {'functions': functions})
+    return render(request, 'docs.html', {'functions': functions})
