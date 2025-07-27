@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Theory Docs</title>
+</head>
+<body>
+    <h1>Function Documentation</h1>
+    <ul>
+        {% for fn in functions %}
+            <li>
+                <strong>{{ fn.name }}</strong><br>
+                <pre>{{ fn.doc }}</pre>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
