@@ -13,4 +13,11 @@ def docs_view(request):
             'doc': inspect.getdoc(func)
         })
 
-    return render(request, 'docs.html', {'functions': functions})
+    return render(request, 'documentation.html', {'functions': functions})
+
+
+def notes_view(request):
+    attrs = [name for name, _ in inspect.getmembers(mt.Note, inspect.ismethod)]
+
+
+    return render(request, "notes.html", {"attributes": attrs})
