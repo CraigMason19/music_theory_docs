@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+  }
+  
+  .top-nav {
+    background: #222;
+    padding: 0.5em 1em;
+    display: flex;
+    gap: 1em;
+  }
+  .top-nav a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 0;
+  }
+  
+  .side-menu {
+    background: #f9f9f9;
+    padding: 1em;
+    border-right: 1px solid #ccc;
+  }
+  .side-menu details summary {
+    cursor: pointer;
+  }
+  
+  .view-area {
+    padding: 2em;
+  }
+  
+  footer {
+    text-align: center;
+    font-size: 0.8em;
+    color: #666;
+    background: #eee;
+    padding: 1em;
+  }
+  
