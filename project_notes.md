@@ -8,4 +8,4 @@ pip install git+https://github.com/CraigMason19/music_theory
 
 
 python manage.py runserver
-http://localhost:8000/docs/
+http://127.0.0.1:8000/documentation/

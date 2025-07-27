@@ -1,8 +1,8 @@
-from django.shortcuts import render
+import inspect
 
 from django.shortcuts import render
+
 import music_theory as mt
-import inspect
 
 def docs_view(request):
     functions = []

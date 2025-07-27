@@ -1,4 +1,5 @@
 .venv/
+music_theory_documentation/__pycache__/
+documentation/migrations/__pycache__/
+documentation/__pycache__/
 music_theory_docs/__pycache__/
-docs/migrations/__pycache__/
-docs/__pycache__/
