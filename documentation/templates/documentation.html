@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Music Theory Docs</title>
-</head>
-<body>
-    <h1>Function Documentation</h1>
-    <p><a href="/documentation/notes">Notes</a></p>
-    <ul>
-        {% for fn in functions %}
-            <li>
-                <strong>{{ fn.name }}</strong><br>
-                <pre>{{ fn.doc }}</pre>
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}documentation{% endblock %}
+
+{% block content %}
+<h1>Overview</h1>
+
+<p>Online documentation for my 'music_theory' python project, built using Django</p>
+
+<ul>
+    <li>
+        <a href="https://github.com/CraigMason19/music_theory" target="_blank">GitHub - music_theory</a>
+    </li>
+    <li>
+        <a href="https://github.com/CraigMason19/music_theory_docs" target="_blank">GitHub - music_theory_docs</a>
+    </li>
+</ul>
+
+{% endblock %}

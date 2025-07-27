@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="{% static 'CSS/styles.css' %}" />
+</head>
+
+<body>
+  <nav class="top-nav">
+    <a href="/documentation">Home</a>
+  </nav>
+
+  <div class="layout">
+    <aside class="side-menu">
+        <a href="notes">Notes</a>
+        <p>foo</p>
+        <p>bar</p>      
+    </aside>
+
+    <main class="view-area">
+      {% block content %}
+      <!-- Default content if needed -->
+      {% endblock %}
+    </main>
+  </div>
+
+  <footer>
+    <p>Footer date or something here</p>
+  </footer>
+</body>
+</html>
