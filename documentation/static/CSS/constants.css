@@ -1,0 +1,5 @@
+:root {
+    --color-theme: #333;
+    --color-background: #f0f0f0;
+    --debug-outline: 1px dashed darkcyan;
+}
