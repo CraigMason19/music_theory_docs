@@ -3,7 +3,13 @@
 {% block title %}Note Documentation{% endblock %}
 
 {% block content %}
-<h1>Note Reference</h1>
+<h1>{{ module_name }}</h1>
+
+{% for item in doc_strs %}
+    <h2>{{ item.name }}</h2>
+    <pre>{{ item.doc_str }}</pre>
+{% endfor %}
+
 <ul>
     {% for attr in attributes %}
     <li>{{ attr }}</li>

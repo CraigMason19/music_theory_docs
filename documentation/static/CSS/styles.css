@@ -1,57 +1,83 @@
+/* Make the body use full viewport height and flex layout */
 body {
-    margin: 0;
-    font-family: system-ui, sans-serif;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    height: 100vh;
-  }
+	display: flex;
+	flex-direction: column;
+	font-family: system-ui, sans-serif;
+	margin: 0;
+	min-height: 100vh;
+}
   
-  header {
-    padding: 0;
-    margin: 0;
-    line-height: 1;         /* prevents extra vertical expansion */
-  }
-  
-  .top-nav {
-    background: #222;
-    padding: 0.3em 1em;     /* reduced vertical padding */
-    display: flex;
-    align-items: center;
-    height: 2.5em;          /* shorter fixed height */
+/* The .layout should expand to fill space between nav and footer */
+.layout {
+	display: flex;
+	flex: 1; /* Stretch vertically */
+}
+
+.top-nav, .footer, .side-menu, .view-area {
+	padding: 1rem;
+	font-size: 1em;
+}
+
+.top-nav, .top-nav a, .footer {
+	background-color: #222;
+	color: white;
+}
+
+.top-nav {
     overflow: hidden;
-  }
+}
   
-  .top-nav a {
+.top-nav a {
     color: white;
     text-decoration: none;
     line-height: 1;
     font-size: 0.9em;
-  }
+}
+
+/* Sidebar and view-area next to each other horizontally */
+.side-menu {
+	width:fit-content;
+	background: wheat;
+}
   
-  .layout {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    min-height: 0;
-  }
-  
-  .side-menu {
-    background: wheat;
-    padding: 1em;
+.view-area {
+	flex: 1;
+	padding-bottom: 4em; /* Adjust to match footer height */
     border-right: 1px solid #ccc;
-  }
-  .side-menu details summary {
-    cursor: pointer;
-  }
+}
   
-  .view-area {
-    padding: 2em;
-  }
-  
-  footer {
-    text-align: center;
-    font-size: 0.8em;
-    color: #666;
-    background: #eee;
-    padding: 1em;
-  }
-  
+/* Footer styling remains unchanged */
+footer {
+	position: fixed;
+	border: 0rem;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+
+	background-color: #222;
+	color: white;
+	
+
+	z-index: 1000; /* Keeps it above other content */
+	box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+   
+
+
+
+
+
+
+
+
+
+
+
+
+pre {
+	border: solid 2px lightgray;
+	border-radius: 1rem;
+	background-color: aliceblue;
+	padding: 1em;
+}
