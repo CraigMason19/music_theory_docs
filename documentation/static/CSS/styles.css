@@ -1,12 +1,32 @@
+@import './constants.css';
+
+/* CSS reset
+   Sets a default for all elements in the CSS.
+   This ignores browser defaults to ensure a consistent baseline across different browsers.
+*/
+* {
+	/* margin: 0; */
+	/* padding: 0; */
+	font-family: system-ui, sans-serif;
+}
+
+.show-borders {
+	outline: var(--debug-outline);
+}
+
 /* Make the body use full viewport height and flex layout */
 body {
 	display: flex;
 	flex-direction: column;
-	font-family: system-ui, sans-serif;
-	margin: 0;
 	min-height: 100vh;
+	margin: 0;
+	outline: var(--debug-outline) !important;
+
+
 }
-  
+ 
+
+
 /* The .layout should expand to fill space between nav and footer */
 .layout {
 	display: flex;
@@ -72,12 +92,16 @@ footer {
 
 
 
+h2 {
+	margin: 0.5rem;
 
+}
 
 
 pre {
 	border: solid 2px lightgray;
 	border-radius: 1rem;
 	background-color: aliceblue;
-	padding: 1em;
+	padding: 1rem;
+	margin: 0rem;
 }

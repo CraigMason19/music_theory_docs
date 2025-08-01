@@ -18,8 +18,8 @@
         <a href="notes">Notes</a>
         <p>foo</p>
         <p>bar</p>  
-        <p>Examples</p>      
-
+        <p>Examples</p>  
+        <p>Instrument Creator</p>      
     </aside>
 
     <main class="view-area">
@@ -33,4 +33,16 @@
     <p>Footer date or something here</p>
   </footer>
 </body>
+
+<script>
+	// DEBUG
+  	document.addEventListener('keydown', function(event) {
+		if (event.key === 'd' || event.key === 'D') {
+			document.querySelectorAll('*').forEach(el => {
+				el.classList.toggle('show-borders');
+			});
+		}
+	});
+</script>
+
 </html>
