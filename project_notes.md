@@ -30,6 +30,7 @@ http://127.0.0.1:8000/documentation/
 - Bake down into static content
 
 
+## No to remove the script from base.html
 
 
 
