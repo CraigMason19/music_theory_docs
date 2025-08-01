@@ -1,5 +1,17 @@
-## Activate venv in powershel
+## 1 - Activate venv in powershel
 .\.venv\Scripts\Activate.ps1
+
+## 2 - Activate server
+python manage.py runserver
+
+## 3 - go to
+http://127.0.0.1:8000/documentation/
+## or
+http://127.0.0.1:8000
+
+## If doing CSS CTRL + F5
+
+
 
 
 ## Links
