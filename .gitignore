@@ -4,3 +4,4 @@ documentation/migrations/__pycache__/
 documentation/__pycache__/
 music_theory_docs/__pycache__/
 Notes/
+db.sqlite3
