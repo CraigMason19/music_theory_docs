@@ -14,79 +14,83 @@
 	outline: var(--debug-outline);
 }
 
-/* Make the body use full viewport height and flex layout */
 body {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
 	margin: 0;
-	outline: var(--debug-outline) !important;
-
-
-}
- 
-
-
-/* The .layout should expand to fill space between nav and footer */
-.layout {
-	display: flex;
-	flex: 1; /* Stretch vertically */
-}
-
-.top-nav, .footer, .side-menu, .view-area {
-	padding: 1rem;
-	font-size: 1em;
-}
-
-.top-nav, .top-nav a, .footer {
+	display: grid;
+	grid-template-rows: auto 1fr auto; /* header, content, footer */
+	grid-template-columns: 200px 1fr;  /* sidebar, main */
+	grid-template-areas:
+	  "header header"
+	  "sidebar main"
+	  "footer footer";
+	height: 100vh;
+  }
+  
+  /* Assign grid areas */
+  .top-nav {
+	grid-area: header;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
 	background-color: #222;
 	color: white;
-}
-
-.top-nav {
-    overflow: hidden;
-}
+	padding: 1rem;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* downward shadow */
+  }
   
 .top-nav a {
     color: white;
     text-decoration: none;
     line-height: 1;
-    font-size: 0.9em;
+    font-size: 1.2em;
+	font-weight: bolder;
 }
 
-/* Sidebar and view-area next to each other horizontally */
-.side-menu {
-	width:fit-content;
-	background: wheat;
-}
-  
-.view-area {
-	flex: 1;
-	padding-bottom: 4em; /* Adjust to match footer height */
-    border-right: 1px solid #ccc;
-}
-  
-/* Footer styling remains unchanged */
-footer {
-	position: fixed;
-	border: 0rem;
+  .footer {
+	grid-area: footer;
+	position: sticky;
 	bottom: 0;
-	left: 0;
-	width: 100%;
-	text-align: center;
-
+	z-index: 1000;
 	background-color: #222;
 	color: white;
-	
-
-	z-index: 1000; /* Keeps it above other content */
+	padding: 1rem;
 	box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+	justify-content: center; /* horizontal centering */
+  }
+  
+  .top-nav,
+.footer {
+  min-height: 1rem; /* or whatever feels balanced */
+  display: flex;
+  align-items: center;
+
 }
-   
 
+.footer * {
+	margin: 0;
+  }
 
+  .layout {
+	display: contents; /* Let children inherit grid from body */
+  }
+  
+  .side-menu {
+	grid-area: sidebar;
+	background: wheat;
+	overflow-y: auto;
+	padding: 1rem;
+  }
+  
+  .side-menu a {
+	display: block;
+	margin-bottom: 0.5em; 
+}
 
-
+  .view-area {
+	grid-area: main;
+	overflow-y: auto;
+	padding: 1rem;
+  }
 
 
 
