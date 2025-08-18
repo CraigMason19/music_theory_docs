@@ -6,3 +6,4 @@ music_theory_docs/__pycache__/
 Notes/
 db.sqlite3
 documentationApp/__pycache__/
+documentationApp/source/__pycache__/
