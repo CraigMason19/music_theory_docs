@@ -1,5 +1,12 @@
 :root {
-    --color-theme: #333;
     --color-background: #f0f0f0;
+    --color-card-background: aliceblue;
+    --color-footer: #222;
+    --color-header: #222;
+    --color-sidebar: wheat;
+    
+    --border-card: solid 2px lightgray;
+
+
     --debug-outline: 1px dashed darkcyan;
 }

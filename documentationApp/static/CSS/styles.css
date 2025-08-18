@@ -32,7 +32,7 @@ body {
 	position: sticky;
 	top: 0;
 	z-index: 1000;
-	background-color: #222;
+	background-color: var(--color-header);
 	color: white;
 	padding: 1rem;
 	box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* downward shadow */
@@ -51,7 +51,7 @@ body {
 	position: sticky;
 	bottom: 0;
 	z-index: 1000;
-	background-color: #222;
+	background-color: var(--color-footer);
 	color: white;
 	padding: 1rem;
 	box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
@@ -76,7 +76,7 @@ body {
   
   .side-menu {
 	grid-area: sidebar;
-	background: wheat;
+	background: var(--color-sidebar);
 	overflow-y: auto;
 	padding: 1rem;
   }
@@ -103,9 +103,9 @@ h2 {
 
 
 .doc_card {
-	border: solid 2px lightgray;
+	border: var(--border-card);
 	border-radius: 1rem;
-	background-color: aliceblue;
+	background-color: var(--color-card-background);
 	margin-left: 2rem;
 	padding: 1rem;
 	width: fit-content;
