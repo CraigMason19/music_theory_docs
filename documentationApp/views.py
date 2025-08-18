@@ -53,3 +53,15 @@ def notes_view(request):
     }
 
     return render(request, "notes.html", context)
+
+def scales_view(request):
+    module = mt.scales
+
+    print(module)
+
+    context = {
+        "module_name": module.__name__,
+        "doc_strs": build_dynamic_docs(module),
+    }
+
+    return render(request, "scales.html", context)
