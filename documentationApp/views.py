@@ -5,7 +5,32 @@ from django.utils.safestring import mark_safe
 
 import music_theory as mt
 
- 
+from .source.doc_extractor import ModuleDoc
+
+
+def build_dynamic_docs(module):
+    module_doc = ModuleDoc(module)
+    doc_strs = []
+
+    for f in module_doc.functions:
+        doc_strs.append({ 
+            "name": "Function: " + f.name, 
+            "docstring": mark_safe(f.docstring) 
+        })
+
+    for c in module_doc.classes:
+        doc_strs.append({ 
+            "name": "Class: " + c.name, 
+            "docstring": mark_safe(c.docstring) 
+        })          
+
+        for m in c.methods:      
+            doc_strs.append({ 
+                "name": f"Method: {c.name}.{m.name}", 
+                "docstring": mark_safe(m.docstring) 
+            })  
+
+    return doc_strs
 
 def docs_view(request):
     functions = []
@@ -20,44 +45,11 @@ def docs_view(request):
 
 
 def notes_view(request):
-    attrs = [name for name, _ in inspect.getmembers(mt.Note)]
-    # Note.next
-    attrs = [name for name, _ in inspect.getmembers(mt.Note, inspect.ismethod)]
-    # attrs = [name for name, _ in inspect.getmembers(mt.Note, inspect.ismethod) if not name.startswith("__")]
-
-
-    target_class = mt.Note  # Replace with your actual class
-
-    # Get methods defined *directly* in this class's file
-    # attrs = []
-    # for name, member in inspect.getmembers(target_class, inspect.isfunction):
-    #     # Check if the method is defined in the same source file as the class
-    #     if inspect.getsourcefile(member) == inspect.getsourcefile(target_class):
-    #         attrs.append(name)
-
-
- 
-
-
- 
-    # formatted = mark_safe(f"<pre>{mt.Note.__doc__}</pre>")
-    formatted = mark_safe(f"{mt.Note.__doc__}")
-
-
-    doc_strs = [
-        { "name": "Class: " + mt.Note.__name__, "doc_str": formatted },
-        { "name": "Method: " + mt.Note.from_index.__name__, "doc_str": mark_safe(f"{mt.Note.from_index.__doc__}") },
-        { "name": "Function: " + mt.notes.transpose.__name__, "doc_str": mark_safe(f"{mt.Note.transpose.__doc__}") },
-    ]
+    module = mt.notes
 
     context = {
-        "module_name": mt.notes.__name__,
-        "class_doc": mark_safe(formatted),
-        "doc_strs": doc_strs,
+        "module_name": module.__name__,
+        "doc_strs": build_dynamic_docs(module),
     }
 
     return render(request, "notes.html", context)
-
- 
-
- 

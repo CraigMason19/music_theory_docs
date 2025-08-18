@@ -102,6 +102,7 @@ h2 {
 	border: solid 2px lightgray;
 	border-radius: 1rem;
 	background-color: aliceblue;
-	margin: 0rem;
-	padding-top: 1rem;
+	margin-left: 2rem;
+	padding: 1rem;
+	width: fit-content;
 }
