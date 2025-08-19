@@ -35,7 +35,7 @@ body {
 	background-color: var(--color-header);
 	color: white;
 	padding: 1rem;
-	box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* downward shadow */
+	box-shadow: var(--box-shadow-header);
   }
   
 .top-nav a {
@@ -54,7 +54,7 @@ body {
 	background-color: var(--color-footer);
 	color: white;
 	padding: 1rem;
-	box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+	box-shadow: var(--box-shadow-footer);
 	justify-content: center; /* horizontal centering */
   }
   
@@ -79,6 +79,7 @@ body {
 	background: var(--color-sidebar);
 	overflow-y: auto;
 	padding: 1rem;
+	box-shadow: var(--box-shadow-sidebar);
   }
   
   .side-menu a {

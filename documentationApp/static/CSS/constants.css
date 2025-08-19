@@ -7,6 +7,9 @@
     
     --border-card: solid 2px lightgray;
 
+    --box-shadow-footer: 0 -2px 5px rgba(0,0,0,0.15);
+    --box-shadow-header: 0 2px 5px rgba(0,0,0,0.15);
+    --box-shadow-sidebar: 2px 0px 5px rgba(0,0,0,0.15);
 
     --debug-outline: 1px dashed darkcyan;
 }
