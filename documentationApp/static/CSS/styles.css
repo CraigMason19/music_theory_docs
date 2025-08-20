@@ -27,7 +27,7 @@ body {
   }
   
   /* Assign grid areas */
-  .top-nav {
+  .header {
 	grid-area: header;
 	position: sticky;
 	top: 0;
@@ -36,14 +36,21 @@ body {
 	color: white;
 	padding: 1rem;
 	box-shadow: var(--box-shadow-header);
+	/* display: flex;
+	align-items: center; horizontal centering */
+
   }
   
-.top-nav a {
+.header a {
     color: white;
     text-decoration: none;
     line-height: 1;
     font-size: 1.2em;
 	font-weight: bolder;
+	padding-right: 2rem;
+	align-items: center;
+	margin: 0px;
+	 
 }
 
   .footer {
@@ -58,11 +65,12 @@ body {
 	justify-content: center; /* horizontal centering */
   }
   
-  .top-nav,
+.header,
 .footer {
-  min-height: 1rem; /* or whatever feels balanced */
+  height: 1.5rem;
   display: flex;
   align-items: center;
+
 
 }
 
@@ -74,7 +82,7 @@ body {
 	display: contents; /* Let children inherit grid from body */
   }
   
-  .side-menu {
+  .sidebar {
 	grid-area: sidebar;
 	background: var(--color-sidebar);
 	overflow-y: auto;
@@ -82,7 +90,7 @@ body {
 	box-shadow: var(--box-shadow-sidebar);
   }
   
-  .side-menu a {
+a {
 	display: block;
 	margin-bottom: 0.5em; 
 }

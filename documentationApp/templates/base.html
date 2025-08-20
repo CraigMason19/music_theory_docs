@@ -4,31 +4,33 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="{% static 'CSS/styles.css' %}" />
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="{% static 'CSS/styles.css' %}" />
 </head>
 
 <body>
-  <nav class="top-nav">
-    <a href="/documentation">Home</a>
-  </nav>
+	<nav class="header">
+		<a href="/documentation">Home</a>
+		<a href="/documentation">Examples</a>
+		<a href="/documentation">Tools</a>
+	</nav>
 
-  <div class="layout">
-    <aside class="side-menu">
-        <a href="/documentation/notes">Notes</a>
-        <a href="/documentation/scales">Scales</a> 
-    </aside>
+	<div class="layout">
+		<aside class="sidebar">
+			<a href="/documentation/notes">Notes</a>
+			<a href="/documentation/scales">Scales</a> 
+		</aside>
 
-    <main class="view-area">
-      {% block content %}
-      <!-- Default content if needed -->
-      {% endblock %}
-    </main>
-  </div>
+		<main class="view-area">
+			{% block content %}
+			<!-- Default content if needed -->
+			{% endblock %}
+		</main>
+	</div>
 
-  <footer class="footer">
-    <p>Footer date or something here</p>
-  </footer>
+	<footer class="footer">
+		<p>Footer date or something here</p>
+	</footer>
 </body>
 
 <script>
