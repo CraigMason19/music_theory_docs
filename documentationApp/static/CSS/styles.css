@@ -89,6 +89,10 @@ body {
 	padding: 1rem;
 	box-shadow: var(--box-shadow-sidebar);
   }
+
+.sidebar a {
+	color: var(--color-sidebar-a);
+}
   
 a {
 	display: block;

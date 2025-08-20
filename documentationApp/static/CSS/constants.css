@@ -4,7 +4,14 @@
     --color-footer: #222;
     --color-header: #222;
     --color-sidebar: wheat;
-    
+    --color-sidebar: linear-gradient(170deg,rgba(245, 222, 179, 1) 0%, rgba(219, 175, 114, 1) 100%);
+    --color-sidebar-a: blue;
+
+
+    /* --color-sidebar: linear-gradient(170deg,rgba(42, 123, 155, 1) 0%, rgba(30, 84, 105, 1) 100%); */
+    /* --color-sidebar-a: white; */
+
+
     --border-card: solid 2px lightgray;
 
     --box-shadow-footer: 0 -2px 5px rgba(0,0,0,0.15);
