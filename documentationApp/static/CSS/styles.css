@@ -1,20 +1,6 @@
 @import './constants.css';
 
-/* CSS reset
-   Sets a default for all elements in the CSS.
-   This ignores browser defaults to ensure a consistent baseline across different browsers.
-*/
-* {
-	/* margin: 0; */
-	/* padding: 0; */
-	font-family: system-ui, sans-serif;
-}
 
-.show-borders {
-	outline: var(--debug-outline);
-}
-
-  
 body {
 	margin: 0;
 	display: grid;
@@ -48,7 +34,7 @@ body {
     color: white;
     text-decoration: none;
     line-height: 1;
-    font-size: 1.2em;
+    font-size: 1.5rem;
 	font-weight: bolder;
 	padding-right: 2rem;
 	align-items: center;
@@ -95,18 +81,11 @@ body {
 	box-shadow: var(--box-shadow-sidebar);
   }
 
-a {
-	color: var(--color-a);
-	display: block;
-	max-width: max-content;
-	margin-bottom: 0.5em; 
-	text-decoration: none;
-}
+.sidebar a {
+	font-size: 1.5rem;
+	/* font-weight: bolder; */
 
-a:hover {
-	text-decoration: underline;
 }
-
 
 
   .view-area {
