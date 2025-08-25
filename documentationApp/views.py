@@ -40,15 +40,19 @@ def build_dynamic_docs(module):
     return doc_strs
 
 def documentation_view(request):
-    functions = []
-    
-    for name, func in inspect.getmembers(mt, inspect.isfunction):
-        functions.append({
-            'name': name,
-            'doc': inspect.getdoc(func)
-        })
+    md_path = Path(__file__).parent.parent / "readme.md"
 
-    return render(request, 'documentation.html', {'functions': functions})
+    if not md_path.exists():
+        return HttpResponseNotFound(md_path)      
+
+    raw_md = md_path.read_text(encoding="utf-8")
+    html_content = markdown.markdown(raw_md, extensions=["fenced_code", "tables", "toc"])
+ 
+    context = {
+        "html_content": html_content,
+    }
+
+    return render(request, "documentation.html", context)
 
 
 def notes_view(request):

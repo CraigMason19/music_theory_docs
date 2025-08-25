@@ -1,17 +1,11 @@
 {% extends "base.html" %}
 
+{% block title %}Music Theory Docs - Examples{% endblock %}
+
 {% block content %}
-<h1>Overview</h1>
 
-<p>Online documentation for my 'music_theory' python project, built using Django</p>
-
-<ul>
-    <li>
-        <a href="https://github.com/CraigMason19/music_theory" target="_blank">GitHub - music_theory</a>
-    </li>
-    <li>
-        <a href="https://github.com/CraigMason19/music_theory_docs" target="_blank">GitHub - music_theory_docs</a>
-    </li>
-</ul>
+<div class="markdown-body">
+    {{ html_content|safe }}
+</div>
 
 {% endblock %}
