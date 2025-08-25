@@ -7,3 +7,4 @@ Notes/
 db.sqlite3
 documentationApp/__pycache__/
 documentationApp/source/__pycache__/
+documentationApp/templatetags/__pycache__/
