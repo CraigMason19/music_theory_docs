@@ -1,6 +1,18 @@
 @import './constants.css';
 
 body {
-	margin: 5%
+	margin: 0;
+	height: 100vh;
+	display: grid;
+	place-items: center;
+	background-color: var(--color-card-background);
 }
 
+.centered {
+	text-align: center;
+	padding: 2rem;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	background-color: #fff;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
