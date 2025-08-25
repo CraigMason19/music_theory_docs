@@ -1,20 +1,37 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   
 <head>
-  <meta charset="UTF-8">
-  <title>Music Theory Docs</title>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'CSS/constants.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/backend-styles.css' %}">
+
+  <title>Django backend</title>
 </head>
 
 <body>
-  <H1>music_theory_docs</H1>
 
-  <p>Django backend</p>
+  <div>
+    <H1>Django backend for music_theory_docs</H1>
 
-  <ul>
-    <li><a href="/documentation">Documentation App</li>
-  </ul>
-  
+    <ul>
+      <li><a href="/documentation">Documentation App</li>
+    </ul>
+  </div>
+
 </body>
+
+<script>
+	// DEBUG
+  	document.addEventListener('keydown', function(event) {
+		if (event.key === 'd' || event.key === 'D') {
+			document.querySelectorAll('*').forEach(el => {
+				el.classList.toggle('show-borders');
+			});
+		}
+	});
+</script>
 
 </html>
