@@ -1,13 +1,17 @@
 {% extends "base.html" %}
+{% load wrap_tags %}
 
 {% block title %}Music Theory Docs - Scales{% endblock %}
 
 {% block content %}
-<h1>{{ module_name }}</h1>
 
-{% for item in doc_strs %}
-    <h2>{{ item.name }}</h2>
-    <pre class="doc_card">{{ item.docstring }}</pre>
-{% endfor %}
+    <h1>{{ module_name }}</h1>
+
+    {% for item in doc_strs %}
+    
+        {{ item.name|wrap:item.element|safe }}
+        <pre>{{ item.docstring }}</pre>
+
+    {% endfor %}
 
 {% endblock %}
