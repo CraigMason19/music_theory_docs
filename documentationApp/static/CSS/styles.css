@@ -83,15 +83,13 @@ body {
 
 .sidebar a {
 	font-size: 1.5rem;
-	/* font-weight: bolder; */
-
 }
 
 
   .view-area {
 	grid-area: main;
 	overflow-y: auto;
-	padding: 1rem;
+	padding: 2rem;
   }
 
 
