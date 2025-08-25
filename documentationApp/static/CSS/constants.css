@@ -1,8 +1,6 @@
 :root {
     --color-a: #0969da;
     --color-backend-background: #f6f8fa;
-    --color-background: #f0f0f0;
-    --color-card-background: #f6f8fa;
     --color-footer: #222;
     --color-header: #222;
     --color-sidebar: linear-gradient(170deg,rgba(245, 222, 179, 1) 0%, rgba(219, 175, 114, 1) 100%);
@@ -14,8 +12,6 @@
     /* --color-a: white; */
 
 
-
-    --border-card: solid 2px lightgray;
 
     --box-shadow-footer: 0 -2px 5px rgba(0,0,0,0.15);
     --box-shadow-header: 0 2px 5px rgba(0,0,0,0.15);

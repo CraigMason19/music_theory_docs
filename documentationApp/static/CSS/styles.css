@@ -100,13 +100,3 @@ h2 {
 	margin: 0.5rem 0rem;
 
 }
-
-
-.doc_card {
-	border: var(--border-card);
-	border-radius: 1rem;
-	background-color: var(--color-card-background);
-	margin-left: 2rem;
-	padding: 1rem;
-	width: fit-content;
-}
