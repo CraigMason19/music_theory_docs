@@ -1,10 +1,17 @@
+# Python
 import inspect
+from pathlib import Path
 
+# Django
+from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
 
-import music_theory as mt
+# PIP modules
+import markdown
 
+# Custom
+import music_theory as mt
 from .source.doc_extractor import ModuleDoc
 
 
@@ -32,7 +39,7 @@ def build_dynamic_docs(module):
 
     return doc_strs
 
-def docs_view(request):
+def documentation_view(request):
     functions = []
     
     for name, func in inspect.getmembers(mt, inspect.isfunction):
@@ -65,3 +72,22 @@ def scales_view(request):
     }
 
     return render(request, "scales.html", context)
+
+def examples_view(request):
+    """
+    Displays the examples Markdown file
+    """
+    md_path = Path(__file__).parent / "source" / "examples.md"
+
+    if not md_path.exists():
+        return HttpResponseNotFound(md_path)      
+
+    raw_md = md_path.read_text(encoding="utf-8")
+    html_content = markdown.markdown(raw_md, extensions=["fenced_code", "tables", "toc"])
+ 
+
+    context = {
+        "html_content": html_content,
+    }
+
+    return render(request, "examples.html", context)
