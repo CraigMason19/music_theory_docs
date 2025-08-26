@@ -23,21 +23,21 @@ def build_dynamic_docs(module):
         doc_strs.append({ 
             "name": "Function: " + f.name, 
             "docstring": mark_safe(f.docstring),
-            "element": "h3",
+            "tag": "h3",
         })
 
     for c in module_doc.classes:
         doc_strs.append({ 
             "name": "Class: " + c.name, 
             "docstring": mark_safe(c.docstring),
-            "element": "h2",
+            "tag": "h2",
         })          
 
         for m in c.methods:      
             doc_strs.append({ 
                 "name": f"Method: {c.name}.{m.name}", 
                 "docstring": mark_safe(m.docstring),
-                "element": "h3",
+                "tag": "h3",
             })  
 
     return doc_strs

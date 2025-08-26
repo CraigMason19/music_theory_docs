@@ -9,7 +9,7 @@
 
     {% for item in doc_strs %}
     
-        {{ item.name|wrap:item.element|safe }}
+        {{ item.name|wrap:item.tag|safe }}
         <pre>{{ item.docstring }}</pre>
 
     {% endfor %}
