@@ -1,5 +1,6 @@
 # Python
 import inspect
+import re
 from pathlib import Path
 
 # Django
@@ -14,6 +15,18 @@ import markdown
 import music_theory as mt
 from .source.doc_extractor import ModuleDoc
 
+
+def strip_screenshots_from_markdown(raw_md):
+    # Remove image embeds from screenshots folder
+    no_images = re.sub(r'!\[.*?\]\(screenshots/.*?\)', '', raw_md, flags=re.MULTILINE)
+
+    # Remove the '## Screenshots' heading
+    no_heading = re.sub(r'^## Screenshots\s*$', '', no_images, flags=re.MULTILINE)
+
+    # Collapse excessive blank lines
+    cleaned = re.sub(r'\n{3,}', '\n\n', no_heading)
+
+    return cleaned
 
 def build_dynamic_docs(module):
     module_doc = ModuleDoc(module)
@@ -49,8 +62,10 @@ def documentation_view(request):
         return HttpResponseNotFound(md_path)      
 
     raw_md = md_path.read_text(encoding="utf-8")
-    html_content = markdown.markdown(raw_md, extensions=["fenced_code", "tables", "toc"])
- 
+    clean_md = strip_screenshots_from_markdown(raw_md)
+
+    html_content = markdown.markdown(clean_md, extensions=["fenced_code", "tables", "toc"])
+
     context = {
         "html_content": html_content,
     }
