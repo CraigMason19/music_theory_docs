@@ -19,3 +19,6 @@ Documentation is dynamically extracted from docstrings in functions, classes, an
 
 #### Resources Used
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)
+
+## Screenshots
+![Documentation Homepage Screenshot](screenshots/documentation_home.png "This is the documentation homepage")
