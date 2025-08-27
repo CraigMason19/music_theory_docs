@@ -103,10 +103,20 @@ def examples_view(request):
 
     if not md_path.exists():
         return HttpResponseNotFound(md_path)      
-
-    raw_md = md_path.read_text(encoding="utf-8")
-    html_content = markdown.markdown(raw_md, extensions=["fenced_code", "tables", "toc"])
  
+    raw_md = md_path.read_text(encoding="utf-8")
+    clean_md = strip_screenshots_from_markdown(raw_md)
+
+    html_content = markdown.markdown(
+        clean_md, 
+        extensions=["fenced_code", "codehilite", "tables", "toc"],
+        extension_configs={
+            "codehilite": {
+                "guess_lang": False,
+                "noclasses": True  # Use CSS classes for styling
+            }
+        }
+    )
 
     context = {
         "html_content": html_content,
