@@ -1,17 +1,54 @@
 {% extends "base.html" %}
-{% load wrap_tags %}
 
 {% block title %}Music Theory Docs - Scales{% endblock %}
 
 {% block content %}
-
     <h1>{{ module_name }}</h1>
 
-    {% for item in doc_strs %}
-    
-        {{ item.name|wrap:item.tag|safe }}
-        <pre>{{ item.docstring }}</pre>
+    <div class="toc">
+        <h2>Functions</h2>
+        <ul>
+          {% for f in doc_structure.functions %}
+            <li><a href="#{{ f.anchor }}">{{ f.name }}</a></li>
+          {% endfor %}
+        </ul>
 
+        {% if doc_structure.classes %}
+            <h2>Classes</h2>
+            <ul>
+                {% for c in doc_structure.classes %}
+                    <li>
+                    <a href="#{{ c.anchor }}">{{ c.name }}</a>
+                        <ul>
+                            {% for m in c.methods %}
+                            <li><a href="#{{ m.anchor }}">{{ m.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    {% for f in doc_structure.functions %}
+        <{{ f.tag }} id="{{ f.anchor }}">{{ f.name }}</{{ f.tag }}>
+        <pre>{{ f.docstring }}</pre>
     {% endfor %}
+
+    {% if doc_structure.classes %}
+        {% for c in doc_structure.classes %}
+            <{{ c.tag }} id="{{ c.anchor }}">{{ c.name }}</{{ c.tag }}>
+            <pre>{{ c.docstring }}</pre>
+
+            <!-- methods -->
+            {% if c.methods %}
+                {% for m in c.methods %}
+                    <{{ m.tag }} id="{{ m.anchor }}">{{c.name}}.{{ m.name }}</{{ m.tag }}>
+                    <pre>{{ m.docstring }}</pre>
+                {% endfor %}
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
 
 {% endblock %}

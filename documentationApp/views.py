@@ -1,5 +1,4 @@
 # Python
-import inspect
 import re
 from pathlib import Path
 
@@ -28,32 +27,42 @@ def strip_screenshots_from_markdown(raw_md):
 
     return cleaned
 
-def build_dynamic_docs(module):
+def build_dynamic_doc_structure(module):
     module_doc = ModuleDoc(module)
-    doc_strs = []
+
+    doc_structure = {
+        "functions": [],
+        "classes": []
+    }
 
     for f in module_doc.functions:
-        doc_strs.append({ 
-            "name": "Function: " + f.name, 
+        doc_structure["functions"].append({
+            "name": f.name,
+            "tag": "h2",
+            "anchor": f"function-{f.name}",
             "docstring": mark_safe(f.docstring),
-            "tag": "h3",
         })
 
     for c in module_doc.classes:
-        doc_strs.append({ 
-            "name": "Class: " + c.name, 
-            "docstring": mark_safe(c.docstring),
+        class_entry = {
+            "name": c.name,
             "tag": "h2",
-        })          
+            "anchor": f"class-{c.name}",
+            "docstring": mark_safe(c.docstring),
+            "methods": []
+        }
 
-        for m in c.methods:      
-            doc_strs.append({ 
-                "name": f"Method: {c.name}.{m.name}", 
-                "docstring": mark_safe(m.docstring),
+        for m in c.methods:
+            class_entry["methods"].append({
+                "name": m.name,
                 "tag": "h3",
-            })  
+                "anchor": f"method-{c.name}-{m.name}",
+                "docstring": mark_safe(m.docstring),
+            })
 
-    return doc_strs
+        doc_structure["classes"].append(class_entry)
+
+    return doc_structure
 
 def documentation_view(request):
     md_path = Path(__file__).parent.parent / "readme.md"
@@ -67,7 +76,7 @@ def documentation_view(request):
     html_content = markdown.markdown(clean_md, extensions=["fenced_code", "tables", "toc"])
 
     context = {
-        "html_content": html_content,
+        "html_content": html_content
     }
 
     return render(request, "documentation.html", context)
@@ -78,7 +87,7 @@ def notes_view(request):
 
     context = {
         "module_name": module.__name__,
-        "doc_strs": build_dynamic_docs(module),
+        "doc_structure": build_dynamic_doc_structure(module),
     }
 
     return render(request, "notes.html", context)
@@ -86,11 +95,9 @@ def notes_view(request):
 def scales_view(request):
     module = mt.scales
 
-    print(module)
-
     context = {
         "module_name": module.__name__,
-        "doc_strs": build_dynamic_docs(module),
+        "doc_structure": build_dynamic_doc_structure(module),
     }
 
     return render(request, "scales.html", context)
