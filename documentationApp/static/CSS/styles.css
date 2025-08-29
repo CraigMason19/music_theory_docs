@@ -83,6 +83,7 @@ body {
 
 .sidebar a {
 	font-size: 1.5rem;
+	margin-bottom: 0.5em; 
 }
 
 
@@ -100,3 +101,9 @@ h2 {
 	margin: 0.5rem 0rem;
 
 }
+
+
+/* .toc {
+	padding: 0px;
+	background-color: aquamarine;
+} */
