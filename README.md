@@ -25,4 +25,5 @@ Documentation is extracted from the docstrings in functions, classes, and method
     - To display pages styled to match GitHub’s native Markdown rendering.
 
 ## Screenshots
-![documentation-homepage-screenshot](screenshots/documentation_home.png "documentation homepage")
+![documentation-homepage-screenshot](screenshots/documentation_home.jpg "documentation homepage")
+![documentation-notespage-screenshot](screenshots/documentation_notes.jpg "notes homepage")
