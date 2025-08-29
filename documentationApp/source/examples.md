@@ -1,8 +1,10 @@
 # Examples
  
 <nav>
-  <a href="#scales">Scales</a>
-  <a href="#keys">Keys</a>
+  <ul>
+    <li><a href="#scales">Scales</a></li>
+    <li><a href="#keys">Keys</a></li>
+  </ul>
 </nav>
 
 ### Scales
