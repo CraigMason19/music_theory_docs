@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Music Theory Docs - Tools{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'CSS/pygments.css' %}">
+
+<div class="markdown-body">
+    <h1>Tools</h1>
+
+    <ul>
+        <li><a href="#chords-in-key-generator">Chords in key generator</a></li>
+        <li><a href="#modes-from-note-generator">Modes from note generator</a></li>
+        <li><a href="#note-finder">Note finder</a></li>
+        <li><a href="#chord-progression-MIDI-generator">Chord progression MIDI generator</a></li>
+    </ul>
+    
+    <div class="tool">
+        <h2 id="chords-in-key-generator">Chords in key generator</h2>
+
+        <div class="tool-input">
+            <label for="note">Note:</label>
+            <select name="note" id="note">
+                {% for n in notes %}
+                    <option value="{{ n }}">{{ n }}</option>
+                {% endfor %}
+            </select> 
+            <br>
+
+            <label for="key-type">Key Type:</label>
+            <select name="key-type" id="key-type">
+                {% for kt in key_types %}
+                    <option value="{{ kt }}">{{ kt }}</option>
+                {% endfor %}
+            </select> 
+            <br>
+
+            <label for="dominant">Show dominant keys?</label>
+            <select name="dominant" id="dominant">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select> 
+            <br>
+
+            <label for="parallel">Show parallel keys?</label>
+            <select name="parallel" id="parallel">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select> 
+            <br>
+        </div>
+
+        <br>
+        <pre>{{ key_generator_results|safe }}</pre>
+    </div>
+
+    <div class="tool">
+        <h2 id="#modes-from-note-generator">Modes from note generator</h2>
+
+        <div class="tool-input">
+            <label for="note">Note:</label>
+            <select name="note" id="note">
+                {% for n in notes %}
+                    <option value="{{ n }}">{{ n }}</option>
+                {% endfor %}
+            </select> 
+            <br>
+        </div>
+
+        <br>
+        <pre>{{ mode_generator_results|safe }}</pre>
+    </div>
+</div>
+
+{% endblock %}

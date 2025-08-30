@@ -12,6 +12,8 @@ import markdown
 
 # Custom
 import music_theory as mt
+
+from music_theory.scales import modes_from_note 
 from .source.doc_extractor import ModuleDoc
 
 
@@ -130,3 +132,17 @@ def examples_view(request):
     }
 
     return render(request, "examples.html", context)
+
+def tools_view(request):
+
+    key_generator_results = mt.Key(mt.Note.A, mt.KeyType.Major).to_string_array(True, True)
+    mode_generator_results = [str(m) for m in modes_from_note(mt.Note.C)]
+
+    context = {
+        "notes": mt.Note.items(),
+        "key_types": mt.KeyType.items(),
+        "key_generator_results": "\n".join(key_generator_results),
+        "mode_generator_results": "\n".join(mode_generator_results),
+    }
+
+    return render(request, "tools.html", context)
