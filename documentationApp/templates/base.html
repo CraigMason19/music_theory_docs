@@ -19,8 +19,13 @@
 
 	<div class="layout">
 		<aside class="sidebar">
-			<a href="/documentation/notes">Notes</a>
-			<a href="/documentation/scales">Scales</a> 
+			<h2>Modules</h2>
+			<ul>
+				{% for module in available_modules %}
+					<li><a href="/documentation/{{ module }}">{{ module }}</a></li>
+				{% endfor %}
+			</ul>
+
 		</aside>
 
 		<main class="view-area markdown-body">
