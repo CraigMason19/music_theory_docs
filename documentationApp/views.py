@@ -1,9 +1,10 @@
 # Python
+import pkgutil
 import re
 from pathlib import Path
 
 # Django
-from django.http import HttpResponseNotFound
+from django.http import Http404, HttpResponseNotFound
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
 
@@ -16,6 +17,13 @@ import music_theory as mt
 from music_theory.scales import modes_from_note 
 from .source.doc_extractor import ModuleDoc
 
+BLACKLISTED_MODULES = ["mnemonics"]
+
+AVAILABLE_MODULES = [
+    f"{name}"
+    for _, name, is_pkg in pkgutil.iter_modules(mt.__path__)
+    if not name in BLACKLISTED_MODULES
+]
 
 def strip_screenshots_from_markdown(raw_md):
     # Remove image embeds from screenshots folder
@@ -78,31 +86,25 @@ def documentation_view(request):
     html_content = markdown.markdown(clean_md, extensions=["fenced_code", "tables", "toc"])
 
     context = {
-        "html_content": html_content
+        "html_content": html_content,
+        "available_modules": AVAILABLE_MODULES,
     }
 
     return render(request, "documentation.html", context)
 
-
-def notes_view(request):
-    module = mt.notes
-
-    context = {
-        "module_name": module.__name__,
-        "doc_structure": build_dynamic_doc_structure(module),
-    }
-
-    return render(request, "notes.html", context)
-
-def scales_view(request):
-    module = mt.scales
+def module_view(request, module_name):
+    module = getattr(mt, module_name)
+    
+    if module is None:
+        raise Http404(f"No such module: {module_name}")
 
     context = {
-        "module_name": module.__name__,
+        "module_name": module_name,
         "doc_structure": build_dynamic_doc_structure(module),
+        "available_modules": AVAILABLE_MODULES,
     }
 
-    return render(request, "scales.html", context)
+    return render(request, "module_docs.html", context)
 
 def examples_view(request):
     """
@@ -129,6 +131,7 @@ def examples_view(request):
 
     context = {
         "html_content": html_content,
+        "available_modules": AVAILABLE_MODULES,
     }
 
     return render(request, "examples.html", context)
@@ -143,6 +146,8 @@ def tools_view(request):
         "key_types": mt.KeyType.items(),
         "key_generator_results": "\n".join(key_generator_results),
         "mode_generator_results": "\n".join(mode_generator_results),
+        "available_modules": AVAILABLE_MODULES,
+
     }
 
     return render(request, "tools.html", context)

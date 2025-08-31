@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Music Theory Docs - Scales{% endblock %}
+{% block title %}Music Theory Docs - {{ module_name }}{% endblock %}
 
 {% block content %}
     <h1>{{ module_name }}</h1>
 
     <div class="toc">
-        <h2>Functions</h2>
-        <ul>
-          {% for f in doc_structure.functions %}
-            <li><a href="#{{ f.anchor }}">{{ f.name }}</a></li>
-          {% endfor %}
-        </ul>
+        {% if doc_structure.functions %}
+            <h2>Functions</h2>
+            <ul>
+            {% for f in doc_structure.functions %}
+                <li><a href="#{{ f.anchor }}">{{ f.name }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
 
         {% if doc_structure.classes %}
             <h2>Classes</h2>
@@ -30,10 +33,13 @@
         {% endif %}
     </div>
 
-    {% for f in doc_structure.functions %}
-        <{{ f.tag }} id="{{ f.anchor }}">{{ f.name }}</{{ f.tag }}>
-        <pre>{{ f.docstring }}</pre>
-    {% endfor %}
+    {% if doc_structure.functions %}
+        {% for f in doc_structure.functions %}
+            <{{ f.tag }} id="{{ f.anchor }}">{{ f.name }}</{{ f.tag }}>
+            <pre>{{ f.docstring }}</pre>
+        {% endfor %}
+    {% endif %}
+
 
     {% if doc_structure.classes %}
         {% for c in doc_structure.classes %}
