@@ -41,6 +41,7 @@ def build_dynamic_doc_structure(module):
     module_doc = ModuleDoc(module)
 
     doc_structure = {
+        "module_docstring": module_doc.module_docstring,
         "functions": [],
         "classes": []
     }

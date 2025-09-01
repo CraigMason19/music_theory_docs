@@ -33,6 +33,7 @@ class FunctionDoc:
 class ModuleDoc:
     def __init__(self, module):
         self.module = module
+        self.module_docstring = inspect.getdoc(module)
         self.functions = self._extract_functions()
         self.classes = self._extract_classes()
 
