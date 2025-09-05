@@ -140,15 +140,26 @@ def examples_view(request):
 def tools_view(request):
 
     key_generator_results = mt.Key(mt.Note.A, mt.KeyType.Major).to_string_array(True, True)
-    mode_generator_results = [str(m) for m in modes_from_note(mt.Note.C)]
 
+ 
+
+
+
+ 
+    tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
+    
+    mode_generator_results = [str(m) for m in modes_from_note(mt.Note.from_index(tool_two_note_input))] 
+ 
     context = {
+        "available_modules": AVAILABLE_MODULES,
+
         "notes": mt.Note.items(),
         "key_types": mt.KeyType.items(),
         "key_generator_results": "\n".join(key_generator_results),
-        "mode_generator_results": "\n".join(mode_generator_results),
-        "available_modules": AVAILABLE_MODULES,
 
+        # Tool 2
+        "mode_generator_results": "\n".join(mode_generator_results),
+        "tool_two_note_input": tool_two_note_input,
     }
 
     return render(request, "tools.html", context)
