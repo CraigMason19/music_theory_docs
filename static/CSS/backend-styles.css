@@ -1,12 +1,16 @@
 @import './constants.css';
 
+
+
 body {
 	margin: 0;
-	height: 100vh;
-	display: grid;
-	place-items: center;
+	padding-top: 5rem;
 	background-color: var(--color-backend-background);
-}
+	display: flex;
+	justify-content: center;     /* horizontal centering */
+	align-items: flex-start;     /* top alignment */
+	height: 100vh;
+  }
 
 .centered {
 	text-align: center;
@@ -14,7 +18,7 @@ body {
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	background-color: #fff;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
 }
 
 a {
