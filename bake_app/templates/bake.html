@@ -7,14 +7,14 @@
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{% static 'CSS/constants.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/backend-styles.css' %}">
-
+  <link rel="stylesheet" href="{% static 'CSS/messages.css' %}">
   <title>Bake App</title>
 </head>
 
 <body>
-
-  <div class="centered">
-	  <H1>Django backend for 'bake_app'</H1>
+  <div class="box centered">
+	  <H1>Django backend for...</H1>
+    <h1>'bake_app'</h1>
 
 	  <p>Click bake in order to render down static files to 'docs' folder (for github) to statically serve</p> 
 
@@ -22,6 +22,14 @@
 
 	  <a href="/">Go back</a>
   </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="box message message-{{message.tags}}">
+        <p><strong>{{ message.tags|capfirst }}</strong> - {{ message }}</p>
+      </div>
+    {% endfor %}
+  {% endif %}
 
 </body>
 
