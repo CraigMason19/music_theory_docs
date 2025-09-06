@@ -18,7 +18,10 @@
 
 	  <p>Click bake in order to render down static files to 'docs' folder (for github) to statically serve</p> 
 
-    <button>Bake</button>
+    <form method="post" action="{% url 'bake_view' %}">
+      {% csrf_token %}
+      <button id="bake-button" type="submit">Bake</button>
+    </form>
 
 	  <a href="/">Go back</a>
   </div>
