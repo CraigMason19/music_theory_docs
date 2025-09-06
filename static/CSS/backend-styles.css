@@ -1,24 +1,28 @@
 @import './constants.css';
 
-
-
 body {
 	margin: 0;
 	padding-top: 5rem;
 	background-color: var(--color-backend-background);
 	display: flex;
-	justify-content: center;     /* horizontal centering */
-	align-items: flex-start;     /* top alignment */
+	flex-direction: column;
+	justify-content:start;     /* horizontal centering */
+	align-items: center;     /* top alignment */
 	height: 100vh;
   }
 
-.centered {
+.box {
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+	width: 40%;
 	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.centered {
 	padding: 2rem;
 	border: 1px solid #ccc;
 	border-radius: 8px;
-	background-color: #fff;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
 }
 
 a {
