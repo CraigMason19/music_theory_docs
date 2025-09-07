@@ -4,7 +4,12 @@
 {% block title %}Music Theory Docs - Examples{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'CSS/pygments.css' %}">
+
+{% if BAKE_MODE %}
+    <link rel="stylesheet" href="{{ css_prefix }}CSS/pygments.css">
+{% else %}
+    <link rel="stylesheet" href="{% static 'CSS/pygments.css' %}">
+{% endif %}
 
 <div class="markdown-body">
     {{ html_content|safe }}

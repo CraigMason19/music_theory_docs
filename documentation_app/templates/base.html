@@ -5,8 +5,15 @@
 
 <head>
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="{% static 'CSS/documentation-styles.css' %}" />
-	<link rel="stylesheet" href="{% static 'CSS/github-markdown.css' %}">
+
+	{% if BAKE_MODE %}
+		<link rel="stylesheet" href="{{ css_prefix }}CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="{{ css_prefix }}CSS/github-markdown.css">
+	{% else %}
+		<link rel="stylesheet" href="{% static 'CSS/documentation-styles.css' %}" />
+		<link rel="stylesheet" href="{% static 'CSS/github-markdown.css' %}">
+	{% endif %}
+
 	<title>{% block title %}Music Theory Docs{% endblock %}</title>
 </head>
 
@@ -22,7 +29,11 @@
 			<h2>Modules</h2>
 			<ul>
 				{% for module in available_modules %}
-					<li><a href="/documentation/{{ module }}">{{ module }}</a></li>
+					{% if BAKE_MODE %}
+						<li><a href="documentation/{{ module }}.html">{{ module }}</a></li>
+					{% else %}
+						<li><a href="/documentation/{{ module }}">{{ module }}</a></li>
+					{% endif %}					
 				{% endfor %}
 			</ul>
 
