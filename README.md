@@ -3,6 +3,7 @@ A web-based documentation site for my **music_theory** Python package, built usi
 
 Documentation is extracted from the docstrings in functions, classes, and methods throughout the project. Usage examples are rendered from a Markdown file and python syntax is highlighted.
 
+- <a href="https://craigmason19.github.io/music_theory_docs/index.html" target="_blank">Live documentation website</a>
 - <a href="https://github.com/CraigMason19/music_theory" target="_blank">GitHub - music_theory</a>
 - <a href="https://github.com/CraigMason19/music_theory_docs" target="_blank">GitHub - music_theory_docs</a>
  
