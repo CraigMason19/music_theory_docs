@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 
 # Django
+from django.conf import settings
 from django.http import Http404, HttpResponseNotFound
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
@@ -87,6 +88,8 @@ def documentation_view(request):
     html_content = markdown.markdown(clean_md, extensions=["fenced_code", "tables", "toc"])
 
     context = {
+        "BAKE_MODE": settings.BAKE_MODE,
+        "css_prefix": "",
         "html_content": html_content,
         "available_modules": AVAILABLE_MODULES,
     }
@@ -100,6 +103,8 @@ def module_view(request, module_name):
         raise Http404(f"No such module: {module_name}")
 
     context = {
+        "BAKE_MODE": settings.BAKE_MODE,
+        "css_prefix": "../",
         "module_name": module_name,
         "doc_structure": build_dynamic_doc_structure(module),
         "available_modules": AVAILABLE_MODULES,
@@ -131,6 +136,8 @@ def examples_view(request):
     )
 
     context = {
+        "BAKE_MODE": settings.BAKE_MODE,
+        "css_prefix": "../",
         "html_content": html_content,
         "available_modules": AVAILABLE_MODULES,
     }
