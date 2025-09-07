@@ -1,0 +1,140 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="../CSS/github-markdown.css">
+	
+
+	<title>Music Theory Docs - Examples</title>
+</head>
+
+<body>
+	<nav class="header">
+		<a href="/documentation">Home</a>
+		<a href="/documentation/examples">Examples</a>
+		<a href="/documentation/tools">Tools</a>
+	</nav>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<h2>Modules</h2>
+			<ul>
+				
+					<li><a href="/documentation/chord_type">chord_type</a></li>
+				
+					<li><a href="/documentation/chords">chords</a></li>
+				
+					<li><a href="/documentation/instrument">instrument</a></li>
+				
+					<li><a href="/documentation/instrument_creator">instrument_creator</a></li>
+				
+					<li><a href="/documentation/intervals">intervals</a></li>
+				
+					<li><a href="/documentation/key_type">key_type</a></li>
+				
+					<li><a href="/documentation/keys">keys</a></li>
+				
+					<li><a href="/documentation/notes">notes</a></li>
+				
+					<li><a href="/documentation/progressions">progressions</a></li>
+				
+					<li><a href="/documentation/scale_diatonic">scale_diatonic</a></li>
+				
+					<li><a href="/documentation/scale_type">scale_type</a></li>
+				
+					<li><a href="/documentation/scales">scales</a></li>
+				
+					<li><a href="/documentation/utils">utils</a></li>
+				
+			</ul>
+
+		</aside>
+
+		<main class="view-area markdown-body">
+			
+
+
+    <link rel="stylesheet" href="../CSS/pygments.css">
+
+
+<div class="markdown-body">
+    <h1 id="examples">Examples</h1>
+<nav>
+  <ul>
+    <li><a href="#scales">Scales</a></li>
+    <li><a href="#keys">Keys</a></li>
+  </ul>
+</nav>
+
+<h3 id="scales">Scales</h3>
+<p>To create a scale simply construct a scale class.</p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>scale <span style="color: #666">=</span> Scale(Note<span style="color: #666">.</span>C, ScaleType<span style="color: #666">.</span>Minor)
+<span style="color: #008000">print</span>(scale)
+<span style="color: #008000">print</span>(scale<span style="color: #666">.</span>name)
+<span style="color: #008000">print</span>(scale<span style="color: #666">.</span>notes)
+<span style="color: #008000">print</span>(scale<span style="color: #666">.</span>num_notes)
+<span style="color: #008000">print</span>(scale<span style="color: #666">.</span>num_flats)
+<span style="color: #008000">print</span>(scale<span style="color: #666">.</span>interval_formula)
+
+C Minor: C, D, Eb, F, G, Ab, Bb
+C Minor
+[Note<span style="color: #666">.</span>C, Note<span style="color: #666">.</span>D, Note<span style="color: #666">.</span>Eb, Note<span style="color: #666">.</span>F, Note<span style="color: #666">.</span>G, Note<span style="color: #666">.</span>Ab, Note<span style="color: #666">.</span>Bb]
+<span style="color: #666">7</span>
+<span style="color: #666">3</span>
+[Interval<span style="color: #666">.</span>Unison, Interval<span style="color: #666">.</span>M2, Interval<span style="color: #666">.</span>m3, Interval<span style="color: #666">.</span>P4, Interval<span style="color: #666">.</span>P5, Interval<span style="color: #666">.</span>m6, Interval<span style="color: #666">.</span>m7]
+</code></pre></div>
+
+<p>To find all the modes of a note use the modes_from_note function inside scales.py</p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">for</span> mode <span style="color: #A2F; font-weight: bold">in</span> modes_from_note(Note<span style="color: #666">.</span>C):
+    <span style="color: #008000">print</span>(mode)
+
+C Ionian: C, D, E, F, G, A, B
+D Dorian: D, E, F, G, A, B, C
+E Phrygian: E, F, G, A, B, C, D
+F Lydian: F, G, A, B, C, D, E
+G Mixolydian: G, A, B, C, D, E, F
+A Aeolian: A, B, C, D, E, F, G
+B Locrian: B, C, D, E, F, G, A
+</code></pre></div>
+
+<h3 id="keys">Keys</h3>
+<p>To find a list of all chords in a key simply create a Key and use the pretty_print function. e.g.</p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>key <span style="color: #666">=</span> Key(Note<span style="color: #666">.</span>A, KeyType<span style="color: #666">.</span>Major)
+key<span style="color: #666">.</span>pretty_print(dominant<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">True</span>,  parallel<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">True</span>)
+
+    AM        Bm       Dbm        DM        EM       Gbm     Abdim
+     I        ii       iii        IV         V        vi       vii
+
+    E7       Gb7       Ab7        A7        B7       Db7       Eb7
+  V7<span style="color: #666">/</span>I     V7<span style="color: #666">/</span>ii    V7<span style="color: #666">/</span>iii     V7<span style="color: #666">/</span>IV      V7<span style="color: #666">/</span>V     V7<span style="color: #666">/</span>vi    V7<span style="color: #666">/</span>vii
+
+    Am      Bdim        CM        Dm        Em        FM        GM
+     i        ii       III        iv         v        VI       VII
+</code></pre></div>
+
+<p>To find the chords of a key from numeral notation use the chords_from_progression function
+Note: Uppercase letters &amp; numerals notate major and lowercase notates minor</p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>chords <span style="color: #666">=</span> chords_from_progression(Key(Note<span style="color: #666">.</span>A), [<span style="color: #BA2121">&#39;I&#39;</span>, <span style="color: #BA2121">&#39;ii&#39;</span>, <span style="color: #BA2121">&#39;IV&#39;</span>, <span style="color: #BA2121">&#39;CXIIMII-invalid&#39;</span>])
+<span style="color: #008000">print</span>(chords)
+[<span style="color: #BA2121">&#39;AM&#39;</span>, <span style="color: #BA2121">&#39;Bm&#39;</span>, <span style="color: #BA2121">&#39;DM&#39;</span>, <span style="color: #BA2121">&#39;X&#39;</span>]
+</code></pre></div>
+</div>
+
+
+		</main>
+	</div>
+
+	<!-- <footer class="footer">
+		<p>Footer date or something here</p>
+	</footer> -->
+</body>
+
+<script src="/static/JS/debug.js"></script>
+
+</html>

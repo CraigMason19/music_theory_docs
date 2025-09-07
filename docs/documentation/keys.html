@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="../CSS/github-markdown.css">
+	
+
+	<title>Music Theory Docs - keys</title>
+</head>
+
+<body>
+	<nav class="header">
+		<a href="/documentation">Home</a>
+		<a href="/documentation/examples">Examples</a>
+		<a href="/documentation/tools">Tools</a>
+	</nav>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<h2>Modules</h2>
+			<ul>
+				
+					<li><a href="/documentation/chord_type">chord_type</a></li>
+				
+					<li><a href="/documentation/chords">chords</a></li>
+				
+					<li><a href="/documentation/instrument">instrument</a></li>
+				
+					<li><a href="/documentation/instrument_creator">instrument_creator</a></li>
+				
+					<li><a href="/documentation/intervals">intervals</a></li>
+				
+					<li><a href="/documentation/key_type">key_type</a></li>
+				
+					<li><a href="/documentation/keys">keys</a></li>
+				
+					<li><a href="/documentation/notes">notes</a></li>
+				
+					<li><a href="/documentation/progressions">progressions</a></li>
+				
+					<li><a href="/documentation/scale_diatonic">scale_diatonic</a></li>
+				
+					<li><a href="/documentation/scale_type">scale_type</a></li>
+				
+					<li><a href="/documentation/scales">scales</a></li>
+				
+					<li><a href="/documentation/utils">utils</a></li>
+				
+			</ul>
+
+		</aside>
+
+		<main class="view-area markdown-body">
+			
+    <h1>keys</h1>
+    <pre>None</pre>
+
+    <div class="toc">
+        
+
+
+        
+            <h2>Classes</h2>
+            <ul>
+                
+                    <li>
+                    <a href="#class-Key">Key</a>
+                        <ul>
+                            
+                            <li><a href="#method-Key-__init__">__init__</a></li>
+                            
+                            <li><a href="#method-Key-__eq__">__eq__</a></li>
+                            
+                            <li><a href="#method-Key-random">random</a></li>
+                            
+                            <li><a href="#method-Key-chords">chords</a></li>
+                            
+                            <li><a href="#method-Key-parallel_chords">parallel_chords</a></li>
+                            
+                            <li><a href="#method-Key-dominant_chords">dominant_chords</a></li>
+                            
+                            <li><a href="#method-Key-to_string_array">to_string_array</a></li>
+                            
+                            <li><a href="#method-Key-pretty_print">pretty_print</a></li>
+                            
+                            <li><a href="#method-Key-__str__">__str__</a></li>
+                            
+                            <li><a href="#method-Key-__repr__">__repr__</a></li>
+                            
+                        </ul>
+                    </li>
+                
+            </ul>
+        
+    </div>
+
+    
+
+
+    
+        
+            <h2 id="class-Key">Key</h2>
+            <pre>Represents a musical key. A key is important to find what chords can be 
+    used.
+
+Attributes:
+    root:
+        A note that the key starts on. (defines the I chord)
+    type:
+        A KeyType. (Major or Minor)
+
+Methods:
+    __init__(root, key_type=KeyType.Major):
+        Contructs the key.
+    __eq__(self, other):
+        Compares two keys.
+    random(cls):
+        A class method that returns a random Key from a random Note.
+    parallel(self):
+        A property that returns the paralell (opposite) key.
+    relative_key(self):
+        A property that returns the key relative to this one.
+    name(self):
+        A property that returns the name of the key.
+    sharp_count(self):
+        A property that returns the number of sharps in a key.
+    flat_count(self):
+        A property that returns the number of flats in a key.
+    sharps(self):
+        A property that returns a list of the sharp notes.
+    flats(self):
+        A property that returns a list of the flat notes.
+    chords(self):
+        Returns a dict containing the chords of the key.
+    parallel_chords(self):
+        Returns a dict containing the parallel chords of the key.
+    dominant_chords(self):
+        Returns a dict containing the dominant chords of the key.
+    to_string_array(self, dominant=False, parallel=False):
+        Returns the chords in the key as an array of strings.
+    pretty_print(self, dominant=False, parallel=False):
+        Prints out the chords in a easy to read table format.
+    __str__(self):
+        Returns the name of the key.
+    __repr__(self):
+        Returns the name of the key.</pre>
+
+            <!-- methods -->
+            
+                
+                    <h3 id="method-Key-__init__">Key.__init__</h3>
+                    <pre>Constructs the key 
+
+    e.g. C Minor
+
+Args:
+    root:
+        The note to build the key from
+    key_type:
+        The type of the key to be built.
+
+Returns:
+    None.</pre>
+                
+                    <h3 id="method-Key-__eq__">Key.__eq__</h3>
+                    <pre>Equality operator to check that both the note and key type match. 
+
+    e.g. Key(Note.F, KeyType.Major) == Key(Note.F, KeyType.Major)
+
+Args:
+    other:
+        The other Key to compare.
+
+Returns:
+    A bool. True if this and another key are the same.</pre>
+                
+                    <h3 id="method-Key-random">Key.random</h3>
+                    <pre>A class method that returns a random key. 
+
+    e.g. C Minor
+
+Args:
+    None.
+
+Returns:
+    A Key.</pre>
+                
+                    <h3 id="method-Key-chords">Key.chords</h3>
+                    <pre>Returns a dict representing all the chords in the key.
+
+The dict key is a Roman numeral as used in traditional notation. 
+A upper case numneral represents a major chord and a lower case numeral
+represents a minor chord.
+
+Note: The major key has a diminished 7th (vii°) and the minor a diminished 2nd (ii°)
+        
+Args:
+    None.
+        
+Returns:
+        A dict in the form. key=RomanNumeral value=Chord
+        e.g. { "I": Chord(C, ChordType.Major) ... }</pre>
+                
+                    <h3 id="method-Key-parallel_chords">Key.parallel_chords</h3>
+                    <pre>Returns a dict representing all the parallel chords in the key.
+
+    These are the chords that are constructed from the parallel (opposite)
+    key. e.g. the paralell chords of C Major are the chords of C Minor. 
+
+Args:
+    None
+        
+Returns:
+        A dict in the form. key=RomanNumeral value=Chord
+        e.g. { "I": Chord(C, ChordType.Major) ... }</pre>
+                
+                    <h3 id="method-Key-dominant_chords">Key.dominant_chords</h3>
+                    <pre>Returns a dict representing all the chords in dominant the key.
+
+    The dominant key is created by raising the root note of the chord in 
+    the main key up a 5th. It is then turned into a seventh cord.     
+    
+    e.g. C Major
+        I        ii       iii        IV         V        vi       vii
+        V7/I     V7/ii    V7/iii     V7/IV      V7/V     V7/vi    V7/vii
+
+Args:
+    None.
+        
+Returns:
+        A dict in the form. key='V7/RomanNumeral' value=Chord
+        e.g. { "V7/I": Chord(C, ChordType.Dominant7) ... }</pre>
+                
+                    <h3 id="method-Key-to_string_array">Key.to_string_array</h3>
+                    <pre>Generates a formatted chord table for the current key as a list of strings.
+
+The output includes:
+    - Diatonic chords in the key (e.g. C Major or C Minor)
+    - [Optional] dominant seventh chords (V7 of each degree)
+    - [Optional] parallel key chords (relative major/minor)
+
+Example output:
+    Chords of C Minor:
+        CM        Dm        Em        FM        GM        Am        B°
+         I        ii       iii        IV         V        vi       vii
+
+        G7        A7        B7        C7        D7        E7       Gb7
+      V7/I     V7/ii    V7/iii     V7/IV      V7/V     V7/vi    V7/vii
+
+        Cm        D°       EbM        Fm        Gm       AbM       BbM
+         i        ii       III        iv         v        VI       VII
+
+Args:
+    dominant: 
+        A bool indicating whether you want to print the dominant chords.
+    parallel: 
+        A bool indicating whether you want to print the parallel chords.
+        
+Returns:
+    List[str]: An array of strings representing the formatted chord lines.</pre>
+                
+                    <h3 id="method-Key-pretty_print">Key.pretty_print</h3>
+                    <pre>Prints out the key information in a formatted table view. 
+
+The output includes:
+    - Diatonic chords in the key (e.g. C Major or C Minor)
+    - [Optional] dominant seventh chords (V7 of each degree)
+    - [Optional] parallel key chords (relative major/minor)
+
+Example output:
+    Chords of C Minor:
+        CM        Dm        Em        FM        GM        Am        B°
+         I        ii       iii        IV         V        vi       vii
+
+        G7        A7        B7        C7        D7        E7       Gb7
+      V7/I     V7/ii    V7/iii     V7/IV      V7/V     V7/vi    V7/vii
+
+        Cm        D°       EbM        Fm        Gm       AbM       BbM
+         i        ii       III        iv         v        VI       VII
+
+Args:
+    dominant: 
+        A bool indicating whether you want to print the dominant chords.
+    parallel: 
+        A bool indicating whether you want to print the parallel chords.
+        
+Returns:
+        None.</pre>
+                
+                    <h3 id="method-Key-__str__">Key.__str__</h3>
+                    <pre>Returns a string representing the key. 
+
+    e.g. str(Key(Note.G, KeyType.Major)) -> 'G Major'
+
+Args:
+    None.
+
+Returns:
+    A string.</pre>
+                
+                    <h3 id="method-Key-__repr__">Key.__repr__</h3>
+                    <pre>Returns a string representing the key. 
+
+    e.g. repr(Key(Note.G, KeyType.Major)) -> 'Key(G Major)'
+
+Args:
+    None.
+
+Returns:
+    A string representing the key type's name.</pre>
+                
+            
+
+        
+    
+
+
+		</main>
+	</div>
+
+	<!-- <footer class="footer">
+		<p>Footer date or something here</p>
+	</footer> -->
+</body>
+
+<script src="/static/JS/debug.js"></script>
+
+</html>
