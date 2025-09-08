@@ -1,7 +1,7 @@
 /* CSS to mimic bootstrap alerts */
 
 .message {
-	margin: 1rem 0rem;
+	margin: 0.5rem 0rem;
 	padding: 0rem 2rem;
 	border-radius: 8px;
 	border: 2px solid;
