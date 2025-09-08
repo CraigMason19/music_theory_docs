@@ -4,12 +4,11 @@
 body {
 	margin: 0;
 	display: grid;
-	grid-template-rows: auto 1fr auto; /* header, content, footer */
+	grid-template-rows: auto 1fr; /* header, content */
 	grid-template-columns: auto 1fr;  /* sidebar, main */
 	grid-template-areas:
 	  "header header"
-	  "sidebar main"
-	  "footer footer";
+	  "sidebar main";
 	height: 100vh;
   }
 
@@ -43,31 +42,13 @@ body {
 
 	 
 }
-
-  .footer {
-	grid-area: footer;
-	position: sticky;
-	bottom: 0;
-	z-index: 1000;
-	background-color: var(--color-footer);
-	color: white;
-	padding: 1rem;
-	box-shadow: var(--box-shadow-footer);
-	justify-content: center; /* horizontal centering */
-  }
   
-.header,
-.footer {
+.header {
   height: 1.5rem;
   display: flex;
   align-items: center;
-
-
 }
 
-.footer * {
-	margin: 0;
-  }
 
   .layout {
 	display: contents; /* Let children inherit grid from body */
