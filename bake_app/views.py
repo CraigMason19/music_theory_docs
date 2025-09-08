@@ -2,9 +2,13 @@ from enum import Enum
 from pathlib import Path
 import shutil
 
+from django.conf import settings
 from django.contrib import messages
-from django.shortcuts import redirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+
+import urllib.request
+
+from documentation_app.source.mt_modules import get_available_modules
 
 BAKE_DIR = Path("docs")
 
@@ -26,9 +30,11 @@ def bakeAsset(request, asset: Asset, ignore_list: list[str]) -> bool:
     try:
         if asset == Asset.CSS:
             shutil.copytree(CSS_DIR, BAKE_DIR / "CSS", ignore=shutil.ignore_patterns(*ignore_list), dirs_exist_ok=True)
+            messages.success(request, "CSS pages baked successfully")
 
         elif asset == Asset.JS:
             shutil.copytree(JS_DIR, BAKE_DIR / "JS", ignore=shutil.ignore_patterns(*ignore_list), dirs_exist_ok=True)
+            messages.success(request, "JS scripts baked successfully")
 
         else:
             raise ValueError(f"Unknown asset type: {asset}")
@@ -40,22 +46,59 @@ def bakeAsset(request, asset: Asset, ignore_list: list[str]) -> bool:
 
         return False
     
+def bakeHTML(request) -> bool:
+    try:
+        # part = "/documentation/examples"
+        # url = settings.DEFAULT_PORT + part
+
+        url = f"{settings.DEFAULT_PORT}/documentation"
+        html = urllib.request.urlopen(url).read().decode("utf-8")
+        output_path = Path(__file__).parent.parent / "docs" / "index.html"
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(html, encoding="utf-8")
+
+
+        # url = f"{settings.DEFAULT_PORT}/documentation/examples"
+        # html = urllib.request.urlopen(url).read().decode("utf-8")
+        # output_path = Path(__file__).parent.parent / "docs" / "documentation" / "examples.html"
+        # output_path.parent.mkdir(parents=True, exist_ok=True)
+        # output_path.write_text(html, encoding="utf-8")
+
+
+
+        # for module in get_available_modules():
+            # url = f"{settings.DEFAULT_PORT}/documentation/examples"
+            # html = urllib.request.urlopen(url).read().decode("utf-8")
+            # output_path = Path(__file__).parent.parent / "docs" / "documentation" / "examples.html"
+            # output_path.parent.mkdir(parents=True, exist_ok=True)
+            # output_path.write_text(html, encoding="utf-8")
+
+
+        messages.success(request, "HTML pages baked successfully")
+        return True
+
+    except Exception as e:
+        messages.error(request, f"Bake failed for {url}:\n {e}")
+        return False
+
     
 def bake(request) -> bool:
+    settings.BAKE_MODE = True
+
     results = [
         bakeAsset(request, Asset.CSS, CSS_BLACKLIST),
         # bakeAsset(request, Asset.JS, JSS_BLACKLIST),
+        bakeHTML(request)
     ]
     
+    settings.BAKE_MODE = False
+
     return all(results)
 
 
 def bake_view(request):
     if request.method == "POST":       
-        if bake(request):
-            messages.success(request, "Assets baked successfully.")
-        else:
-            messages.warning(request, "Some assets failed to bake.")
+        bake(request)
         
         return redirect("bake_view")
     

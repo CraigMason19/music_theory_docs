@@ -17,14 +17,7 @@ import music_theory as mt
 
 from music_theory.scales import modes_from_note 
 from .source.doc_extractor import ModuleDoc
-
-BLACKLISTED_MODULES = ["mnemonics"]
-
-AVAILABLE_MODULES = [
-    f"{name}"
-    for _, name, is_pkg in pkgutil.iter_modules(mt.__path__)
-    if not name in BLACKLISTED_MODULES
-]
+from .source.mt_modules import get_available_modules
 
 def strip_screenshots_from_markdown(raw_md):
     # Remove image embeds from screenshots folder
@@ -91,7 +84,7 @@ def documentation_view(request):
         "BAKE_MODE": settings.BAKE_MODE,
         "css_prefix": "",
         "html_content": html_content,
-        "available_modules": AVAILABLE_MODULES,
+        "available_modules": get_available_modules(),
     }
 
     return render(request, "documentation.html", context)
@@ -107,7 +100,7 @@ def module_view(request, module_name):
         "css_prefix": "../",
         "module_name": module_name,
         "doc_structure": build_dynamic_doc_structure(module),
-        "available_modules": AVAILABLE_MODULES,
+        "available_modules": get_available_modules(),
     }
 
     return render(request, "module_docs.html", context)
@@ -116,7 +109,7 @@ def examples_view(request):
     """
     Displays the examples Markdown file
     """
-    md_path = Path(__file__).parent / "source" / "examples.md"
+    md_path = Path(__file__).parent.parent / "static" / "Markdown" / "examples.md"
 
     if not md_path.exists():
         return HttpResponseNotFound(md_path)      
@@ -139,7 +132,7 @@ def examples_view(request):
         "BAKE_MODE": settings.BAKE_MODE,
         "css_prefix": "../",
         "html_content": html_content,
-        "available_modules": AVAILABLE_MODULES,
+        "available_modules": get_available_modules(),
     }
 
     return render(request, "examples.html", context)
@@ -158,7 +151,7 @@ def tools_view(request):
     mode_generator_results = [str(m) for m in modes_from_note(mt.Note.from_index(tool_two_note_input))] 
  
     context = {
-        "available_modules": AVAILABLE_MODULES,
+        "available_modules": get_available_modules(),
 
         "notes": mt.Note.items(),
         "key_types": mt.KeyType.items(),
