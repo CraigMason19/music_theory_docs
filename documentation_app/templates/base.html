@@ -21,7 +21,9 @@
 	<nav class="header">
 		<a href="/documentation">Home</a>
 		<a href="/documentation/examples">Examples</a>
-		<a href="/documentation/tools">Tools</a>
+		{% if not BAKE_MODE %}
+			<a href="/documentation/tools">Tools</a>
+		{% endif %}					
 	</nav>
 
 	<div class="layout">
