@@ -26,28 +26,22 @@ body {
 	box-shadow: var(--box-shadow-header);
 	/* display: flex;
 	align-items: center; horizontal centering */
-
+	height: 1.5rem;
+	display: flex;
+	align-items: center;
   }
   
 .header a {
-    color: white;
-    text-decoration: none;
+	color: white;
     line-height: 1;
     font-size: 1.5rem;
 	font-weight: bolder;
 	padding-right: 2rem;
 	align-items: center;
 	margin: 0px;
-	max-width: max-content;
-
-	 
 }
   
-.header {
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-}
+
 
 
   .layout {
