@@ -16,8 +16,8 @@ import markdown
 import music_theory as mt
 
 from music_theory.scales import modes_from_note 
-from .source.doc_extractor import ModuleDoc
-from .source.mt_modules import get_available_modules
+from core.doc_extractor import ModuleDoc
+from core.mt_modules import get_available_modules
 
 def strip_screenshots_from_markdown(raw_md):
     # Remove image embeds from screenshots folder

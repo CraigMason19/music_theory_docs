@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render
 
 import urllib.request
 
-from documentation_app.source.mt_modules import get_available_modules
+from core.mt_modules import get_available_modules
 
 BAKE_DIR = Path("docs")
 
