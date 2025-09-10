@@ -43,41 +43,21 @@ def bakeAsset(request, asset: Asset, ignore_list: list[str]) -> bool:
     
     except Exception as e:
         messages.error(request, f"Bake failed for {asset.name}: {e}")
-
         return False
     
 def bakeHTML(request) -> bool:
     try:
-        # index exception
-        django_url = f"http://{settings.DEFAULT_PORT}/documentation"
-        html = urllib.request.urlopen(django_url).read().decode("utf-8")
-
-        output_path = (Path(__file__).parent.parent / "docs" /  "index").with_suffix(".html")
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(html, encoding="utf-8")
-
-
-
-
-
-        # examploes
-        django_url = f"http://{settings.DEFAULT_PORT}/documentation/examples"
-        html = urllib.request.urlopen(django_url).read().decode("utf-8")
-
-        output_path = (Path(__file__).parent.parent / "docs" / "documentation" / "examples").with_suffix(".html")
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(html, encoding="utf-8")
-
-
-
-
-        pages = get_available_modules()
+        pages = ["index", "examples"] + get_available_modules()
 
         for page in pages:
-            django_url = f"http://{settings.DEFAULT_PORT}/documentation/{page}"
-            html = urllib.request.urlopen(django_url).read().decode("utf-8")
+            if page == "index":
+                django_url = f"http://{settings.DEFAULT_PORT}/documentation"
+                output_path = (Path(__file__).parent.parent / "docs" / "index").with_suffix(".html")
+            else:
+                django_url = f"http://{settings.DEFAULT_PORT}/documentation/{page}"
+                output_path = (Path(__file__).parent.parent / "docs" / "documentation" / page).with_suffix(".html")
 
-            output_path = (Path(__file__).parent.parent / "docs" / "documentation" / page).with_suffix(".html")
+            html = urllib.request.urlopen(django_url).read().decode("utf-8")
             output_path.parent.mkdir(parents=True, exist_ok=True)
             output_path.write_text(html, encoding="utf-8")
 
@@ -85,7 +65,7 @@ def bakeHTML(request) -> bool:
         return True
 
     except Exception as e:
-        messages.error(request, f"Bake failed for {django_url}:\n {e}")
+        messages.error(request, f"Bake failed for {django_url}<br>{e}")
         return False
 
     
@@ -101,7 +81,6 @@ def bake(request) -> bool:
     settings.BAKE_MODE = False
 
     return all(results)
-
 
 def bake_view(request):
     if request.method == "POST":       
