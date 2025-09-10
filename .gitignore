@@ -10,3 +10,4 @@ documentation_app/source/__pycache__/
 documentation_app/templatetags/__pycache__/
 documentation_app/migrations/__pycache__/
 bake_app/__pycache__/
+core/__pycache__/
