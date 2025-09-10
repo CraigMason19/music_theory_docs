@@ -19,9 +19,12 @@
 
 <body>
 	<nav class="header">
-		<a href="/documentation">Home</a>
-		<a href="/documentation/examples">Examples</a>
-		{% if not BAKE_MODE %}
+		{% if BAKE_MODE %}
+			<a href="{{ doc_root }}index.html">Home</a>
+			<a href="{{ doc_root }}documentation/examples.html">Examples</a>
+		{% else %}
+			<a href="/documentation">Home</a>
+			<a href="/documentation/examples">Examples</a>
 			<a href="/documentation/tools">Tools</a>
 		{% endif %}					
 	</nav>
@@ -32,18 +35,17 @@
 			<ul>
 				{% for module in available_modules %}
 					{% if BAKE_MODE %}
-						<li><a href="documentation/{{ module }}.html">{{ module }}</a></li>
+						<li><a href="{{ doc_root }}documentation/{{ module }}.html">{{ module }}</a></li>
 					{% else %}
 						<li><a href="/documentation/{{ module }}">{{ module }}</a></li>
 					{% endif %}					
 				{% endfor %}
 			</ul>
-
 		</aside>
 
 		<main class="view-area markdown-body">
 			{% block content %}
-			<!-- Default content if needed -->
+				<!-- Default content if needed -->
 			{% endblock %}
 		</main>
 	</div>
