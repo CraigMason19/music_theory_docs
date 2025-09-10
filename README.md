@@ -12,7 +12,6 @@ Documentation is extracted from the docstrings in functions, classes, and method
 #### Technologies Used
 - Python
 - Django
-- JavaScript
 - HTML
 - CSS
 
