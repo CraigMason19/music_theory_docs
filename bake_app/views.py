@@ -48,37 +48,44 @@ def bakeAsset(request, asset: Asset, ignore_list: list[str]) -> bool:
     
 def bakeHTML(request) -> bool:
     try:
-        # part = "/documentation/examples"
-        # url = settings.DEFAULT_PORT + part
+        # index exception
+        django_url = f"http://{settings.DEFAULT_PORT}/documentation"
+        html = urllib.request.urlopen(django_url).read().decode("utf-8")
 
-        url = f"{settings.DEFAULT_PORT}/documentation"
-        html = urllib.request.urlopen(url).read().decode("utf-8")
-        output_path = Path(__file__).parent.parent / "docs" / "index.html"
+        output_path = (Path(__file__).parent.parent / "docs" /  "index").with_suffix(".html")
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(html, encoding="utf-8")
 
 
-        # url = f"{settings.DEFAULT_PORT}/documentation/examples"
-        # html = urllib.request.urlopen(url).read().decode("utf-8")
-        # output_path = Path(__file__).parent.parent / "docs" / "documentation" / "examples.html"
-        # output_path.parent.mkdir(parents=True, exist_ok=True)
-        # output_path.write_text(html, encoding="utf-8")
 
 
 
-        # for module in get_available_modules():
-            # url = f"{settings.DEFAULT_PORT}/documentation/examples"
-            # html = urllib.request.urlopen(url).read().decode("utf-8")
-            # output_path = Path(__file__).parent.parent / "docs" / "documentation" / "examples.html"
-            # output_path.parent.mkdir(parents=True, exist_ok=True)
-            # output_path.write_text(html, encoding="utf-8")
+        # examploes
+        django_url = f"http://{settings.DEFAULT_PORT}/documentation/examples"
+        html = urllib.request.urlopen(django_url).read().decode("utf-8")
 
+        output_path = (Path(__file__).parent.parent / "docs" / "documentation" / "examples").with_suffix(".html")
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(html, encoding="utf-8")
+
+
+
+
+        pages = get_available_modules()
+
+        for page in pages:
+            django_url = f"http://{settings.DEFAULT_PORT}/documentation/{page}"
+            html = urllib.request.urlopen(django_url).read().decode("utf-8")
+
+            output_path = (Path(__file__).parent.parent / "docs" / "documentation" / page).with_suffix(".html")
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(html, encoding="utf-8")
 
         messages.success(request, "HTML pages baked successfully")
         return True
 
     except Exception as e:
-        messages.error(request, f"Bake failed for {url}:\n {e}")
+        messages.error(request, f"Bake failed for {django_url}:\n {e}")
         return False
 
     
