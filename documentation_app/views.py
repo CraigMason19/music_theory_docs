@@ -82,7 +82,6 @@ def documentation_view(request):
 
     context = {
         "BAKE_MODE": settings.BAKE_MODE,
-        "css_prefix": "",
         "doc_root": "",
         "html_content": html_content,
         "available_modules": get_available_modules(),
@@ -98,7 +97,6 @@ def module_view(request, module_name):
 
     context = {
         "BAKE_MODE": settings.BAKE_MODE,
-        "css_prefix": "../",
         "doc_root": "../",
         "module_name": module_name,
         "doc_structure": build_dynamic_doc_structure(module),
@@ -132,7 +130,6 @@ def examples_view(request):
 
     context = {
         "BAKE_MODE": settings.BAKE_MODE,
-        "css_prefix": "../",
         "doc_root": "../",
         "html_content": html_content,
         "available_modules": get_available_modules(),

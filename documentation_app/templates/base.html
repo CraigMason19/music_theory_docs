@@ -7,8 +7,8 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 
 	{% if BAKE_MODE %}
-		<link rel="stylesheet" href="{{ css_prefix }}CSS/documentation-styles.css" />
-		<link rel="stylesheet" href="{{ css_prefix }}CSS/github-markdown.css">
+		<link rel="stylesheet" href="{{ doc_root }}CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="{{ doc_root }}CSS/github-markdown.css">
 	{% else %}
 		<link rel="stylesheet" href="{% static 'CSS/documentation-styles.css' %}" />
 		<link rel="stylesheet" href="{% static 'CSS/github-markdown.css' %}">
