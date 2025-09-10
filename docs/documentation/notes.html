@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="../CSS/github-markdown.css">
+	
+
+	<title>Music Theory Docs - notes</title>
+</head>
+
+<body>
+	<nav class="header">
+		
+			<a href="../index.html">Home</a>
+			<a href="../documentation/examples.html">Examples</a>
+							
+	</nav>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<h2>Modules</h2>
+			<ul>
+				
+					
+						<li><a href="../documentation/chord_type.html">chord_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/chords.html">chords</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument.html">instrument</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
+										
+				
+					
+						<li><a href="../documentation/intervals.html">intervals</a></li>
+										
+				
+					
+						<li><a href="../documentation/key_type.html">key_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/keys.html">keys</a></li>
+										
+				
+					
+						<li><a href="../documentation/notes.html">notes</a></li>
+										
+				
+					
+						<li><a href="../documentation/progressions.html">progressions</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_diatonic.html">scale_diatonic</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_type.html">scale_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/scales.html">scales</a></li>
+										
+				
+					
+						<li><a href="../documentation/utils.html">utils</a></li>
+										
+				
+			</ul>
+		</aside>
+
+		<main class="view-area markdown-body">
+			
+    <h1>notes</h1>
+    <pre>None</pre>
+
+    <div class="toc">
+        
+            <h2>Functions</h2>
+            <ul>
+            
+                <li><a href="#function-chromatic_notes">chromatic_notes</a></li>
+            
+                <li><a href="#function-notes_to_string">notes_to_string</a></li>
+            
+                <li><a href="#function-transpose">transpose</a></li>
+            
+            </ul>
+        
+
+
+        
+            <h2>Classes</h2>
+            <ul>
+                
+                    <li>
+                    <a href="#class-Note">Note</a>
+                        <ul>
+                            
+                            <li><a href="#method-Note-items">items</a></li>
+                            
+                            <li><a href="#method-Note-all">all</a></li>
+                            
+                            <li><a href="#method-Note-from_index">from_index</a></li>
+                            
+                            <li><a href="#method-Note-random">random</a></li>
+                            
+                            <li><a href="#method-Note-to_sharp">to_sharp</a></li>
+                            
+                            <li><a href="#method-Note-previous">previous</a></li>
+                            
+                            <li><a href="#method-Note-next">next</a></li>
+                            
+                            <li><a href="#method-Note-transpose">transpose</a></li>
+                            
+                            <li><a href="#method-Note-chromatics">chromatics</a></li>
+                            
+                            <li><a href="#method-Note-__str__">__str__</a></li>
+                            
+                            <li><a href="#method-Note-__repr__">__repr__</a></li>
+                            
+                        </ul>
+                    </li>
+                
+            </ul>
+        
+    </div>
+
+    
+        
+            <h2 id="function-chromatic_notes">chromatic_notes</h2>
+            <pre>Takes a note and returns every note between that note and it's octave
+
+    e.g. 
+        chromatic_notes(Note.A, direction="down")
+        [Note.A, Note.Ab, Note.G, Note.Gb, Note.F, Note.E, Note.Eb, Note.D, Note.Db, Note.C, Note.B, Note.Bb]
+
+Args:
+    note:
+        The note to start from.
+    direction:
+        Can either transpose up or down in pitch. acceptable values are
+        "u", "up", "above", "d", "down" or "below" in any case.
+
+Returns:
+    A list of notes.
+
+Raises:
+    ValueError:
+        If the direction string is not recognized.</pre>
+        
+            <h2 id="function-notes_to_string">notes_to_string</h2>
+            <pre>Takes a list of notes and returns a string of note names. 
+
+    e.g. [Note.C, Note.B, Note.D] -> "C, B, D"
+
+Args:
+    note_list:
+        The list of notes to be converted to a string.
+
+Returns:
+    The string of note names.</pre>
+        
+            <h2 id="function-transpose">transpose</h2>
+            <pre>Takes a note and transposes (changes) it into a different note lower or 
+higher in pitch. 
+
+e.g. C tranposed a Major 3rd becomes E
+
+Args:
+    note:
+        The note to be transposed.
+    interval:
+        The interval to transpose the note.
+    direction:
+        Can either transpose up or down in pitch. acceptable values are
+        "u", "up", "above", "d", "down" or "below" in any case.
+
+Returns:
+    The note after being transposed.
+
+Raises:
+    ValueError:
+        If the direction string is not recognized.</pre>
+        
+    
+
+
+    
+        
+            <h2 id="class-Note">Note</h2>
+            <pre>Represents a musical note. Derived from the Enum class.
+
+    NOTE: Can't have sharps (#) in variable names
+
+Attributes:
+    note attributes:
+        12 class attributes representing note enumerations. Starting at 'middle C'.
+
+Methods:
+    items(cls):
+        A class method to return the enums as a list.
+    all(cls):
+        An alias for items(), returning the enums as a list.
+    from_index(cls, index):
+        A class method to return a enumeration based upon an index.
+    random(cls):
+        A class method that returns a random note.
+    to_sharp(self):
+        Returns a string of a flat note as a sharp.
+    previous(self):
+        Returns the note below.
+    next(self):
+        Returns the note above.
+    transpose(self, interval, direction="u"):
+        Returns a Note transposed by an interval in either direction.
+    chromatics(self, direction="u"):
+        Returns a list of all notes from the note to the octave in either direction.
+    __str__(self):
+        Returns the name of the note.
+    __repr__(self):
+        Returns the Enum name.</pre>
+
+            <!-- methods -->
+            
+                
+                    <h3 id="method-Note-items">Note.items</h3>
+                    <pre>A class method that returns a list of the note enumerations. 
+
+    e.g. [Note.C, Note.Db, ... ]
+
+Args:
+    None.
+
+Returns:
+    A list of notes.</pre>
+                
+                    <h3 id="method-Note-all">Note.all</h3>
+                    <pre>A class method that returns a list of the note enumerations. 
+
+    e.g. [Note.C, Note.Db, ... ]
+
+Args:
+    None.
+
+Returns:
+    A list of notes.</pre>
+                
+                    <h3 id="method-Note-from_index">Note.from_index</h3>
+                    <pre>A class method that returns a note based upon it's enumeration
+    value (positive or negative). Positive indices are counted from
+    the start and negative indices are counted from the end.
+
+    e.g. from_index(3) -> Note.Eb
+         from_index(-3) -> Note.A
+         
+Args:
+    index:
+        The index of the value to be retrieved. Can be positive or 
+        negative.
+
+Returns:
+    A Note.</pre>
+                
+                    <h3 id="method-Note-random">Note.random</h3>
+                    <pre>A class method that returns a random note. 
+
+    e.g. Note.Ab
+
+Args:
+    None.
+
+Returns:
+    A Note.</pre>
+                
+                    <h3 id="method-Note-to_sharp">Note.to_sharp</h3>
+                    <pre>Returns the enharmonic sharp equivalent of the note, or the note's name 
+    if it does not use a flat.
+
+    e.g. Note.Eb.to_sharp() -> 'D#'
+
+Returns:
+    A string representing a note.</pre>
+                
+                    <h3 id="method-Note-previous">Note.previous</h3>
+                    <pre>Returns the previous note
+
+    e.g. Note.Eb.previous() -> Note.D
+
+Args:
+    None.
+
+Returns:
+    A note.</pre>
+                
+                    <h3 id="method-Note-next">Note.next</h3>
+                    <pre>Returns the next note
+
+    e.g. Note.Eb.next() -> Note.E
+
+Args:
+    None.
+
+Returns:
+    A note.</pre>
+                
+                    <h3 id="method-Note-transpose">Note.transpose</h3>
+                    <pre>Transposes (changes) this note into a different note lower or higher
+    in pitch. 
+
+    Note.C.transpose(Interval.M3)
+    C tranposed a Major 3rd becomes E
+
+Args:
+    interval:
+        The interval to transpose the note.
+    direction:
+        Can either transpose up or down in pitch. acceptable values are
+        "u", "up", "above", "d", "down" or "below" in any case.
+
+Returns:
+    The note after being transposed.
+
+Raises:
+    ValueError:
+        If the direction string is not recognized.</pre>
+                
+                    <h3 id="method-Note-chromatics">Note.chromatics</h3>
+                    <pre>Returns every note between this note and it's octave
+
+    e.g. 
+        Note.A.chromatics(direction="down")
+        [Note.A, Note.Ab, Note.G, Note.Gb, Note.F, Note.E, Note.Eb, Note.D, Note.Db, Note.C, Note.B, Note.Bb]
+
+Args:
+    direction:
+        Can either transpose up or down in pitch. acceptable values are
+        "u", "up", "above", "d", "down" or "below" in any case.
+
+Returns:
+    A list of notes.
+
+Raises:
+    ValueError:
+        If the direction string is not recognized.</pre>
+                
+                    <h3 id="method-Note-__str__">Note.__str__</h3>
+                    <pre>Returns a string representing the note name. 
+
+    e.g. str(Note.Ab) -> 'Ab'
+
+Args:
+    None.
+
+Returns:
+    A string representing a note's name.</pre>
+                
+                    <h3 id="method-Note-__repr__">Note.__repr__</h3>
+                    <pre>Returns a string representing the note. 
+
+    e.g. repr(Note.Ab) -> 'Note.Ab'
+
+Args:
+    None.
+
+Returns:
+    A string representing a note.</pre>
+                
+            
+
+        
+    
+
+
+		</main>
+	</div>
+</body>
+
+<script src="/static/JS/debug.js"></script>
+
+</html>

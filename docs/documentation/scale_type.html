@@ -1,0 +1,213 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="../CSS/github-markdown.css">
+	
+
+	<title>Music Theory Docs - scale_type</title>
+</head>
+
+<body>
+	<nav class="header">
+		
+			<a href="../index.html">Home</a>
+			<a href="../documentation/examples.html">Examples</a>
+							
+	</nav>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<h2>Modules</h2>
+			<ul>
+				
+					
+						<li><a href="../documentation/chord_type.html">chord_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/chords.html">chords</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument.html">instrument</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
+										
+				
+					
+						<li><a href="../documentation/intervals.html">intervals</a></li>
+										
+				
+					
+						<li><a href="../documentation/key_type.html">key_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/keys.html">keys</a></li>
+										
+				
+					
+						<li><a href="../documentation/notes.html">notes</a></li>
+										
+				
+					
+						<li><a href="../documentation/progressions.html">progressions</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_diatonic.html">scale_diatonic</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_type.html">scale_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/scales.html">scales</a></li>
+										
+				
+					
+						<li><a href="../documentation/utils.html">utils</a></li>
+										
+				
+			</ul>
+		</aside>
+
+		<main class="view-area markdown-body">
+			
+    <h1>scale_type</h1>
+    <pre>None</pre>
+
+    <div class="toc">
+        
+
+
+        
+            <h2>Classes</h2>
+            <ul>
+                
+                    <li>
+                    <a href="#class-ScaleType">ScaleType</a>
+                        <ul>
+                            
+                            <li><a href="#method-ScaleType-items">items</a></li>
+                            
+                            <li><a href="#method-ScaleType-all">all</a></li>
+                            
+                            <li><a href="#method-ScaleType-random">random</a></li>
+                            
+                            <li><a href="#method-ScaleType-__str__">__str__</a></li>
+                            
+                            <li><a href="#method-ScaleType-__repr__">__repr__</a></li>
+                            
+                        </ul>
+                    </li>
+                
+            </ul>
+        
+    </div>
+
+    
+
+
+    
+        
+            <h2 id="class-ScaleType">ScaleType</h2>
+            <pre>Represents a type of scale (e.g. minor, major, blues, lydian, etc...).
+    This determines how the scale will be constructed. Derived from the Enum
+    class.
+
+Attributes:
+    scale type attributes:
+        14 class attributes representing a Enum.
+
+Methods:
+    items(cls):
+        A class method to return the enums as a list.
+    random(cls):
+        A class method to return a random scale type.
+    __str__(self):
+        Returns the name of the scale type.
+    __repr__(self):
+        Returns the Enum name.</pre>
+
+            <!-- methods -->
+            
+                
+                    <h3 id="method-ScaleType-items">ScaleType.items</h3>
+                    <pre>A class method that returns a list of the scale enumerations. 
+
+    e.g. [ScaleType.Minor, ScaleType.Major ... ]
+
+Args:
+    None.
+
+Returns:
+    A list of ScaleTypes.</pre>
+                
+                    <h3 id="method-ScaleType-all">ScaleType.all</h3>
+                    <pre>A class method that returns a list of the scale enumerations. 
+
+    e.g. [ScaleType.Minor, ScaleType.Major ... ]
+
+Args:
+    None.
+
+Returns:
+    A list of ScaleTypes.</pre>
+                
+                    <h3 id="method-ScaleType-random">ScaleType.random</h3>
+                    <pre>A class method that returns a random scale. 
+
+    e.g. ScaleType.MelodicMinor
+
+Args:
+    None.
+
+Returns:
+    A ScaleType.</pre>
+                
+                    <h3 id="method-ScaleType-__str__">ScaleType.__str__</h3>
+                    <pre>Returns a string representing the scale name. 
+
+    e.g. str(ScaleType.Major) -> 'Major'
+
+Args:
+    None.
+
+Returns:
+    A string representing the scale's name.</pre>
+                
+                    <h3 id="method-ScaleType-__repr__">ScaleType.__repr__</h3>
+                    <pre>Returns a string representing the scale types enum. 
+
+    e.g. repr(ScaleType.Major) -> 'ScaleType.Major'
+
+Args:
+    None.
+
+Returns:
+    A string representing the ScaleType.</pre>
+                
+            
+
+        
+    
+
+
+		</main>
+	</div>
+</body>
+
+<script src="/static/JS/debug.js"></script>
+
+</html>

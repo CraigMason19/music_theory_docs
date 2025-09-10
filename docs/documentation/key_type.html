@@ -1,0 +1,211 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="../CSS/github-markdown.css">
+	
+
+	<title>Music Theory Docs - key_type</title>
+</head>
+
+<body>
+	<nav class="header">
+		
+			<a href="../index.html">Home</a>
+			<a href="../documentation/examples.html">Examples</a>
+							
+	</nav>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<h2>Modules</h2>
+			<ul>
+				
+					
+						<li><a href="../documentation/chord_type.html">chord_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/chords.html">chords</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument.html">instrument</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
+										
+				
+					
+						<li><a href="../documentation/intervals.html">intervals</a></li>
+										
+				
+					
+						<li><a href="../documentation/key_type.html">key_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/keys.html">keys</a></li>
+										
+				
+					
+						<li><a href="../documentation/notes.html">notes</a></li>
+										
+				
+					
+						<li><a href="../documentation/progressions.html">progressions</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_diatonic.html">scale_diatonic</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_type.html">scale_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/scales.html">scales</a></li>
+										
+				
+					
+						<li><a href="../documentation/utils.html">utils</a></li>
+										
+				
+			</ul>
+		</aside>
+
+		<main class="view-area markdown-body">
+			
+    <h1>key_type</h1>
+    <pre>Defines the KeyType enumeration for musical keys, representing either major or minor.
+
+This module provides:
+- An Enum class `KeyType` with two values: Major and Minor.
+- Utility methods to list all key types, select a random key type, and retrieve the parallel (opposite) key.
+- String representations for clean display and debugging.
+
+Example:
+    from music_theory.key_type import KeyType
+
+    kt = KeyType.Major
+    print(f&quot;Selected key: {kt}, Parallel: {kt.parallel}&quot;)</pre>
+
+    <div class="toc">
+        
+
+
+        
+            <h2>Classes</h2>
+            <ul>
+                
+                    <li>
+                    <a href="#class-KeyType">KeyType</a>
+                        <ul>
+                            
+                            <li><a href="#method-KeyType-items">items</a></li>
+                            
+                            <li><a href="#method-KeyType-random">random</a></li>
+                            
+                            <li><a href="#method-KeyType-__str__">__str__</a></li>
+                            
+                            <li><a href="#method-KeyType-__repr__">__repr__</a></li>
+                            
+                        </ul>
+                    </li>
+                
+            </ul>
+        
+    </div>
+
+    
+
+
+    
+        
+            <h2 id="class-KeyType">KeyType</h2>
+            <pre>Represents a key type. Keys are either Major or Minor.
+
+Attributes:
+    Type attributes:
+        2 class attributes representing a Enum.
+
+Methods:
+    items(cls):
+        A class method to return the enums as a list.
+    random(cls):
+        A class method to return a random key type.
+    parallel(self):
+        A property that returns a parallel (opposite) key type.
+    __str__(self):
+        Returns the name of the key type.
+    __repr__(self):
+        Returns the Enum name.</pre>
+
+            <!-- methods -->
+            
+                
+                    <h3 id="method-KeyType-items">KeyType.items</h3>
+                    <pre>A class method that returns a list of the key enumerations. 
+
+    e.g. [KeyType.Major, KeyType.Minor ... ]
+
+Args:
+    None.
+
+Returns:
+    A list of key types.</pre>
+                
+                    <h3 id="method-KeyType-random">KeyType.random</h3>
+                    <pre>A class method that returns a random key type. 
+
+    e.g. KeyType.Major
+
+Args:
+    None.
+
+Returns:
+    A KeyType.</pre>
+                
+                    <h3 id="method-KeyType-__str__">KeyType.__str__</h3>
+                    <pre>Returns a string representing the key type name. 
+
+    e.g. str(KeyType.Major) -> 'Major'
+
+Args:
+    None.
+
+Returns:
+    A string.</pre>
+                
+                    <h3 id="method-KeyType-__repr__">KeyType.__repr__</h3>
+                    <pre>Returns a string representing the key types enum. 
+
+    e.g. repr(KeyType.Major) -> 'KeyType.Major'
+
+Args:
+    None.
+
+Returns:
+    A string representing the key type's name.</pre>
+                
+            
+
+        
+    
+
+
+		</main>
+	</div>
+</body>
+
+<script src="/static/JS/debug.js"></script>
+
+</html>

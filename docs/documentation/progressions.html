@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="../CSS/github-markdown.css">
+	
+
+	<title>Music Theory Docs - progressions</title>
+</head>
+
+<body>
+	<nav class="header">
+		
+			<a href="../index.html">Home</a>
+			<a href="../documentation/examples.html">Examples</a>
+							
+	</nav>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<h2>Modules</h2>
+			<ul>
+				
+					
+						<li><a href="../documentation/chord_type.html">chord_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/chords.html">chords</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument.html">instrument</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
+										
+				
+					
+						<li><a href="../documentation/intervals.html">intervals</a></li>
+										
+				
+					
+						<li><a href="../documentation/key_type.html">key_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/keys.html">keys</a></li>
+										
+				
+					
+						<li><a href="../documentation/notes.html">notes</a></li>
+										
+				
+					
+						<li><a href="../documentation/progressions.html">progressions</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_diatonic.html">scale_diatonic</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_type.html">scale_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/scales.html">scales</a></li>
+										
+				
+					
+						<li><a href="../documentation/utils.html">utils</a></li>
+										
+				
+			</ul>
+		</aside>
+
+		<main class="view-area markdown-body">
+			
+    <h1>progressions</h1>
+    <pre>None</pre>
+
+    <div class="toc">
+        
+            <h2>Functions</h2>
+            <ul>
+            
+                <li><a href="#function-chords_from_progression">chords_from_progression</a></li>
+            
+            </ul>
+        
+
+
+        
+            <h2>Classes</h2>
+            <ul>
+                
+                    <li>
+                    <a href="#class-NumeralCadences">NumeralCadences</a>
+                        <ul>
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                    <a href="#class-NumeralProgressions">NumeralProgressions</a>
+                        <ul>
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                    <a href="#class-Progression">Progression</a>
+                        <ul>
+                            
+                            <li><a href="#method-Progression-__init__">__init__</a></li>
+                            
+                            <li><a href="#method-Progression-pretty_print">pretty_print</a></li>
+                            
+                            <li><a href="#method-Progression-__str__">__str__</a></li>
+                            
+                            <li><a href="#method-Progression-__repr__">__repr__</a></li>
+                            
+                        </ul>
+                    </li>
+                
+                    <li>
+                    <a href="#class-SongProgressions">SongProgressions</a>
+                        <ul>
+                            
+                        </ul>
+                    </li>
+                
+            </ul>
+        
+    </div>
+
+    
+        
+            <h2 id="function-chords_from_progression">chords_from_progression</h2>
+            <pre>Returns a list of chords that match a progression in a key. Can be in 
+    either the chords or parallel chords.
+       
+    'error' string is used if a chord can't be found in the progression.
+
+    Diminished chords can be passed as '°' or 'dim' ('ii°' or 'viidim')
+
+    Note: 
+    The shorthand 'vii' is accepted as a synonym for 'vii°' or 'viidim' to
+    improve usability and reflect common practice in major keys.
+
+    'ii' without a diminished marker is NOT accepted as shorthand for
+    'iidim' because the diatonic ii chord is typically minor in major keys,
+    while 'iidim' only appears in parallel keys and is less commonly written
+    without explicit notation.
+
+    e.g. key=C Major, progression=['I', 'i', 'IV', 'V']
+        -> [Chord(C, Major), Chord(C, Minor), Chord(F, Major), Chord(G, Major)]
+        
+Args:
+    key:
+        The key the chords are from.
+    progression:
+        A list of roman numerals notating the chords.
+    error:
+        A placeholder for missing or invalid chords in the key.
+
+Returns:
+    list[Chord|str]: A List of Chord objects or a string containing the 'error' 
+    parameter.</pre>
+        
+    
+
+
+    
+        
+            <h2 id="class-NumeralCadences">NumeralCadences</h2>
+            <pre>Represents common musical cadences.
+
+A cadence is a chord progression of at least two chords that concludes a musical phrase or section.
+
+Notes:
+    - The Major/Minor Plagal Cadences differ from a standard Plagal Cadence in their respective keys.
+
+Attributes:
+    plagal (list of str): Also known as the Amen Cadence.
+    minor_plagal (list of str): A variation of the Plagal Cadence in a minor key.
+    authentic (list of str): Also called a Perfect Cadence.
+
+    deceptive (list of str): Also known as interupted. It decieves or interupts the resolution.
+    imperfect (list of str): Also called half-cadance. Doesn't resolve and hangs. Used mainly at the end of songs.
+
+    super_mario (list of str): The end of level fanfare.</pre>
+
+            <!-- methods -->
+            
+
+        
+            <h2 id="class-NumeralProgressions">NumeralProgressions</h2>
+            <pre>Represents common musical chord progressions using Roman numerals.
+
+Each progression is stored as a list of strings, where each string
+represents a chord in the progression (e.g., ["I", "V", "vi", "IV"]).
+
+Attributes:
+    axis: 
+        A very common progression in Western pop music, popularized by the 
+        'Axis of Awesome - 4 Chord Song'.
+    axis_alt: 
+        A minor-key variant of the Axis progression.
+    royal_road: 
+        Frequently used in Japanese music.
+    twelve_bar_blues: 
+        A very common blues progression.
+    andalusian_cadence: 
+        Often called a cadence, though technically a progression. Common in
+        flamenco and classical music.
+    andalusian_alt: 
+        A variant of the Andalusian cadence that ends on the VII chord 
+        instead of V.
+    doo_wop: 
+        Also known as the '50s progression', characteristic of many doo-wop 
+        and early rock 'n' roll songs.
+    doo_wop_alt: 
+        A jazzier or more modern variation, sometimes called a circle 
+        progression or ii-V turnaround.</pre>
+
+            <!-- methods -->
+            
+
+        
+            <h2 id="class-Progression">Progression</h2>
+            <pre>Represents a chord progression.
+    </pre>
+
+            <!-- methods -->
+            
+                
+                    <h3 id="method-Progression-__init__">Progression.__init__</h3>
+                    <pre>Initialize self.  See help(type(self)) for accurate signature.</pre>
+                
+                    <h3 id="method-Progression-pretty_print">Progression.pretty_print</h3>
+                    <pre>None</pre>
+                
+                    <h3 id="method-Progression-__str__">Progression.__str__</h3>
+                    <pre>Return str(self).</pre>
+                
+                    <h3 id="method-Progression-__repr__">Progression.__repr__</h3>
+                    <pre>Return repr(self).</pre>
+                
+            
+
+        
+            <h2 id="class-SongProgressions">SongProgressions</h2>
+            <pre>Represents famous songs and their chord progressions using Roman numerals.
+
+Attributes:
+    seal_kiss_from_a_rose
+    beatles_hey_jude 
+
+Each progression is stored as a list of strings, where each string
+represents a chord in the progression (e.g., ["I", "V", "vi", "IV"]).</pre>
+
+            <!-- methods -->
+            
+
+        
+    
+
+
+		</main>
+	</div>
+</body>
+
+<script src="/static/JS/debug.js"></script>
+
+</html>

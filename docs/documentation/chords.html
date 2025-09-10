@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="../CSS/github-markdown.css">
+	
+
+	<title>Music Theory Docs - chords</title>
+</head>
+
+<body>
+	<nav class="header">
+		
+			<a href="../index.html">Home</a>
+			<a href="../documentation/examples.html">Examples</a>
+							
+	</nav>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<h2>Modules</h2>
+			<ul>
+				
+					
+						<li><a href="../documentation/chord_type.html">chord_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/chords.html">chords</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument.html">instrument</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
+										
+				
+					
+						<li><a href="../documentation/intervals.html">intervals</a></li>
+										
+				
+					
+						<li><a href="../documentation/key_type.html">key_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/keys.html">keys</a></li>
+										
+				
+					
+						<li><a href="../documentation/notes.html">notes</a></li>
+										
+				
+					
+						<li><a href="../documentation/progressions.html">progressions</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_diatonic.html">scale_diatonic</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_type.html">scale_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/scales.html">scales</a></li>
+										
+				
+					
+						<li><a href="../documentation/utils.html">utils</a></li>
+										
+				
+			</ul>
+		</aside>
+
+		<main class="view-area markdown-body">
+			
+    <h1>chords</h1>
+    <pre>None</pre>
+
+    <div class="toc">
+        
+
+
+        
+            <h2>Classes</h2>
+            <ul>
+                
+                    <li>
+                    <a href="#class-Chord">Chord</a>
+                        <ul>
+                            
+                            <li><a href="#method-Chord-__init__">__init__</a></li>
+                            
+                            <li><a href="#method-Chord-random">random</a></li>
+                            
+                            <li><a href="#method-Chord-__eq__">__eq__</a></li>
+                            
+                            <li><a href="#method-Chord-add9">add9</a></li>
+                            
+                            <li><a href="#method-Chord-add11">add11</a></li>
+                            
+                            <li><a href="#method-Chord-add13">add13</a></li>
+                            
+                            <li><a href="#method-Chord-__str__">__str__</a></li>
+                            
+                            <li><a href="#method-Chord-__repr__">__repr__</a></li>
+                            
+                        </ul>
+                    </li>
+                
+            </ul>
+        
+    </div>
+
+    
+
+
+    
+        
+            <h2 id="class-Chord">Chord</h2>
+            <pre>A class representing a musical chord. 
+
+Attributes:
+    root:
+        The Note the rest of the chord is built from.
+    type:
+        A ChordType. 
+    notes:
+        An array containing the root, 3rd(Major or Minor) & the fifth
+
+Methods:
+    __init__(self, root, chord_type):
+        Constructs the chord.
+    random(cls):
+        A class method to return a random chord.
+    __eq__(self, other):
+        Compares two chords.
+    notation(self):
+        Returns the chord's notation without the Note.
+    quality(self):
+        An alias for notation. Returns the chord's notation without the Note.
+    add9(self):
+        Returns an array of the chord's notes with the added 9th
+    add11(self):
+        Returns an array of the chord's notes with the added 11th
+    add13(self):
+        Returns an array of the chord's notes with the added 13th
+    __str__(self):
+        Returns a string representation of the Chord.
+    __repr__(self):
+        Returns a string representation of the Chord.</pre>
+
+            <!-- methods -->
+            
+                
+                    <h3 id="method-Chord-__init__">Chord.__init__</h3>
+                    <pre>Constructs the chord.
+
+Args:
+    root:
+        The root note to build the chord from.
+    chord_type:
+        The ChordType to represent the chord.
+
+Returns:
+    None.
+
+Raises:
+    ValueError:
+        If the chord_type is not valid.</pre>
+                
+                    <h3 id="method-Chord-random">Chord.random</h3>
+                    <pre>A class method that returns a random chord. 
+
+    e.g. Fdim
+
+Args:
+    None.
+
+Returns:
+    A Chord.</pre>
+                
+                    <h3 id="method-Chord-__eq__">Chord.__eq__</h3>
+                    <pre>Equality operator to check that both the note and chord type match. 
+
+    e.g. Chord(F, ChordType.Diminished) == Chord(F, ChordType.Diminished)
+
+Args:
+    other:
+        The other Chord to compare.
+
+Returns:
+    A bool. True if this and another chord are the same.</pre>
+                
+                    <h3 id="method-Chord-add9">Chord.add9</h3>
+                    <pre>Returns an array containing the notes of the chord with the added 9th. 
+
+    e.g. Chord(Note.A).add9() -> [Note.A, Note.Db, Note.E, Note.B]
+
+Args:
+    None.
+
+Returns:
+    An array.</pre>
+                
+                    <h3 id="method-Chord-add11">Chord.add11</h3>
+                    <pre>Returns an array containing the notes of the chord with the added 11th. 
+
+    e.g. Chord(Note.A).add11() -> [Note.A, Note.Db, Note.E, Note.D]
+
+Args:
+    None.
+
+Returns:
+    An array.</pre>
+                
+                    <h3 id="method-Chord-add13">Chord.add13</h3>
+                    <pre>Returns an array containing the notes of the chord with the added 13th. 
+
+    e.g. Chord(Note.A).add13() -> [Note.A, Note.Db, Note.E, Note.Gb]
+
+Args:
+    None.
+
+Returns:
+    An array.</pre>
+                
+                    <h3 id="method-Chord-__str__">Chord.__str__</h3>
+                    <pre>Returns a string representing the Chord name and type. 
+
+    e.g. str(Chord(Note.E, ChordType.Dominant7)) -> E7
+
+Args:
+    None.
+
+Returns:
+    A string.</pre>
+                
+                    <h3 id="method-Chord-__repr__">Chord.__repr__</h3>
+                    <pre>Returns a string representing the Chord. 
+
+    e.g. repr(Chord(Note.E, ChordType.Dominant7)) -> Chord(E, Dominant7)
+
+Args:
+    None.
+
+Returns:
+    A string.</pre>
+                
+            
+
+        
+    
+
+
+		</main>
+	</div>
+</body>
+
+<script src="/static/JS/debug.js"></script>
+
+</html>

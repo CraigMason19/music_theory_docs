@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="../CSS/github-markdown.css">
+	
+
+	<title>Music Theory Docs - intervals</title>
+</head>
+
+<body>
+	<nav class="header">
+		
+			<a href="../index.html">Home</a>
+			<a href="../documentation/examples.html">Examples</a>
+							
+	</nav>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<h2>Modules</h2>
+			<ul>
+				
+					
+						<li><a href="../documentation/chord_type.html">chord_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/chords.html">chords</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument.html">instrument</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
+										
+				
+					
+						<li><a href="../documentation/intervals.html">intervals</a></li>
+										
+				
+					
+						<li><a href="../documentation/key_type.html">key_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/keys.html">keys</a></li>
+										
+				
+					
+						<li><a href="../documentation/notes.html">notes</a></li>
+										
+				
+					
+						<li><a href="../documentation/progressions.html">progressions</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_diatonic.html">scale_diatonic</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_type.html">scale_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/scales.html">scales</a></li>
+										
+				
+					
+						<li><a href="../documentation/utils.html">utils</a></li>
+										
+				
+			</ul>
+		</aside>
+
+		<main class="view-area markdown-body">
+			
+    <h1>intervals</h1>
+    <pre>None</pre>
+
+    <div class="toc">
+        
+            <h2>Functions</h2>
+            <ul>
+            
+                <li><a href="#function-interval_distance">interval_distance</a></li>
+            
+                <li><a href="#function-intervals_to_string">intervals_to_string</a></li>
+            
+            </ul>
+        
+
+
+        
+            <h2>Classes</h2>
+            <ul>
+                
+                    <li>
+                    <a href="#class-Interval">Interval</a>
+                        <ul>
+                            
+                            <li><a href="#method-Interval-items">items</a></li>
+                            
+                            <li><a href="#method-Interval-all">all</a></li>
+                            
+                            <li><a href="#method-Interval-from_index">from_index</a></li>
+                            
+                            <li><a href="#method-Interval-from_numeric">from_numeric</a></li>
+                            
+                            <li><a href="#method-Interval-to_numeric">to_numeric</a></li>
+                            
+                            <li><a href="#method-Interval-random">random</a></li>
+                            
+                            <li><a href="#method-Interval-__str__">__str__</a></li>
+                            
+                            <li><a href="#method-Interval-__repr__">__repr__</a></li>
+                            
+                        </ul>
+                    </li>
+                
+            </ul>
+        
+    </div>
+
+    
+        
+            <h2 id="function-interval_distance">interval_distance</h2>
+            <pre>Takes two notes and calculates the interval distance between them, 
+    either up or down.
+
+    NOTE: A perfect 5th up is the same as a perfect 4th down and vice-versa
+
+    e.g. Note.C, Note.G, 'u' -> interval.P5
+         Note.C, Note.G, 'd' -> interval.P4
+
+Args:
+    first_note:
+        The note to start measuring from.
+    second_note:
+        The note above or below the first.
+    direction:
+        Can either check distance up or down in pitch. acceptable values are
+        "u", "up", "above", "d", "down" or "below" in any case.
+
+Returns:
+    A Interval representing the difference between two notes.
+
+Raises:
+    ValueError:
+        If the direction string is not recognized.</pre>
+        
+            <h2 id="function-intervals_to_string">intervals_to_string</h2>
+            <pre>Takes a list of intervals and returns a string of interval names. 
+
+    e.g. [Interval.M3, Interval.P4, Interval.P5] -> "M3, P4, P5"
+
+Args:
+    note_list:
+        The list of intervals to be converted to a string.
+
+Returns:
+    The string of interval names.</pre>
+        
+    
+
+
+    
+        
+            <h2 id="class-Interval">Interval</h2>
+            <pre>Represents a interval (diffence between two notes). Derived from the 
+    Enum class.
+
+Attributes:
+    interval attributes:
+        12 class attributes representing interval enumerations.
+
+Methods:
+    items(cls):
+        A class method to return the enums as a list.
+    all(cls):
+        An alias for items(), returning the enums as a list.
+    from_index(cls, index):
+        A class method to return a enum based upon an index.
+    from_numeric(cls, numeric):
+        A class method to construct an interval from a numeric.
+    to_numeric(self):
+        Converts an interval to a numeric.
+    random(cls):
+        A class method that returns a random interval.
+    __str__(self):
+        Returns the name of the interval.
+    __repr__(self):
+        Returns the Enum name.</pre>
+
+            <!-- methods -->
+            
+                
+                    <h3 id="method-Interval-items">Interval.items</h3>
+                    <pre>A class method that returns a list of the interval enumerations. 
+
+    e.g. [Interval.Unison, Interval.m2, ... ]
+
+Args:
+    None.
+
+Returns:
+    A list of intervals.</pre>
+                
+                    <h3 id="method-Interval-all">Interval.all</h3>
+                    <pre>A class method that returns a list of the interval enumerations. 
+
+    e.g. [Interval.Unison, Interval.m2, ... ]
+
+Args:
+    None.
+
+Returns:
+    A list of intervals.</pre>
+                
+                    <h3 id="method-Interval-from_index">Interval.from_index</h3>
+                    <pre>A class methd that returns a interval based upon it's enumeration 
+    value (positive or negative). Positive indices are counted from the
+    start and negative indices are counted from the end.
+
+    e.g. from_index(8) -> Interval.m6
+         from_index(-8) -> Interval.M3
+
+Args:
+    index:
+        The index of the value to be retrieved. Can be positive or 
+        negative.
+
+Returns:
+    A Interval.</pre>
+                
+                    <h3 id="method-Interval-from_numeric">Interval.from_numeric</h3>
+                    <pre>A class method that returns a interval based upon a numeric interval
+    value.
+    ('1', 'b2', '2', 'b3', '3', '4', 'b5', '5', 'b6', '6', 'b7', '7')
+    
+    e.g. from_numeric('b3') -> Interval.m3
+
+Args:
+    numeric:
+        The numeric interval to be translated.
+
+Returns:
+    A Interval.</pre>
+                
+                    <h3 id="method-Interval-to_numeric">Interval.to_numeric</h3>
+                    <pre>Returns the numeric value of an interval. 
+
+    e.g. Interval.P4.to_numeric() -> '4'
+
+Args:
+    None.
+
+Returns:
+    A string representing the numeric value.</pre>
+                
+                    <h3 id="method-Interval-random">Interval.random</h3>
+                    <pre>A class method that returns a random interval. 
+
+    e.g. Interval.P4
+
+Args:
+    None.
+
+Returns:
+    A interval.</pre>
+                
+                    <h3 id="method-Interval-__str__">Interval.__str__</h3>
+                    <pre>Returns a string representing the interval name. 
+
+    e.g. str(Interval.P5) -> 'P5'
+
+Args:
+    None.
+
+Returns:
+    A string representing a interval's name.</pre>
+                
+                    <h3 id="method-Interval-__repr__">Interval.__repr__</h3>
+                    <pre>Returns a string representing the interval. 
+
+    e.g. repr(Interval.P5) -> 'Interval.P5'
+
+Args:
+    None.
+
+Returns:
+    A string representing a interval.</pre>
+                
+            
+
+        
+    
+
+
+		</main>
+	</div>
+</body>
+
+<script src="/static/JS/debug.js"></script>
+
+</html>

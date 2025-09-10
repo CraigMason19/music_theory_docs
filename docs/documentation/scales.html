@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
+		<link rel="stylesheet" href="../CSS/github-markdown.css">
+	
+
+	<title>Music Theory Docs - scales</title>
+</head>
+
+<body>
+	<nav class="header">
+		
+			<a href="../index.html">Home</a>
+			<a href="../documentation/examples.html">Examples</a>
+							
+	</nav>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<h2>Modules</h2>
+			<ul>
+				
+					
+						<li><a href="../documentation/chord_type.html">chord_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/chords.html">chords</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument.html">instrument</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
+										
+				
+					
+						<li><a href="../documentation/intervals.html">intervals</a></li>
+										
+				
+					
+						<li><a href="../documentation/key_type.html">key_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/keys.html">keys</a></li>
+										
+				
+					
+						<li><a href="../documentation/notes.html">notes</a></li>
+										
+				
+					
+						<li><a href="../documentation/progressions.html">progressions</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_diatonic.html">scale_diatonic</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_type.html">scale_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/scales.html">scales</a></li>
+										
+				
+					
+						<li><a href="../documentation/utils.html">utils</a></li>
+										
+				
+			</ul>
+		</aside>
+
+		<main class="view-area markdown-body">
+			
+    <h1>scales</h1>
+    <pre>None</pre>
+
+    <div class="toc">
+        
+            <h2>Functions</h2>
+            <ul>
+            
+                <li><a href="#function-_intervals_from_numerics">_intervals_from_numerics</a></li>
+            
+                <li><a href="#function-_intervals_from_steps">_intervals_from_steps</a></li>
+            
+                <li><a href="#function-_notes_from_intervals">_notes_from_intervals</a></li>
+            
+                <li><a href="#function-_notes_from_steps">_notes_from_steps</a></li>
+            
+                <li><a href="#function-modes_from_note">modes_from_note</a></li>
+            
+            </ul>
+        
+
+
+        
+            <h2>Classes</h2>
+            <ul>
+                
+                    <li>
+                    <a href="#class-Scale">Scale</a>
+                        <ul>
+                            
+                            <li><a href="#method-Scale-__init__">__init__</a></li>
+                            
+                            <li><a href="#method-Scale-_construct">_construct</a></li>
+                            
+                            <li><a href="#method-Scale-__eq__">__eq__</a></li>
+                            
+                            <li><a href="#method-Scale-random">random</a></li>
+                            
+                            <li><a href="#method-Scale-__str__">__str__</a></li>
+                            
+                            <li><a href="#method-Scale-__repr__">__repr__</a></li>
+                            
+                        </ul>
+                    </li>
+                
+            </ul>
+        
+    </div>
+
+    
+        
+            <h2 id="function-_intervals_from_numerics">_intervals_from_numerics</h2>
+            <pre>Returns a list of intervals comprising a scale formula derived from a step
+    formula. Essentially converts a step formula into a interval formula.
+
+    e.g. _intervals_from_numerics(['1', '2', 'b3', '4', '5', 'b6', '7'])
+        [Unison, M2, m3, P4, P5, m6, M7]
+
+Args:
+    formula:
+        The numeric formula to construct the Interval sequence. 
+
+Returns:
+    A list of Intervals.</pre>
+        
+            <h2 id="function-_intervals_from_steps">_intervals_from_steps</h2>
+            <pre>Returns a list of intervals comprising a scale formula derived from a step
+    formula. Essentially converts a step formula into a interval formula.
+
+    e.g. _intervals_from_steps(['w', 'w', 'h', 'w', 'w', 'w', 'h'])
+        [Unison, M2, M3, P4, P5, M6, M7]
+
+Args:
+    formula:
+        The step formula to construct the Interval sequence. Made of h's and w's.
+        (half and whole steps).
+
+Returns:
+    A list of Intervals.</pre>
+        
+            <h2 id="function-_notes_from_intervals">_notes_from_intervals</h2>
+            <pre>Returns a list of notes comprising a scale from a root note and a interval
+    formula.
+
+    e.g. _notes_from_intervals(Note.C [Unison, M2, M3, P4, P5, M6, M7])
+        [C, D, E, F, G, A, B]
+
+Args:
+    formula:
+        The interval formula to construct the Note sequence. 
+
+Returns:
+    A list of Notes.</pre>
+        
+            <h2 id="function-_notes_from_steps">_notes_from_steps</h2>
+            <pre>Returns a list of notes comprising a scale from a root note and a step
+    formula. 
+
+    e.g. _notes_from_steps(Note.Bb, ['w', 'w', 'h', 'w', 'w', 'h', 'w'])
+        [Note.Bb, Note.C, Note.D, Note.Eb, Note.F, Note.G, Note.Ab]
+
+Args:
+    root:
+        The root Note to build the scale from.
+    formula:
+        The step formula to construct the note sequence. Made of h's and w's.
+        (half and whole steps).
+
+Returns:
+    A list of Notes.</pre>
+        
+            <h2 id="function-modes_from_note">modes_from_note</h2>
+            <pre>Returns a list of Scales depicting all the modes from a starting note. 
+
+    Each subsequent mode starts from the next note in the scale (effectively 
+    shifts the notes up). This repeats until it wraps back to the start.
+    There are always 7 modes and they are always in the same order. Theyare
+    named (note -> mode).
+
+    e.g. Mode 1 - C Ionian - C D E F G A B
+        Mode 2 - D Dorian - D E F G A B C
+        Mode 3 - E Phrygian: E, F, G, A, B, C, D
+        Mode 4 - F Lydian: F, G, A, B, C, D, E
+        Mode 5 - G Mixolydian: G, A, B, C, D, E, F
+        Mode 6 - A Aeolian: A, B, C, D, E, F, G
+        Mode 7 - B Locrian: B, C, D, E, F, G, A
+
+Args:
+    note:
+        The note to build the modes from.
+
+Returns:
+    A list of 7 Scales.</pre>
+        
+    
+
+
+    
+        
+            <h2 id="class-Scale">Scale</h2>
+            <pre>A class representing a Scale (A collection of musical notes).
+
+    Note: There isn't a step_fomula attribute, because not every scale can
+    represent them. The pentatonic scale for example, will cover steps
+    greater than a whole (2 semi-tones).
+
+Attributes:
+    root:
+        The root Note of the scale.
+    type:
+        The type of scale (e.g. minor, major, blues, lydian, etc...).
+    notes:
+        A list of notes for the scale
+    creation_formula:
+        The formula used to create the scale.
+    interval_formula:
+        A list of intervals describing the scale.
+    numeric_formula:
+        A list of numerics describing the scale.
+    name:
+        A property that returns the name of the scale.
+    num_notes:
+        A property that returns the number of notes in the scale.
+    num_flats:
+        A property that returns the number of flats in the scale.
+
+Methods:        
+    __init__(self, root, scale_type):
+        Initialises the root and scale type, then calls _construct().
+    _construct(self):
+        Constructs the scale from the root and scale type in __init__().
+        Put into it's own private method so that __init__() remains readable. 
+    __eq__(self, other):
+        Compares two scales.
+    random(cls):
+        A class method to return a random scale (root and type).
+    __str__(self):
+        returns a string representation of the scale, type and notes.
+    __repr__(self):
+        Returns a string representation of the scale and type.</pre>
+
+            <!-- methods -->
+            
+                
+                    <h3 id="method-Scale-__init__">Scale.__init__</h3>
+                    <pre>Builds the scale from a root note and a scale type. 
+
+Args:
+    root:
+        The note to build the scale from.
+    scale_type:
+        The type of scale (e.g. minor, major, blues, lydian, etc...
+
+Returns:
+    None.        </pre>
+                
+                    <h3 id="method-Scale-_construct">Scale._construct</h3>
+                    <pre>Method is private so not to pollute the __init__() method. 
+
+    Build the scale from 3 different ways. Some scales are defined by intervals, 
+    some are defined by steps and some are defined by numerics. They can also
+    have a different number of notes in them.
+
+Args:
+    None.
+
+Returns:
+    None.
+
+Raises:
+    ValueError:
+        Raised if the Scale's type is not in any dictionaries.</pre>
+                
+                    <h3 id="method-Scale-__eq__">Scale.__eq__</h3>
+                    <pre>Equality operator to check that both the note and scale type match. 
+
+    e.g. Key(Note.F, ScaleType.Major) == Key(Note.F, ScaleType.Major)
+
+Args:
+    other:
+        The other Scale to compare.
+
+Returns:
+    A bool. True if this and another scale are the same.</pre>
+                
+                    <h3 id="method-Scale-random">Scale.random</h3>
+                    <pre>A class method to return a random Scale from a random note and type. 
+
+Args:
+    None.
+
+Returns:
+    A Scale.</pre>
+                
+                    <h3 id="method-Scale-__str__">Scale.__str__</h3>
+                    <pre>Returns a string representing the Scale name, type and notes. 
+
+    e.g. str(Scale(Note.E, ScaleType.Dorian)) -> E Dorian: E, Gb, G, A, B, Db, D
+
+Args:
+    None.
+
+Returns:
+    A string.</pre>
+                
+                    <h3 id="method-Scale-__repr__">Scale.__repr__</h3>
+                    <pre>Returns a string representing the Scale name and type. 
+
+    e.g. repr(Scale(Note.E, ScaleType.Dorian)) -> Scale(Note.E, ScaleType.Dorian)
+
+Args:
+    None.
+
+Returns:
+    A string.</pre>
+                
+            
+
+        
+    
+
+
+		</main>
+	</div>
+</body>
+
+<script src="/static/JS/debug.js"></script>
+
+</html>
