@@ -29,7 +29,7 @@
   {% if messages %}
     {% for message in messages %}
       <div class="box message message-{{message.tags}}">
-        <p><strong>{{ message.tags|capfirst }}</strong> - {{ message }}</p>
+        <p><strong>{{ message.tags|capfirst }}</strong> - {{ message|safe }}</p>
       </div>
     {% endfor %}
   {% endif %}
