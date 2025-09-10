@@ -47,15 +47,16 @@ def bakeAsset(request, asset: Asset, ignore_list: list[str]) -> bool:
     
 def bakeHTML(request) -> bool:
     try:
+   
         pages = ["index", "examples"] + get_available_modules()
 
         for page in pages:
             if page == "index":
                 django_url = f"http://{settings.DEFAULT_PORT}/documentation"
-                output_path = (Path(__file__).parent.parent / "docs" / "index").with_suffix(".html")
+                output_path = Path(settings.GITHUB_STATIC_DOCS_DIR / "index").with_suffix(".html")
             else:
                 django_url = f"http://{settings.DEFAULT_PORT}/documentation/{page}"
-                output_path = (Path(__file__).parent.parent / "docs" / "documentation" / page).with_suffix(".html")
+                output_path = Path(settings.GITHUB_STATIC_DOCS_DIR / "documentation" / page).with_suffix(".html")
 
             html = urllib.request.urlopen(django_url).read().decode("utf-8")
             output_path.parent.mkdir(parents=True, exist_ok=True)

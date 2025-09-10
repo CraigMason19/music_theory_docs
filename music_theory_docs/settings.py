@@ -18,6 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Custom variables
 BAKE_MODE = False
 DEFAULT_PORT = "127.0.0.1:8000"
+GITHUB_STATIC_DOCS_DIR = Path(__file__).parent.parent / "docs"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
