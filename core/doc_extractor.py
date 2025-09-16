@@ -1,7 +1,6 @@
 import inspect
 from typing import Optional
 
-
 class MethodDoc:
     def __init__(self, name: str, docstring: Optional[str]):
         self.name = name
