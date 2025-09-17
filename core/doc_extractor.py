@@ -29,7 +29,7 @@ class FunctionDoc:
         return f"FunctionDoc(name={self.name!r})"
 
 
-class ModuleDoc:
+class ModuleDocs:
     def __init__(self, module):
         self.module = module
         self.module_docstring = inspect.getdoc(module)
@@ -69,4 +69,4 @@ class ModuleDoc:
         return class_docs
 
     def __repr__(self):
-        return f"ModuleDoc(functions={self.functions!r}, classes={self.classes!r})"
+        return f"ModuleDocs(functions={self.functions!r}, classes={self.classes!r})"

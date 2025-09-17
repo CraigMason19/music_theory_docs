@@ -16,7 +16,7 @@ import markdown
 import music_theory as mt
 
 from music_theory.scales import modes_from_note 
-from core.doc_extractor import ModuleDoc
+from core.doc_extractor import ModuleDocs
 from core.mt_modules import get_available_modules
 
 def strip_screenshots_from_markdown(raw_md):
@@ -32,7 +32,7 @@ def strip_screenshots_from_markdown(raw_md):
     return cleaned
 
 def build_dynamic_doc_structure(module):
-    module_doc = ModuleDoc(module)
+    module_doc = ModuleDocs(module)
 
     doc_structure = {
         "module_docstring": module_doc.module_docstring,

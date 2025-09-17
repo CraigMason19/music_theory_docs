@@ -2,7 +2,8 @@ import pkgutil
 
 import music_theory as mt
 
-from core.doc_extractor import ModuleDoc
+from core.doc_extractor import ModuleDocs
+
 
 BLACKLISTED_MODULES: list[str] = [
     "mnemonics",
@@ -16,9 +17,14 @@ def get_available_modules(use_blacklist=True) -> list[str]:
     modules = [f"{name}" for _, name, is_pkg in pkgutil.iter_modules(mt.__path__)]
     return [m for m in modules if not m in BLACKLISTED_MODULES] if use_blacklist else modules
     
+
+
 def check_module_for_empty_docstrings(module_name: str) -> None:
+    """
+    A quick debugging function to look for empty docstrings in modules 
+    """
     module = getattr(mt, module_name)
-    md = ModuleDoc(module)
+    md = ModuleDocs(module)
 
     print(module_name)
 
