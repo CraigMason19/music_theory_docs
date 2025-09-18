@@ -2,7 +2,7 @@ import pkgutil
 
 import music_theory as mt
 
-from core.doc_extractor import ModuleDocs
+from core.doc_extractor import DocExtractor
 
 
 BLACKLISTED_MODULES: list[str] = [
@@ -24,18 +24,18 @@ def check_module_for_empty_docstrings(module_name: str) -> None:
     A quick debugging function to look for empty docstrings in modules 
     """
     module = getattr(mt, module_name)
-    md = ModuleDocs(module)
+    de = DocExtractor(module)
 
     print(module_name)
 
-    if(md.module_docstring == None):
+    if(de.module_docstring == None):
         print(f'\tNo module doc')
 
-    for f in md.functions:
+    for f in de.functions:
         if(f.docstring == None):
             print(f'\t\t{f.name}')
 
-    for c in md.classes:
+    for c in de.classes:
         if(c.docstring == None):
             print(f'\t\t{c.name}')
 

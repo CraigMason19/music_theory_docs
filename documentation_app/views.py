@@ -16,7 +16,7 @@ import markdown
 import music_theory as mt
 
 from music_theory.scales import modes_from_note 
-from core.doc_extractor import ModuleDocs
+from core.doc_extractor import DocExtractor
 from core.mt_modules import get_available_modules
 
 def strip_screenshots_from_markdown(raw_md):
@@ -32,15 +32,15 @@ def strip_screenshots_from_markdown(raw_md):
     return cleaned
 
 def build_dynamic_doc_structure(module):
-    module_doc = ModuleDocs(module)
+    de = DocExtractor(module)
 
     doc_structure = {
-        "module_docstring": module_doc.module_docstring,
+        "module_docstring": de.module_docstring,
         "functions": [],
         "classes": []
     }
 
-    for f in module_doc.functions:
+    for f in de.functions:
         doc_structure["functions"].append({
             "name": f.name,
             "tag": "h2",
@@ -48,7 +48,7 @@ def build_dynamic_doc_structure(module):
             "docstring": mark_safe(f.docstring),
         })
 
-    for c in module_doc.classes:
+    for c in de.classes:
         class_entry = {
             "name": c.name,
             "tag": "h2",
@@ -139,17 +139,19 @@ def examples_view(request):
 
 def tools_view(request):
 
+    # Tool 1
     key_generator_results = mt.Key(mt.Note.A, mt.KeyType.Major).to_string_array(True, True)
 
  
 
 
-
- 
+    # Tool 2
     tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
     
     mode_generator_results = [str(m) for m in modes_from_note(mt.Note.from_index(tool_two_note_input))] 
  
+
+
     context = {
         "available_modules": get_available_modules(),
 
