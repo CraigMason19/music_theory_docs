@@ -16,49 +16,52 @@
         <li><a href="#chord-progression-MIDI-generator">Chord progression MIDI generator</a></li>
     </ul>
     
+    
     <div class="tool">
         <h2 id="chords-in-key-generator">Chords in key generator</h2>
 
-        <div class="tool-input">
-            <label for="note">Note:</label>
-            <select name="note" id="note">
-                {% for n in notes %}
-                    <option value="{{ n }}">{{ n }}</option>
-                {% endfor %}
-            </select> 
-            <br>
+        <form method="get" action="{% url 'tools_view' %}" id="chords-in-key-form">
+            <div class="tool-input">
+                <label for="tool-one-note-input">Note:</label>
+                <select name="tool-one-note-input" id="tool-one-note-input">
+                    {% for n in notes %}
+                        <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_one_note_input %}selected{% endif %}>{{ n }}</option>
+                    {% endfor %}
+                </select> 
+                <br>
 
-            <label for="key-type">Key Type:</label>
-            <select name="key-type" id="key-type">
-                {% for kt in key_types %}
-                    <option value="{{ kt }}">{{ kt }}</option>
-                {% endfor %}
-            </select> 
-            <br>
+                <label for="tool-one-key-type-input">Key Type:</label>
+                <select name="tool-one-key-type-input" id="tool-one-key-type-input">
+                    {% for kt in key_types %}
+                        <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_one_key_type_input %}selected{% endif %}>{{ kt }}</option>
+                    {% endfor %}
+                </select> 
+                <br>
 
-            <label for="dominant">Show dominant keys?</label>
-            <select name="dominant" id="dominant">
-                <option value="true">True</option>
-                <option value="false">False</option>
-            </select> 
-            <br>
+                <label for="dominant">Show dominant keys?</label>
+                <select name="dominant" id="dominant">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select> 
+                <br>
 
-            <label for="parallel">Show parallel keys?</label>
-            <select name="parallel" id="parallel">
-                <option value="true">True</option>
-                <option value="false">False</option>
-            </select> 
-            <br>
-        </div>
+                <label for="parallel">Show parallel keys?</label>
+                <select name="parallel" id="parallel">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select> 
+                <br>
+            </div>
 
-        <br>
-        <pre>{{ key_generator_results|safe }}</pre>
+            <br>
+            <pre>{{ key_generator_results|safe }}</pre>
+        </form>
     </div>
 
-    <form method="get" action="{% url 'tools_view' %}" id="modes-from-note-form">
-        <div class="tool">
-            <h2 id="modes-from-note-generator">Modes from note generator</h2>
+    <div class="tool">
+        <h2 id="modes-from-note-generator">Modes from note generator</h2>
 
+        <form method="get" action="{% url 'tools_view' %}" id="modes-from-note-form">
             <div class="tool-input">
                 <label for="tool-two-note-input">Note:</label>
                 <select name="tool-two-note-input" id="tool-two-note-input">
@@ -66,12 +69,13 @@
                         <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_two_note_input %}selected{% endif %}>{{ n }}</option>
                     {% endfor %}                    
                 </select> 
-                <br>
             </div>
+            
             <br>
             <pre>{{ mode_generator_results|safe }}</pre>
-        </div>
-    </form>
+        </form>
+    </div>
+
 </div>
 
 <script src="{% static 'JS/tools.js' %}"></script>

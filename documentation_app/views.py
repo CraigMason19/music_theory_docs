@@ -1,7 +1,8 @@
 # Python
+from pathlib import Path
+import logging
 import pkgutil
 import re
-from pathlib import Path
 
 # Django
 from django.conf import settings
@@ -18,6 +19,8 @@ import music_theory as mt
 from music_theory.scales import modes_from_note 
 from core.doc_extractor import DocExtractor
 from core.mt_modules import get_available_modules
+
+logger = logging.getLogger(__name__)
 
 def strip_screenshots_from_markdown(raw_md):
     # Remove image embeds from screenshots folder
@@ -140,7 +143,20 @@ def examples_view(request):
 def tools_view(request):
 
     # Tool 1
-    key_generator_results = mt.Key(mt.Note.A, mt.KeyType.Major).to_string_array(True, True)
+    tool_one_note_input = int(request.GET.get("tool-one-note-input", 0))
+    tool_one_key_type_input = int(request.GET.get("tool-one-key-type-input", 0))
+
+    logger.info(tool_one_note_input)
+    logger.info(tool_one_key_type_input)
+
+    n = mt.Note.from_index(tool_one_note_input)
+    kt = mt.KeyType.items()[tool_one_key_type_input]
+ 
+
+
+    key_generator_results = mt.Key(n, kt).to_string_array(dominant=True, parallel=True)
+
+
 
  
 
@@ -158,6 +174,10 @@ def tools_view(request):
         "notes": mt.Note.items(),
         "key_types": mt.KeyType.items(),
         "key_generator_results": "\n".join(key_generator_results),
+
+        # Tool 1
+        "tool_one_note_input": tool_one_note_input,
+        "tool_one_key_type_input": tool_one_key_type_input,
 
         # Tool 2
         "mode_generator_results": "\n".join(mode_generator_results),
