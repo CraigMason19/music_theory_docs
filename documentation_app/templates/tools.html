@@ -45,10 +45,10 @@
                 </select> 
                 <br>
 
-                <label for="parallel">Show parallel keys?</label>
-                <select name="parallel" id="parallel">
-                    <option value="true">True</option>
-                    <option value="false">False</option>
+                <label for="tool-one-parallel-input">Show parallel keys?</label>
+                <select name="tool-one-parallel-input" id="tool-one-parallel-input">
+                    <option value="true" {% if tool_one_parallel_input == 'true' %}selected{% endif %}>True</option>
+                    <option value="false" {% if tool_one_parallel_input == 'false' %}selected{% endif %}>False</option>
                 </select> 
                 <br>
             </div>

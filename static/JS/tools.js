@@ -4,6 +4,7 @@ const chordsInKeyForm = document.getElementById("chords-in-key-form");
 const toolOneNoteInput = document.getElementById("tool-one-note-input");
 const toolOneKeyTypeInput = document.getElementById("tool-one-key-type-input");
 const toolOneDominantInput = document.getElementById("tool-one-dominant-input");
+const toolOneParallelInput = document.getElementById("tool-one-parallel-input");
 
 toolOneNoteInput.addEventListener("change", () => {
     chordsInKeyForm.submit()
@@ -17,6 +18,9 @@ toolOneDominantInput.addEventListener("change", () => {
     chordsInKeyForm.submit()
 });
 
+toolOneParallelInput.addEventListener("change", () => {
+    chordsInKeyForm.submit()
+});
 
 // Tool 2
 const modesFromNoteForm = document.getElementById("modes-from-note-form");

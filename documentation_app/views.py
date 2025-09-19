@@ -149,19 +149,15 @@ def tools_view(request):
     tool_one_note_input = int(request.GET.get("tool-one-note-input", 0))
     tool_one_key_type_input = int(request.GET.get("tool-one-key-type-input", 0))
     tool_one_dominant_input = request.GET.get("tool-one-dominant-input", "false")
-
-    logger.info(tool_one_dominant_input)
+    tool_one_parallel_input = request.GET.get("tool-one-parallel-input", "false") 
 
     # Convert to something useful
     n = parse_note(tool_one_note_input)
     kt = parse_key_type(tool_one_key_type_input) 
     d = parse_bool(tool_one_dominant_input)
+    p = parse_bool(tool_one_parallel_input)
 
-
-    key_generator_results = mt.Key(n, kt).to_string_array(dominant=d, parallel=True)
-
-
-
+    key_generator_results = mt.Key(n, kt).to_string_array(dominant=d, parallel=p)
  
 
 
@@ -183,6 +179,7 @@ def tools_view(request):
         "tool_one_note_input": tool_one_note_input,
         "tool_one_key_type_input": tool_one_key_type_input,
         "tool_one_dominant_input": tool_one_dominant_input,
+        "tool_one_parallel_input": tool_one_parallel_input,
 
         # Tool 2
         "mode_generator_results": "\n".join(mode_generator_results),
