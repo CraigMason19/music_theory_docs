@@ -38,10 +38,10 @@
                 </select> 
                 <br>
 
-                <label for="dominant">Show dominant keys?</label>
-                <select name="dominant" id="dominant">
-                    <option value="true">True</option>
-                    <option value="false">False</option>
+                <label for="tool-one-dominant-input">Show dominant keys?</label>
+                <select name="tool-one-dominant-input" id="tool-one-dominant-input">
+                    <option value="true" {% if tool_one_dominant_input == 'true' %}selected{% endif %}>True</option>
+                    <option value="false" {% if tool_one_dominant_input == 'false' %}selected{% endif %}>False</option>
                 </select> 
                 <br>
 

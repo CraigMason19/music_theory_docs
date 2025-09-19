@@ -144,16 +144,21 @@ def examples_view(request):
 def tools_view(request):
 
     # Tool 1
+
+    # Need to pass them bag in context as their correct representation, html has value as string?
     tool_one_note_input = int(request.GET.get("tool-one-note-input", 0))
     tool_one_key_type_input = int(request.GET.get("tool-one-key-type-input", 0))
+    tool_one_dominant_input = request.GET.get("tool-one-dominant-input", "false")
 
- 
+    logger.info(tool_one_dominant_input)
 
+    # Convert to something useful
     n = parse_note(tool_one_note_input)
     kt = parse_key_type(tool_one_key_type_input) 
+    d = parse_bool(tool_one_dominant_input)
 
 
-    key_generator_results = mt.Key(n, kt).to_string_array(dominant=True, parallel=True)
+    key_generator_results = mt.Key(n, kt).to_string_array(dominant=d, parallel=True)
 
 
 
@@ -177,6 +182,7 @@ def tools_view(request):
         # Tool 1
         "tool_one_note_input": tool_one_note_input,
         "tool_one_key_type_input": tool_one_key_type_input,
+        "tool_one_dominant_input": tool_one_dominant_input,
 
         # Tool 2
         "mode_generator_results": "\n".join(mode_generator_results),
