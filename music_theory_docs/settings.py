@@ -20,6 +20,20 @@ BAKE_MODE = False
 DEFAULT_PORT = "127.0.0.1:8000"
 GITHUB_STATIC_DOCS_DIR = Path(__file__).parent.parent / "docs"
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
