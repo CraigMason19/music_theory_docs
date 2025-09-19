@@ -61,11 +61,10 @@
 
             <div class="tool-input">
                 <label for="tool-two-note-input">Note:</label>
-                <select name="tool-two-note-input" id="tool-two-note-input" onchange="document.getElementById('modes-from-note-form').submit();">
+                <select name="tool-two-note-input" id="tool-two-note-input">
                     {% for n in notes %}
                         <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_two_note_input %}selected{% endif %}>{{ n }}</option>
-                    {% endfor %}
-                    
+                    {% endfor %}                    
                 </select> 
                 <br>
             </div>
@@ -74,5 +73,7 @@
         </div>
     </form>
 </div>
+
+<script src="{% static 'JS/tools.js' %}"></script>
 
 {% endblock %}
