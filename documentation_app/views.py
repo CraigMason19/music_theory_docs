@@ -19,6 +19,7 @@ import music_theory as mt
 from music_theory.scales import modes_from_note 
 from core.doc_extractor import DocExtractor
 from core.mt_modules import get_available_modules
+from core.parser import parse_note, parse_key_type, parse_bool
 
 logger = logging.getLogger(__name__)
 
@@ -146,12 +147,10 @@ def tools_view(request):
     tool_one_note_input = int(request.GET.get("tool-one-note-input", 0))
     tool_one_key_type_input = int(request.GET.get("tool-one-key-type-input", 0))
 
-    logger.info(tool_one_note_input)
-    logger.info(tool_one_key_type_input)
-
-    n = mt.Note.from_index(tool_one_note_input)
-    kt = mt.KeyType.items()[tool_one_key_type_input]
  
+
+    n = parse_note(tool_one_note_input)
+    kt = parse_key_type(tool_one_key_type_input) 
 
 
     key_generator_results = mt.Key(n, kt).to_string_array(dominant=True, parallel=True)
