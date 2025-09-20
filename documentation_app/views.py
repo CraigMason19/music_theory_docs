@@ -142,16 +142,19 @@ def examples_view(request):
     return render(request, "examples.html", context)
 
 def tools_view(request):
-
-    # Tool 1
-
-    # Need to pass them bag in context as their correct representation, html has value as string?
+    # Seperate the values and store them, as we will need to pass them back in the context for the their correct representation.
+    # The default value here will be the default settings on the page
     tool_one_note_input = int(request.GET.get("tool-one-note-input", 0))
     tool_one_key_type_input = int(request.GET.get("tool-one-key-type-input", 0))
-    tool_one_dominant_input = request.GET.get("tool-one-dominant-input", "false")
-    tool_one_parallel_input = request.GET.get("tool-one-parallel-input", "false") 
+    tool_one_dominant_input = request.GET.get("tool-one-dominant-input", "true")
+    tool_one_parallel_input = request.GET.get("tool-one-parallel-input", "true") 
 
-    # Convert to something useful
+    tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
+
+
+    # Now we have that, we can generate the results in the tool.
+
+    # Tool 1
     n = parse_note(tool_one_note_input)
     kt = parse_key_type(tool_one_key_type_input) 
     d = parse_bool(tool_one_dominant_input)
@@ -160,20 +163,14 @@ def tools_view(request):
     key_generator_results = mt.Key(n, kt).to_string_array(dominant=d, parallel=p)
  
 
-
     # Tool 2
-    tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
-    
     mode_generator_results = [str(m) for m in modes_from_note(mt.Note.from_index(tool_two_note_input))] 
- 
 
 
     context = {
         "available_modules": get_available_modules(),
-
         "notes": mt.Note.items(),
         "key_types": mt.KeyType.items(),
-        "key_generator_results": "\n".join(key_generator_results),
 
         # Tool 1
         "tool_one_note_input": tool_one_note_input,
@@ -181,9 +178,12 @@ def tools_view(request):
         "tool_one_dominant_input": tool_one_dominant_input,
         "tool_one_parallel_input": tool_one_parallel_input,
 
+        "key_generator_results": "\n".join(key_generator_results),
+
         # Tool 2
-        "mode_generator_results": "\n".join(mode_generator_results),
         "tool_two_note_input": tool_two_note_input,
+
+        "mode_generator_results": "\n".join(mode_generator_results),
     }
 
     return render(request, "tools.html", context)
