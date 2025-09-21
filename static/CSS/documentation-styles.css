@@ -102,5 +102,9 @@ body {
 }
 
 th {
-	background-color: wheat !important;
+	background-color: #D1ECF1 !important;
 }
+
+/* pre {
+	background-color: #D1ECF1 !important;
+} */

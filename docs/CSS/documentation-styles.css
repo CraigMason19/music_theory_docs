@@ -86,12 +86,25 @@ body {
 } */
 
 /* .tool {
-	background-color: aquamarine;
+    background-color: aquamarine;
 } */
 
 .tool-input {
 	display: grid;
-    grid-template-columns: max-content max-content auto; 
-    gap: 0.5em 1em;
     align-items: center;
+    gap: 0.5em 1em;
+    grid-template-columns: max-content max-content auto; 
 }
+
+
+.textarea {
+    text-align: center;
+}
+
+th {
+	background-color: #D1ECF1 !important;
+}
+
+/* pre {
+	background-color: #D1ECF1 !important;
+} */
