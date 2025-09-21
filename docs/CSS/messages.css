@@ -1,11 +1,19 @@
 /* CSS to mimic bootstrap alerts */
 
 .message {
-	margin: 0.5rem 0rem;
-	padding: 0rem 2rem;
 	border-radius: 8px;
 	border: 2px solid;
+	display: grid;
 	font-weight: 500;
+	height: fit-content;
+	margin: 0.5rem 0rem;
+	padding: 1rem 2rem;
+  	place-items: center;
+}
+
+/* pre tag will have styling from the github css, so unset it */
+.message pre {
+	all: unset;
 }
 
 .message-info {
