@@ -160,7 +160,7 @@ def tools_view(request):
     tool_three_tuning_input_six = int(request.GET.get("tool-three-tuning-input-six", mt.Note.E.value))
 
 
-    tool_three_fret_input_one = int(request.GET.get("tool_three_fret_input_one", 0))
+    tool_three_fret_input_one = request.GET.get("tool-three-fret-input-one", 0)
 
 
 
@@ -179,13 +179,6 @@ def tools_view(request):
     mode_generator_results = [str(m) for m in modes_from_note(mt.Note.from_index(tool_two_note_input))] 
 
     # Tool 3
-
-
-    # this where i'll do checks
-    messages.error(request, f"I have no idea if this will work {tool_three_fret_input_one}")
-
-
-
     guitar = mt.StringInstrument([
         parse_note(tool_three_tuning_input_six),
         parse_note(tool_three_tuning_input_five),
@@ -195,7 +188,23 @@ def tools_view(request):
         parse_note(tool_three_tuning_input_one),
     ])
 
-    tool_three_result_one = guitar.note_at_fret(5, 0)
+    # this where i'll do checks
+
+    if tool_three_fret_input_one in ["x", "X"]:
+        tool_three_result_one = 'X'
+
+    else:
+        try:
+            value = int(tool_three_fret_input_one)
+            tool_three_result_one = guitar.note_at_fret(5, value)
+
+            if value < 0:
+                messages.error(request, "Fret value must be must be a interger number 0 or above")
+
+        except ValueError:
+            messages.error(request, "Fret value must be must be a interger number 0 or above")
+            tool_three_result_one = 'X'
+ 
     tool_three_result_two = guitar.note_at_fret(4, 0)
     tool_three_result_three = guitar.note_at_fret(3, 0)
     tool_three_result_four = guitar.note_at_fret(2, 0)
