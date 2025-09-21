@@ -144,15 +144,26 @@ def examples_view(request):
 def tools_view(request):
     # Seperate the values and store them, as we will need to pass them back in the context for the their correct representation.
     # The default value here will be the default settings on the page
-    tool_one_note_input = int(request.GET.get("tool-one-note-input", 0))
-    tool_one_key_type_input = int(request.GET.get("tool-one-key-type-input", 0))
+    tool_one_note_input = int(request.GET.get("tool-one-note-input", mt.Note.C.value))
+    tool_one_key_type_input = int(request.GET.get("tool-one-key-type-input", mt.KeyType.Major.value))
     tool_one_dominant_input = request.GET.get("tool-one-dominant-input", "true")
     tool_one_parallel_input = request.GET.get("tool-one-parallel-input", "true") 
 
     tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
 
+    tool_three_tuning_input_one = int(request.GET.get("tool-three-tuning-input-one", mt.Note.E.value))
+    tool_three_tuning_input_two = int(request.GET.get("tool-three-tuning-input-two", mt.Note.B.value))
+    tool_three_tuning_input_three = int(request.GET.get("tool-three-tuning-input-three", mt.Note.G.value))
+    tool_three_tuning_input_four = int(request.GET.get("tool-three-tuning-input-four", mt.Note.D.value))
+    tool_three_tuning_input_five = int(request.GET.get("tool-three-tuning-input-five", mt.Note.A.value))
+    tool_three_tuning_input_six = int(request.GET.get("tool-three-tuning-input-six", mt.Note.E.value))
 
-    # Now we have that, we can generate the results in the tool.
+
+    tool_three_fret_input_one = request.GET.get("tool_three_fret_input_one", "x")
+
+
+
+    # Now we have that, we can generate the results in the tools.
 
     # Tool 1
     n = parse_note(tool_one_note_input)
@@ -166,6 +177,22 @@ def tools_view(request):
     # Tool 2
     mode_generator_results = [str(m) for m in modes_from_note(mt.Note.from_index(tool_two_note_input))] 
 
+    # Tool 3
+    guitar = mt.StringInstrument([
+        parse_note(tool_three_tuning_input_six),
+        parse_note(tool_three_tuning_input_five),
+        parse_note(tool_three_tuning_input_four),
+        parse_note(tool_three_tuning_input_three),
+        parse_note(tool_three_tuning_input_two),
+        parse_note(tool_three_tuning_input_one),
+    ])
+
+    tool_three_result_one = guitar.note_at_fret(5, 0)
+    tool_three_result_two = guitar.note_at_fret(4, 0)
+    tool_three_result_three = guitar.note_at_fret(3, 0)
+    tool_three_result_four = guitar.note_at_fret(2, 0)
+    tool_three_result_five = guitar.note_at_fret(1, 0)
+    tool_three_result_six = guitar.note_at_fret(0, 0)
 
     context = {
         "available_modules": get_available_modules(),
@@ -184,6 +211,23 @@ def tools_view(request):
         "tool_two_note_input": tool_two_note_input,
 
         "mode_generator_results": "\n".join(mode_generator_results),
+
+        # Tool 3
+        "tool_three_tuning_input_one": tool_three_tuning_input_one,
+        "tool_three_tuning_input_two": tool_three_tuning_input_two,
+        "tool_three_tuning_input_three": tool_three_tuning_input_three,
+        "tool_three_tuning_input_four": tool_three_tuning_input_four,
+        "tool_three_tuning_input_five": tool_three_tuning_input_five,
+        "tool_three_tuning_input_six": tool_three_tuning_input_six,
+
+        "tool_three_fret_input_one": tool_three_fret_input_one,
+
+        "tool_three_result_one": tool_three_result_one,
+        "tool_three_result_two": tool_three_result_two,
+        "tool_three_result_three": tool_three_result_three,
+        "tool_three_result_four": tool_three_result_four,
+        "tool_three_result_five": tool_three_result_five,
+        "tool_three_result_six": tool_three_result_six,
     }
 
     return render(request, "tools.html", context)

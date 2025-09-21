@@ -73,8 +73,87 @@
             <pre>{{ mode_generator_results|safe }}</pre>
         </div>
         
-    </form>
+        <div class="tool">
+            <h2 id="note-finder">Note Finder</h2>
+    
+            <div class="tool-input">
+                <table>
+                    <tr>
+                        <th>String Tuning</th>
+                        <th>Frame</th>
+                        <th>Note</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="tool-three-tuning-input-one" id="tool-three-tuning-input-one">
+                                {% for n in notes %}
+                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_one %}selected{% endif %}>{{ n }}</option>
+                                {% endfor %}   
+                            </select>
+                        </td>
+                        <td><textarea name="tool-three-fret-input-one" id="tool-three-fret-input-one" placeholder="0">"{{ tool_three_fret_input_one }}"</textarea></td>
+                        <td id="tool-three-result-one">{{ tool_three_result_one }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="tool-three-tuning-input-two" id="tool-three-tuning-input-two">
+                                {% for n in notes %}
+                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_two %}selected{% endif %}>{{ n }}</option>
+                                {% endfor %}   
+                            </select>
+                        </td>
+                        <td><textarea name="tool-three-fret-input-two" id="tool-three-fret-input-two" placeholder="0"></textarea></td>
+                        <td id="tool-three-result-two">{{ tool_three_result_two }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="tool-three-tuning-input-three" id="tool-three-tuning-input-three">
+                                {% for n in notes %}
+                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_three %}selected{% endif %}>{{ n }}</option>
+                                {% endfor %}   
+                            </select>
+                        </td>
+                        <td><textarea name="tool-three-fret-input-three" id="tool-three-fret-input-three" placeholder="0"></textarea></td>
+                        <td id="tool-three-result-three">{{ tool_three_result_three }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="tool-three-tuning-input-four" id="tool-three-tuning-input-four">
+                                {% for n in notes %}
+                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_four %}selected{% endif %}>{{ n }}</option>
+                                {% endfor %}   
+                            </select>
+                        </td>
+                        <td><textarea name="tool-three-fret-input-four" id="tool-three-fret-input-four" placeholder="0"></textarea></td>
+                        <td id="tool-three-result-four">{{ tool_three_result_four }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="tool-three-tuning-input-five" id="tool-three-tuning-input-five">
+                                {% for n in notes %}
+                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_five %}selected{% endif %}>{{ n }}</option>
+                                {% endfor %}   
+                            </select>
+                        </td>
+                        <td><textarea name="tool-three-fret-input-five" id="tool-three-fret-input-five" placeholder="0"></textarea></td>
+                        <td id="tool-three-result-five">{{ tool_three_result_five }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="tool-three-tuning-input-six" id="tool-three-tuning-input-six">
+                                {% for n in notes %}
+                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_six %}selected{% endif %}>{{ n }}</option>
+                                {% endfor %}   
+                            </select>
+                        </td>
+                        <td><textarea name="tool-three-fret-input-six" id="tool-three-fret-input-six" placeholder="0"></textarea></td>
+                        <td id="tool-three-result-six">{{ tool_three_result_six }}</td>
+                    </tr>      
+                </table>
+            </div>
+        </div>
 
+    </form>
 </div>
 
 <script src="{% static 'JS/tools.js' %}"></script>

@@ -95,3 +95,12 @@ body {
     gap: 0.5em 1em;
     grid-template-columns: max-content max-content auto; 
 }
+
+
+.textarea {
+    text-align: center;
+}
+
+th {
+	background-color: wheat !important;
+}
