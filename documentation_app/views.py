@@ -6,6 +6,7 @@ import re
 
 # Django
 from django.conf import settings
+from django.contrib import messages
 from django.http import Http404, HttpResponseNotFound
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
@@ -159,7 +160,7 @@ def tools_view(request):
     tool_three_tuning_input_six = int(request.GET.get("tool-three-tuning-input-six", mt.Note.E.value))
 
 
-    tool_three_fret_input_one = request.GET.get("tool_three_fret_input_one", "x")
+    tool_three_fret_input_one = int(request.GET.get("tool_three_fret_input_one", 0))
 
 
 
@@ -178,6 +179,13 @@ def tools_view(request):
     mode_generator_results = [str(m) for m in modes_from_note(mt.Note.from_index(tool_two_note_input))] 
 
     # Tool 3
+
+
+    # this where i'll do checks
+    messages.error(request, f"I have no idea if this will work {tool_three_fret_input_one}")
+
+
+
     guitar = mt.StringInstrument([
         parse_note(tool_three_tuning_input_six),
         parse_note(tool_three_tuning_input_five),
