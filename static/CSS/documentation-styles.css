@@ -32,6 +32,7 @@ body {
   }
   
 .header a {
+	/* color: goldenrod; */
 	color: white;
     line-height: 1;
     font-size: 1.5rem;
@@ -103,6 +104,15 @@ body {
 
 th {
 	background-color: #D1ECF1 !important;
+	/* background: rgba(245, 222, 179, 1); */
+}
+
+td {
+	text-align: center;
+}
+
+td input {
+	text-align: center;
 }
 
 /* pre {
