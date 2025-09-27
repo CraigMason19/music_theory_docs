@@ -162,6 +162,10 @@ def tools_view(request):
 
     tool_three_fret_input_one = request.GET.get("tool-three-fret-input-one", 0)
     tool_three_fret_input_two = request.GET.get("tool-three-fret-input-two", 0)
+    tool_three_fret_input_three = request.GET.get("tool-three-fret-input-three", 0)
+    tool_three_fret_input_four = request.GET.get("tool-three-fret-input-four", 0)
+    tool_three_fret_input_five = request.GET.get("tool-three-fret-input-five", 0)
+    tool_three_fret_input_six = request.GET.get("tool-three-fret-input-six", 0)
 
 
 
@@ -189,33 +193,31 @@ def tools_view(request):
         parse_note(tool_three_tuning_input_one),
     ])
 
-    # this where i'll do checks
 
-    if tool_three_fret_input_one in ["x", "X"]:
-        tool_three_result_one = 'X'
-
-    if tool_three_fret_input_two in ["x", "X"]:
-        tool_three_result_one = 'X'
-
-    else:
+    def foo(string_index, fret_input):
         try:
-            value = int(tool_three_fret_input_one)
-            tool_three_result_one = guitar.note_at_fret(5, value)
-
-            value = int(tool_three_fret_input_two)
-            tool_three_result_two = guitar.note_at_fret(4, value)
+            if fret_input in ["x", "X"]:
+                return 'X'
+            
+            value = int(fret_input)
+            result = guitar.note_at_fret(string_index, value)
 
             if value < 0:
-                messages.error(request, "Fret value must be must be a interger number 0 or above")
+                messages.error(request, f"Fret value must be must be a interger number 0 or above: {value}")
+
+            return result
 
         except ValueError:
-            messages.error(request, "Fret value must be must be a interger number 0 or above")
-            tool_three_result_one = 'X'
- 
-    tool_three_result_three = guitar.note_at_fret(3, 0)
-    tool_three_result_four = guitar.note_at_fret(2, 0)
-    tool_three_result_five = guitar.note_at_fret(1, 0)
-    tool_three_result_six = guitar.note_at_fret(0, 0)
+            messages.error(request, f"Cannot convert '{fret_input}' into a number. Fret value must be must be a interger number 0 or above")
+            return 'X'
+        
+
+    tool_three_result_one = foo(5, tool_three_fret_input_one)
+    tool_three_result_two = foo(4, tool_three_fret_input_two)
+    tool_three_result_three = foo(3, tool_three_fret_input_three)
+    tool_three_result_four = foo(2, tool_three_fret_input_four)
+    tool_three_result_five = foo(1, tool_three_fret_input_five)
+    tool_three_result_six = foo(0, tool_three_fret_input_six)
 
     context = {
         "available_modules": get_available_modules(),
@@ -245,6 +247,10 @@ def tools_view(request):
 
         "tool_three_fret_input_one": tool_three_fret_input_one,
         "tool_three_fret_input_two": tool_three_fret_input_two,
+        "tool_three_fret_input_three": tool_three_fret_input_three,
+        "tool_three_fret_input_four": tool_three_fret_input_four,
+        "tool_three_fret_input_five": tool_three_fret_input_five,
+        "tool_three_fret_input_six": tool_three_fret_input_six,
 
         "tool_three_result_one": tool_three_result_one,
         "tool_three_result_two": tool_three_result_two,
