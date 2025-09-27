@@ -113,6 +113,7 @@ td {
 
 td input {
 	text-align: center;
+	width: 5ch;
 }
 
 /* pre {
