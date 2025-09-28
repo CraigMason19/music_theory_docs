@@ -47,8 +47,33 @@ const inputs = [
     toolThreeFretInputSix,
 ]
 
+// For all tool inputs, attach an event listener that resubmits the form if changes
 inputs.forEach(i => {
     i.addEventListener("change", () => {
         toolsForm.submit()
     });
 });
+
+
+// Add accordion functionalty to show / hide tools
+const accordionHeaders = document.getElementsByClassName("accordion-header");
+
+for (let ah of accordionHeaders) {
+    ah.addEventListener("click", function() {
+        this.classList.toggle("active");
+    
+        const panel = this.nextElementSibling;
+
+        if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+        } 
+        else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+        } 
+    }); 
+}
+
+ 
+
+  
+ 
