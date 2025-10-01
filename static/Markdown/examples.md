@@ -7,7 +7,7 @@
   </ul>
 </nav>
 
-### Scales
+## Scales
 To create a scale simply construct a scale class.
 
 ```python
@@ -42,7 +42,7 @@ A Aeolian: A, B, C, D, E, F, G
 B Locrian: B, C, D, E, F, G, A
 ```
 
-### Keys
+## Keys
 To find a list of all chords in a key simply create a Key and use the pretty_print function. e.g.
 ```python
 key = Key(Note.A, KeyType.Major)
