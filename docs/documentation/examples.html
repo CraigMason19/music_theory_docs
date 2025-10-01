@@ -7,8 +7,8 @@
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 
 	
-		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
 		<link rel="stylesheet" href="../CSS/github-markdown.css">
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
 	
 
 	<title>Music Theory Docs - Examples</title>
@@ -19,6 +19,7 @@
 		
 			<a href="../index.html">Home</a>
 			<a href="../documentation/examples.html">Examples</a>
+			<a href="../documentation/mnemonics.html">Mnemonics</a>
 							
 	</nav>
 
@@ -98,7 +99,7 @@
   </ul>
 </nav>
 
-<h3 id="scales">Scales</h3>
+<h2 id="scales">Scales</h2>
 <p>To create a scale simply construct a scale class.</p>
 <div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>scale <span style="color: #666">=</span> Scale(Note<span style="color: #666">.</span>C, ScaleType<span style="color: #666">.</span>Minor)
 <span style="color: #008000">print</span>(scale)
@@ -129,7 +130,7 @@ A Aeolian: A, B, C, D, E, F, G
 B Locrian: B, C, D, E, F, G, A
 </code></pre></div>
 
-<h3 id="keys">Keys</h3>
+<h2 id="keys">Keys</h2>
 <p>To find a list of all chords in a key simply create a Key and use the pretty_print function. e.g.</p>
 <div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>key <span style="color: #666">=</span> Key(Note<span style="color: #666">.</span>A, KeyType<span style="color: #666">.</span>Major)
 key<span style="color: #666">.</span>pretty_print(dominant<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">True</span>,  parallel<span style="color: #666">=</span><span style="color: #008000; font-weight: bold">True</span>)
@@ -155,8 +156,11 @@ Note: Uppercase letters &amp; numerals notate major and lowercase notates minor<
 
 		</main>
 	</div>
-</body>
+	
+	
 
-<script src="/static/JS/debug.js"></script>
+<script src="/static/django-browser-reload/reload-listener.js" data-worker-script-path="/static/django-browser-reload/reload-worker.js" data-events-path="/__reload__/events/" defer></script></body>
+
+
 
 </html>
