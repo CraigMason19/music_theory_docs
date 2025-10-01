@@ -142,6 +142,39 @@ def examples_view(request):
 
     return render(request, "examples.html", context)
 
+
+def mnemonics_view(request):
+    """
+    Displays the mnemonics Markdown file
+    """
+    md_path = Path(__file__).parent.parent / "static" / "Markdown" / "mnemonics.md"
+
+    if not md_path.exists():
+        return HttpResponseNotFound(md_path)      
+ 
+    raw_md = md_path.read_text(encoding="utf-8")
+
+    html_content = markdown.markdown(
+        raw_md, 
+        extensions=["fenced_code", "codehilite", "tables", "toc"],
+        extension_configs={
+            "codehilite": {
+                "guess_lang": False,
+                "noclasses": True  # Use CSS classes for styling
+            }
+        }
+    )
+
+    context = {
+        "BAKE_MODE": settings.BAKE_MODE,
+        "doc_root": "../",
+        "html_content": html_content,
+        "available_modules": get_available_modules(),
+    }
+
+    return render(request, "examples.html", context)
+
+
 def tools_view(request):
     # Seperate the values and store them, as we will need to pass them back in the context for the their correct representation.
     # The default value here will be the default settings on the page
