@@ -48,7 +48,7 @@ def bakeAsset(request, asset: Asset, ignore_list: list[str]) -> bool:
 def bakeHTML(request) -> bool:
     try:
    
-        pages = ["index", "examples"] + get_available_modules()
+        pages = ["index", "examples", "mnemonics"] + get_available_modules()
 
         for page in pages:
             if page == "index":
