@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Music Theory Docs - Mnemonics{% endblock %}
+
+{% block content %}
+
+{% if BAKE_MODE %}
+    <link rel="stylesheet" href="{{ doc_root }}CSS/pygments.css">
+{% else %}
+    <link rel="stylesheet" href="{% static 'CSS/pygments.css' %}">
+{% endif %}
+
+<div class="markdown-body">
+    {{ html_content|safe }}
+</div>
+
+{% endblock %}
