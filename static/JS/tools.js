@@ -55,25 +55,36 @@ inputs.forEach(i => {
 });
 
 
-// Add accordion functionalty to show / hide tools
-const accordionHeaders = document.getElementsByClassName("accordion-header");
+window.addEventListener("DOMContentLoaded", () => {
+    const accordionHeaders = document.getElementsByClassName("accordion-header");
 
-for (let ah of accordionHeaders) {
-    ah.addEventListener("click", function() {
-        this.classList.toggle("active");
-    
-        const panel = this.nextElementSibling;
+    for (let ah of accordionHeaders) {
+        const panel = ah.nextElementSibling;
 
-        if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-        } 
-        else {
+        if(panel != null) {
+            // temporarily disable transition
+            panel.classList.add("no-transition");
+
+            // open all panels by default
             panel.style.maxHeight = panel.scrollHeight + "px";
-        } 
-    }); 
-}
+            ah.classList.add("active");
 
- 
+            // allow browser to paint, then re-enable transition
+            requestAnimationFrame(() => {
+                panel.classList.remove("no-transition");
+            });
 
-  
- 
+            // click toggle
+            ah.addEventListener("click", function() {
+                this.classList.toggle("active");
+                
+                if (panel.style.maxHeight && panel.style.maxHeight !== "0px") {
+                    panel.style.maxHeight = "0px"; // collapse
+                } 
+                else {
+                    panel.style.maxHeight = panel.scrollHeight + "px"; // expand
+                }
+            });
+        }
+    }
+});
