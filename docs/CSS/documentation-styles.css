@@ -90,9 +90,9 @@ body {
     background-color: aquamarine;
 } */
 
-
+/* ▼ ▲ */
 .accordion-header:before {
-    content: '▼';  
+    content: '▼';
     font-size: 1rem;
     text-align: center;
     text-decoration: none;
@@ -111,11 +111,16 @@ body {
     background-color: #D1ECF1;
   }
 
+ 
+
   .accordion-panel {
-    padding: 0 0px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease-out;
+  }
+
+  .accordion-panel.no-transition {
+	transition: none; /* temporarily disable transition */
   }
 
   .accordion-panel pre {
@@ -131,17 +136,9 @@ body {
 }
 
 
-.textarea {
-    text-align: center;
-}
 
 th {
-	background-color: #D1ECF1 !important;
-	/* background: rgba(245, 222, 179, 1); */
-}
-
-td {
-	text-align: center;
+	background-color: var(--color-table-header) !important;
 }
 
 td input {
