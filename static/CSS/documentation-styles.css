@@ -137,19 +137,8 @@ body {
 
 
 
-
-
-.textarea {
-    text-align: center;
-}
-
 th {
-	background-color: #D1ECF1 !important;
-	/* background: rgba(245, 222, 179, 1); */
-}
-
-td {
-	text-align: center;
+	background-color: var(--color-table-header) !important;
 }
 
 td input {
