@@ -172,7 +172,7 @@ def mnemonics_view(request):
         "available_modules": get_available_modules(),
     }
 
-    return render(request, "examples.html", context)
+    return render(request, "mnemonics.html", context)
 
 
 def tools_view(request):
