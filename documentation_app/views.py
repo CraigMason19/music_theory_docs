@@ -176,26 +176,32 @@ def mnemonics_view(request):
 
 
 def tools_view(request):
+    # Check if it's not AJAX
+    if not request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        context = {
+            "BAKE_MODE": settings.BAKE_MODE,
+            "doc_root": "../",
+            "available_modules": get_available_modules(),
+
+            "notes": mt.Note.items(),
+        }
+
+        return render(request, "tools.html", context)
+
+
+    # Otherwise, if it's a AJAX request, calculate JSON response
     fruit = request.GET.get("fruit")
     dog = request.GET.get("dog", "A dog")
  
+
+    # Tool 2 - Modes from note generator
+    tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
+    mode_generator_results = [str(m) for m in modes_from_note(mt.Note.from_index(tool_two_note_input))] 
+
     response = {
         "result": f"{dog} ate a {fruit}",
         "my_list": [123456789, 987654321, 9973, 19],
+        "mode_generator_results": mode_generator_results,
     }
 
-
-
-    # Check if it's AJAX
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return JsonResponse(response)
-
-
-
-    context = {
-        "BAKE_MODE": settings.BAKE_MODE,
-        "doc_root": "../",
-        "available_modules": get_available_modules(),
-    }
-
-    return render(request, "tools.html", context)
+    return JsonResponse(response)
