@@ -16,12 +16,14 @@ A collection of simple mnemonics to make musical terms, tunings, and concepts ea
 
 ### Standard Guitar 
 E A D G B E
+
 - Elephants And Donkeys Grow Big Ears
 - Easter Bunnies Get Drunk At Easter
 - Eddie Ate Dynamite Good Bye Eddie
 
 ### Ukulele
 G C E A
+
 - Goats Can Eat Anything
 
 
@@ -41,6 +43,8 @@ G C E A
 
 
 ## Rhythm
+
+### Spelling
 - "Rhythm Helps Your Two Hips Move"
 
 ### Note Lengths 
