@@ -176,8 +176,10 @@ def mnemonics_view(request):
 
 
 def tools_view(request):
-    # Check if it's not AJAX
-    if not request.headers.get('x-requested-with') == 'XMLHttpRequest':
+    is_ajax_request = request.headers.get('x-requested-with') == 'XMLHttpRequest'
+
+    # Return the page, skip calculations
+    if not is_ajax_request:
         context = {
             "BAKE_MODE": settings.BAKE_MODE,
             "doc_root": "../",
@@ -189,14 +191,14 @@ def tools_view(request):
         return render(request, "tools.html", context)
 
 
-    # Otherwise, if it's a AJAX request, calculate JSON response
+    # Otherwise, if it's a AJAX request, calculate JSON response to dynamically change the page
     fruit = request.GET.get("fruit")
     dog = request.GET.get("dog", "A dog")
  
 
     # Tool 2 - Modes from note generator
     tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
-    mode_generator_results = [str(m) for m in modes_from_note(mt.Note.from_index(tool_two_note_input))] 
+    mode_generator_results = [str(m) for m in modes_from_note(parse_note(tool_two_note_input))] 
 
     response = {
         "result": f"{dog} ate a {fruit}",
