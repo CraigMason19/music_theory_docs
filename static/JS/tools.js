@@ -1,14 +1,47 @@
+const toolInputs = document.querySelectorAll(".ajax-input");
+
+const modeGeneratorResults = document.getElementById("mode-generator-results");
+
+
+toolInputs.forEach(input => {
+    input.addEventListener("change", fetchToolResults);
+});
+
+// Run on page load to show correct reults
+window.addEventListener("DOMContentLoaded", fetchToolResults);
+window.addEventListener("DOMContentLoaded", animateAccordianPanels);
+
+
+
+
+
+
+/**
+ * Fetches tool results from the Django backend using a AJAX request.
+ * Then updates the corresponding result display elements.
+ *
+ * @function
+ * @returns {void}
+ */
 function fetchToolResults() {
     const params = {};
 
-    inputs.forEach(i => {
+    toolInputs.forEach(i => {
         params[i.dataset.key] = i.value;
     });
 
     const query = new URLSearchParams(params);
 
+
+
+    console.log(query)
+
+
+
+
+    
     fetch(`/documentation/tools/?${query.toString()}`, {
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        headers: { 'X-Requested-With': 'XMLHttpRequest' } // AJAX request
     })
     .then(res => res.json())
     .then(data => {
@@ -17,32 +50,19 @@ function fetchToolResults() {
     .catch(err => console.error(err));
 }
 
+/**
+ * Displays the fetched data in the output / results elements.
+ *
+ * @param {Object} data - The JSON data returned from the server.
+ */
 function displayResults(data) {
     document.getElementById('output').textContent = data.result;
     document.getElementById("list-result").textContent = data.my_list.join('\n');
 
-    document.getElementById("mode-generator-results").textContent = data.mode_generator_results.join('\n');
+    modeGeneratorResults.textContent = data.mode_generator_results.join('\n');
 }
 
-
-
-
-
-
-const inputs = document.querySelectorAll(".ajax-input");
-
-inputs.forEach(input => {
-    input.addEventListener("change", fetchToolResults);
-});
-
-// Run on page load to show correct reults
-window.addEventListener("DOMContentLoaded", fetchToolResults);
-
-
-
-
-
-window.addEventListener("DOMContentLoaded", () => {
+function animateAccordianPanels() {
     const accordionHeaders = document.getElementsByClassName("accordion-header");
 
     for (let ah of accordionHeaders) {
@@ -74,4 +94,4 @@ window.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
-});
+}
