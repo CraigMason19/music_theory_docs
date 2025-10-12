@@ -191,12 +191,6 @@ def tools_view(request):
 
         return render(request, "tools.html", context)
 
-
-    # Otherwise, if it's a AJAX request, calculate JSON response to dynamically change the page
-    fruit = request.GET.get("fruit")
-    dog = request.GET.get("dog", "A dog")
- 
-
     # Tool 1 - Chords in key generator
     tool_one_note_input = int(request.GET.get("tool-one-note-input", mt.Note.C.value))
     tool_one_key_type_input = int(request.GET.get("tool-one-key-type-input", mt.KeyType.Major.value))
@@ -215,8 +209,6 @@ def tools_view(request):
     mode_generator_results = [str(m) for m in modes_from_note(parse_note(tool_two_note_input))] 
 
     response = {
-        "result": f"{dog} ate a {fruit}",
-        "my_list": [123456789, 987654321, 9973, 19],
         "chords_in_key_generator_results": key_generator_results,
         "mode_generator_results": mode_generator_results,
     }

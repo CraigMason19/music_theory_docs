@@ -48,9 +48,6 @@ function fetchToolResults() {
  * @param {Object} data - The JSON data returned from the server.
  */
 function displayResults(data) {
-    document.getElementById('output').textContent = data.result;
-    document.getElementById("list-result").textContent = data.my_list.join('\n');
-
     chordsInKeyGeneratorResults.textContent = data.chords_in_key_generator_results.join('\n');
     modeGeneratorResults.textContent = data.mode_generator_results.join('\n');
 }
