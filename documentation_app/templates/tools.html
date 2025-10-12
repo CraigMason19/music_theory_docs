@@ -43,79 +43,74 @@
 
     </div>
 
+    <!-- Tool 1 - Chords in key generator -->
+    <h2 class="accordion-header" id="chords-in-key-generator">Chords in key generator</h2>
+        <div class="accordion-panel">
+
+            <div class="tool-input">
+                <label>Note:</label>
+                <select class="ajax-input" data-key="tool-one-note-input">
+                    {% for n in notes %}
+                        <option value="{{ forloop.counter0 }}">{{ n }}</option>
+                    {% endfor %}                    
+                </select> 
+                <br>
+
+                <label>Key Type:</label>
+                <select class="ajax-input" data-key="tool-one-key-type-input">
+                    {% for kt in key_types %}
+                        <option value="{{ forloop.counter0 }}">{{ kt }}</option>
+                    {% endfor %}             
+                </select> 
+                <br>
+
+                <label>Show dominant keys?:</label>
+                <select class="ajax-input" data-key="tool-one-dominant-input">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select> 
+                <br>
+
+                <label>Show parallel keys?:</label>
+                <select class="ajax-input" data-key="tool-one-parallel-input">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select> 
+                <br>
+            </div>
+
+            <br>
+            <pre id="chords-in-key-generator-results">No results</pre>
+        
+        </div>
+    </div>
+
+
     <!-- Tool 2 - Modes from note generator -->
     <h2 class="accordion-header" id="modes-from-note-generator">Modes from note generator</h2>
-    <div class="accordion-panel">   
+        <div class="accordion-panel">   
 
-        <div class="tool-input">
-            <label>Note:</label>
-            <select class="ajax-input" data-key="tool-two-note-input">
-                {% for n in notes %}
-                    <option value="{{ forloop.counter0 }}">{{ n }}</option>
-                {% endfor %}                    
-            </select> 
+            <div class="tool-input">
+                <label>Note:</label>
+                <select class="ajax-input" data-key="tool-two-note-input">
+                    {% for n in notes %}
+                        <option value="{{ forloop.counter0 }}">{{ n }}</option>
+                    {% endfor %}                    
+                </select> 
+            </div>
+            
+            <br>
+            <pre id="mode-generator-results">No results</pre>
+
         </div>
-        
-        <br>
-        <pre id="mode-generator-results">No results</pre>
     </div>
 
 
 
     <!-- <form method="get" action="{% url 'tools_view' %}" id="tools-form">
 
-        <h2 class="accordion-header" id="chords-in-key-generator">Chords in key generator</h2>
-        <div class="accordion-panel">
-            <div class="tool-input">
-                <label for="tool-one-note-input">Note:</label>
-                <select name="tool-one-note-input" id="tool-one-note-input">
-                    {% for n in notes %}
-                        <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_one_note_input %}selected{% endif %}>{{ n }}</option>
-                    {% endfor %}
-                </select> 
-                <br>
+        
 
-                <label for="tool-one-key-type-input">Key Type:</label>
-                <select name="tool-one-key-type-input" id="tool-one-key-type-input">
-                    {% for kt in key_types %}
-                        <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_one_key_type_input %}selected{% endif %}>{{ kt }}</option>
-                    {% endfor %}
-                </select> 
-                <br>
-
-                <label for="tool-one-dominant-input">Show dominant keys?</label>
-                <select name="tool-one-dominant-input" id="tool-one-dominant-input">
-                    <option value="true" {% if tool_one_dominant_input == 'true' %}selected{% endif %}>True</option>
-                    <option value="false" {% if tool_one_dominant_input == 'false' %}selected{% endif %}>False</option>
-                </select> 
-                <br>
-
-                <label for="tool-one-parallel-input">Show parallel keys?</label>
-                <select name="tool-one-parallel-input" id="tool-one-parallel-input">
-                    <option value="true" {% if tool_one_parallel_input == 'true' %}selected{% endif %}>True</option>
-                    <option value="false" {% if tool_one_parallel_input == 'false' %}selected{% endif %}>False</option>
-                </select> 
-                <br>
-            </div>
-
-            <br>
-            <pre>{{ key_generator_results|safe }}</pre>
-        </div>
-
-        <h2 class="accordion-header" id="modes-from-note-generator">Modes from note generator</h2>
-        <div class="accordion-panel">   
-            <div class="tool-input">
-                <label for="tool-two-note-input">Note:</label>
-                <select name="tool-two-note-input" id="tool-two-note-input">
-                    {% for n in notes %}
-                        <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_two_note_input %}selected{% endif %}>{{ n }}</option>
-                    {% endfor %}                    
-                </select> 
-            </div>
-            
-            <br>
-            <pre>{{ mode_generator_results|safe }}</pre>
-        </div>
         
         <h2 class="accordion-header" id="note-finder">Note Finder</h2>
         <div class="accordion-panel">  

@@ -1,7 +1,7 @@
 const toolInputs = document.querySelectorAll(".ajax-input");
 
 const modeGeneratorResults = document.getElementById("mode-generator-results");
-
+const chordsInKeyGeneratorResults = document.getElementById("chords-in-key-generator-results");
 
 toolInputs.forEach(input => {
     input.addEventListener("change", fetchToolResults);
@@ -32,14 +32,6 @@ function fetchToolResults() {
 
     const query = new URLSearchParams(params);
 
-
-
-    console.log(query)
-
-
-
-
-    
     fetch(`/documentation/tools/?${query.toString()}`, {
         headers: { 'X-Requested-With': 'XMLHttpRequest' } // AJAX request
     })
@@ -59,6 +51,7 @@ function displayResults(data) {
     document.getElementById('output').textContent = data.result;
     document.getElementById("list-result").textContent = data.my_list.join('\n');
 
+    chordsInKeyGeneratorResults.textContent = data.chords_in_key_generator_results.join('\n');
     modeGeneratorResults.textContent = data.mode_generator_results.join('\n');
 }
 

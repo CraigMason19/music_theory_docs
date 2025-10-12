@@ -186,6 +186,7 @@ def tools_view(request):
             "available_modules": get_available_modules(),
 
             "notes": mt.Note.items(),
+            "key_types": mt.KeyType.items(),
         }
 
         return render(request, "tools.html", context)
@@ -196,6 +197,19 @@ def tools_view(request):
     dog = request.GET.get("dog", "A dog")
  
 
+    # Tool 1 - Chords in key generator
+    tool_one_note_input = int(request.GET.get("tool-one-note-input", mt.Note.C.value))
+    tool_one_key_type_input = int(request.GET.get("tool-one-key-type-input", mt.KeyType.Major.value))
+    tool_one_dominant_input = request.GET.get("tool-one-dominant-input", "true")
+    tool_one_parallel_input = request.GET.get("tool-one-parallel-input", "true") 
+
+    n = parse_note(tool_one_note_input)
+    kt = parse_key_type(tool_one_key_type_input) 
+    d = parse_bool(tool_one_dominant_input)
+    p = parse_bool(tool_one_parallel_input)
+
+    key_generator_results = mt.Key(n, kt).to_string_array(dominant=d, parallel=p)
+
     # Tool 2 - Modes from note generator
     tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
     mode_generator_results = [str(m) for m in modes_from_note(parse_note(tool_two_note_input))] 
@@ -203,6 +217,7 @@ def tools_view(request):
     response = {
         "result": f"{dog} ate a {fruit}",
         "my_list": [123456789, 987654321, 9973, 19],
+        "chords_in_key_generator_results": key_generator_results,
         "mode_generator_results": mode_generator_results,
     }
 
