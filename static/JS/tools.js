@@ -3,6 +3,13 @@ const toolInputs = document.querySelectorAll(".ajax-input");
 const modeGeneratorResults = document.getElementById("mode-generator-results");
 const chordsInKeyGeneratorResults = document.getElementById("chords-in-key-generator-results");
 
+const toolThreeResultOne = document.getElementById("tool-three-result-one");
+const toolThreeResultTwo = document.getElementById("tool-three-result-two");
+const toolThreeResultThree = document.getElementById("tool-three-result-three");
+const toolThreeResultFour = document.getElementById("tool-three-result-four");
+const toolThreeResultFive = document.getElementById("tool-three-result-five");
+const toolThreeResultSix = document.getElementById("tool-three-result-six");
+
 toolInputs.forEach(input => {
     input.addEventListener("change", fetchToolResults);
 });
@@ -50,6 +57,13 @@ function fetchToolResults() {
 function displayResults(data) {
     chordsInKeyGeneratorResults.textContent = data.chords_in_key_generator_results.join('\n');
     modeGeneratorResults.textContent = data.mode_generator_results.join('\n');
+
+    toolThreeResultOne.textContent = data.tool_three_result_one;
+    toolThreeResultTwo.textContent = data.tool_three_result_two;
+    toolThreeResultThree.textContent = data.tool_three_result_three;
+    toolThreeResultFour.textContent = data.tool_three_result_four;
+    toolThreeResultFive.textContent = data.tool_three_result_five;
+    toolThreeResultSix.textContent = data.tool_three_result_six;
 }
 
 function animateAccordianPanels() {

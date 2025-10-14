@@ -14,166 +14,157 @@
         <li><a href="#modes-from-note-generator">Modes from note generator</a></li>
         <li><a href="#note-finder">Note finder</a></li>
         <li><a href="#chord-progression-MIDI-generator">Chord progression MIDI generator</a></li>
-        <li><a href="#ajax-example">AJAX Example</a></li>
     </ul>
 
     <!-- Tool 1 - Chords in key generator -->
     <h2 class="accordion-header" id="chords-in-key-generator">Chords in key generator</h2>
-        <div class="accordion-panel">
+    <div class="accordion-panel">
 
-            <div class="tool-input">
-                <label>Note:</label>
-                <select class="ajax-input" data-key="tool-one-note-input">
-                    {% for n in notes %}
-                        <option value="{{ forloop.counter0 }}">{{ n }}</option>
-                    {% endfor %}                    
-                </select> 
-                <br>
-
-                <label>Key Type:</label>
-                <select class="ajax-input" data-key="tool-one-key-type-input">
-                    {% for kt in key_types %}
-                        <option value="{{ forloop.counter0 }}">{{ kt }}</option>
-                    {% endfor %}             
-                </select> 
-                <br>
-
-                <label>Show dominant keys?:</label>
-                <select class="ajax-input" data-key="tool-one-dominant-input">
-                    <option value="true">True</option>
-                    <option value="false">False</option>
-                </select> 
-                <br>
-
-                <label>Show parallel keys?:</label>
-                <select class="ajax-input" data-key="tool-one-parallel-input">
-                    <option value="true">True</option>
-                    <option value="false">False</option>
-                </select> 
-                <br>
-            </div>
-
+        <div class="tool-input">
+            <label>Note:</label>
+            <select class="ajax-input" data-key="tool-one-note-input">
+                {% for n in notes %}
+                    <option value="{{ forloop.counter0 }}">{{ n }}</option>
+                {% endfor %}                    
+            </select> 
             <br>
-            <pre id="chords-in-key-generator-results">No results</pre>
-        
+
+            <label>Key Type:</label>
+            <select class="ajax-input" data-key="tool-one-key-type-input">
+                {% for kt in key_types %}
+                    <option value="{{ forloop.counter0 }}">{{ kt }}</option>
+                {% endfor %}             
+            </select> 
+            <br>
+
+            <label>Show dominant keys?:</label>
+            <select class="ajax-input" data-key="tool-one-dominant-input">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select> 
+            <br>
+
+            <label>Show parallel keys?:</label>
+            <select class="ajax-input" data-key="tool-one-parallel-input">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select> 
+            <br>
         </div>
+
+        <br>
+        <pre id="chords-in-key-generator-results">No results</pre>
+    
     </div>
 
     <!-- Tool 2 - Modes from note generator -->
     <h2 class="accordion-header" id="modes-from-note-generator">Modes from note generator</h2>
-        <div class="accordion-panel">   
+    <div class="accordion-panel">   
 
-            <div class="tool-input">
-                <label>Note:</label>
-                <select class="ajax-input" data-key="tool-two-note-input">
-                    {% for n in notes %}
-                        <option value="{{ forloop.counter0 }}">{{ n }}</option>
-                    {% endfor %}                    
-                </select> 
-            </div>
-            
-            <br>
-            <pre id="mode-generator-results">No results</pre>
-
+        <div class="tool-input">
+            <label>Note:</label>
+            <select class="ajax-input" data-key="tool-two-note-input">
+                {% for n in notes %}
+                    <option value="{{ forloop.counter0 }}">{{ n }}</option>
+                {% endfor %}                    
+            </select> 
         </div>
+        
+        <br>
+        <pre id="mode-generator-results">No results</pre>
+
     </div>
 
+    <!-- Tool 3 - Note finder -->
+    <h2 class="accordion-header" id="note-finder">Note Finder</h2>
+    <div class="accordion-panel">   
 
-
-    <!-- <form method="get" action="{% url 'tools_view' %}" id="tools-form">
-
-        
-
-        
-        <h2 class="accordion-header" id="note-finder">Note Finder</h2>
-        <div class="accordion-panel">  
-    
-            {% if messages %}
-                {% for message in messages %}
+        {% if messages %}
+            {% for message in messages %}
                 <div class="box message message-{{message.tags}}">
                     <pre><strong>{{ message.tags|capfirst }}</strong> - {{ message|safe }}</pre>
                 </div>
-                {% endfor %}
-            {% endif %}
-
-            <div class="tool-input">
-                <table>
-                    <tr>
-                        <th>String Tuning</th>
-                        <th>Fret</th>
-                        <th>Note</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select name="tool-three-tuning-input-one" id="tool-three-tuning-input-one">
-                                {% for n in notes %}
-                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_one %}selected{% endif %}>{{ n }}</option>
-                                {% endfor %}   
-                            </select>
-                        </td>
-                        <td><input name="tool-three-fret-input-one" id="tool-three-fret-input-one" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$" value="{{ tool_three_fret_input_one }}"/></td>
-                        <td id="tool-three-result-one">{{ tool_three_result_one }}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select name="tool-three-tuning-input-two" id="tool-three-tuning-input-two">
-                                {% for n in notes %}
-                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_two %}selected{% endif %}>{{ n }}</option>
-                                {% endfor %}   
-                            </select>
-                        </td>
-                        <td><input name="tool-three-fret-input-two" id="tool-three-fret-input-two" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$" value="{{ tool_three_fret_input_two }}"/></td>
-                        <td id="tool-three-result-two">{{ tool_three_result_two }}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select name="tool-three-tuning-input-three" id="tool-three-tuning-input-three">
-                                {% for n in notes %}
-                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_three %}selected{% endif %}>{{ n }}</option>
-                                {% endfor %}   
-                            </select>
-                        </td>
-                        <td><input name="tool-three-fret-input-three" id="tool-three-fret-input-three" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$" value="{{ tool_three_fret_input_three }}"/></td>
-                        <td id="tool-three-result-three">{{ tool_three_result_three }}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select name="tool-three-tuning-input-four" id="tool-three-tuning-input-four">
-                                {% for n in notes %}
-                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_four %}selected{% endif %}>{{ n }}</option>
-                                {% endfor %}   
-                            </select>
-                        </td>
-                        <td><input name="tool-three-fret-input-four" id="tool-three-fret-input-four" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$" value="{{ tool_three_fret_input_four }}"/></td>
-                        <td id="tool-three-result-four">{{ tool_three_result_four }}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select name="tool-three-tuning-input-five" id="tool-three-tuning-input-five">
-                                {% for n in notes %}
-                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_five %}selected{% endif %}>{{ n }}</option>
-                                {% endfor %}   
-                            </select>
-                        </td>
-                        <td><input name="tool-three-fret-input-five" id="tool-three-fret-input-five" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$" value="{{ tool_three_fret_input_five }}"/></td>
-                        <td id="tool-three-result-five">{{ tool_three_result_five }}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select name="tool-three-tuning-input-six" id="tool-three-tuning-input-six">
-                                {% for n in notes %}
-                                    <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_six %}selected{% endif %}>{{ n }}</option>
-                                {% endfor %}   
-                            </select>
-                        </td>
-                        <td><input name="tool-three-fret-input-six" id="tool-three-fret-input-six" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$" value="{{ tool_three_fret_input_six }}"/></td>
-                        <td id="tool-three-result-six">{{ tool_three_result_six }}</td>
-                    </tr>      
-                </table>
-            </div>
+            {% endfor %}
+        {% endif %}
+     
+        <div class="tool-input">
+            <table>
+                <tr>
+                    <th>String Tuning</th>
+                    <th>Fret</th>
+                    <th>Note</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="ajax-input" data-key="tool-three-tuning-input-one">
+                            {% for n in notes %}
+                                <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_one %}selected{% endif %}>{{ n }}</option>
+                            {% endfor %}   
+                        </select>
+                    </td>
+                    <td><input class="ajax-input fret-input" data-key="tool-three-fret-input-one" value="0" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$"/></td>
+                    <td id="tool-three-result-one"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="ajax-input" data-key="tool-three-tuning-input-two">
+                            {% for n in notes %}
+                                <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_two %}selected{% endif %}>{{ n }}</option>
+                            {% endfor %}   
+                        </select>
+                    </td>
+                    <td><input class="ajax-input fret-input" data-key="tool-three-fret-input-two" value="0" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$"/></td>
+                    <td id="tool-three-result-two"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="ajax-input" data-key="tool-three-tuning-input-three">
+                            {% for n in notes %}
+                                <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_three %}selected{% endif %}>{{ n }}</option>
+                            {% endfor %}   
+                        </select>
+                    </td>
+                    <td><input class="ajax-input fret-input" data-key="tool-three-fret-input-three" value="0" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$"/></td>
+                    <td id="tool-three-result-three"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="ajax-input" data-key="tool-three-tuning-input-four">
+                            {% for n in notes %}
+                                <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_four %}selected{% endif %}>{{ n }}</option>
+                            {% endfor %}   
+                        </select>
+                    </td>
+                    <td><input class="ajax-input fret-input" data-key="tool-three-fret-input-four" value="0" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$"/></td>
+                    <td id="tool-three-result-four"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="ajax-input" data-key="tool-three-tuning-input-five">
+                            {% for n in notes %}
+                                <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_five %}selected{% endif %}>{{ n }}</option>
+                            {% endfor %}   
+                        </select>
+                    </td>
+                    <td><input class="ajax-input fret-input" data-key="tool-three-fret-input-five" value="0" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$"/></td>
+                    <td id="tool-three-result-five"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="ajax-input" data-key="tool-three-tuning-input-six">
+                            {% for n in notes %}
+                                <option value="{{ forloop.counter0 }}" {% if forloop.counter0 == tool_three_tuning_input_six %}selected{% endif %}>{{ n }}</option>
+                            {% endfor %}   
+                        </select>
+                    </td>
+                    <td><input class="ajax-input fret-input" data-key="tool-three-fret-input-six" value="0" type="text" maxlength="2" pattern="^([0-9]|[1-9][0-9]|x)$"/></td>
+                    <td id="tool-three-result-six"></td>
+                </tr>
+            </table>
         </div>
+    
+    </div>
 
-    </form> -->
 </div>
 
 <script src="{% static 'JS/tools.js' %}"></script>

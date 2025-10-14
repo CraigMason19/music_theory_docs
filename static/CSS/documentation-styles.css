@@ -117,7 +117,7 @@ body {
 	max-height: 0;
 	overflow: hidden;
 	transition: max-height 0.2s ease-out;
-	background-color: goldenrod;
+	/* background-color: goldenrod; */
   }
 
   .accordion-panel.no-transition {
@@ -142,9 +142,13 @@ th {
 	background-color: var(--color-table-header) !important;
 }
 
-td input {
+td {
 	text-align: center;
+}
+
+.fret-input {
 	width: 5ch;
+	text-align: center;
 }
 
 /* pre {

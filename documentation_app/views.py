@@ -187,6 +187,13 @@ def tools_view(request):
 
             "notes": mt.Note.items(),
             "key_types": mt.KeyType.items(),
+
+            "tool_three_tuning_input_one": mt.Note.E.value,
+            "tool_three_tuning_input_two": mt.Note.B.value,
+            "tool_three_tuning_input_three": mt.Note.G.value,
+            "tool_three_tuning_input_four": mt.Note.D.value,
+            "tool_three_tuning_input_five": mt.Note.A.value,
+            "tool_three_tuning_input_six": mt.Note.E.value,
         }
 
         return render(request, "tools.html", context)
@@ -208,9 +215,65 @@ def tools_view(request):
     tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
     mode_generator_results = [str(m) for m in modes_from_note(parse_note(tool_two_note_input))] 
 
+    # Tool 3 - Note Finder
+    tool_three_tuning_input_one = int(request.GET.get("tool-three-tuning-input-one", mt.Note.E.value))
+    tool_three_tuning_input_two = int(request.GET.get("tool-three-tuning-input-two", mt.Note.B.value))
+    tool_three_tuning_input_three = int(request.GET.get("tool-three-tuning-input-three", mt.Note.G.value))
+    tool_three_tuning_input_four = int(request.GET.get("tool-three-tuning-input-four", mt.Note.D.value))
+    tool_three_tuning_input_five = int(request.GET.get("tool-three-tuning-input-five", mt.Note.A.value))
+    tool_three_tuning_input_six = int(request.GET.get("tool-three-tuning-input-six", mt.Note.E.value))
+
+    tool_three_fret_input_one = request.GET.get("tool-three-fret-input-one", 0)
+    tool_three_fret_input_two = request.GET.get("tool-three-fret-input-two", 0)
+    tool_three_fret_input_three = request.GET.get("tool-three-fret-input-three", 0)
+    tool_three_fret_input_four = request.GET.get("tool-three-fret-input-four", 0)
+    tool_three_fret_input_five = request.GET.get("tool-three-fret-input-five", 0)
+    tool_three_fret_input_six = request.GET.get("tool-three-fret-input-six", 0)
+
+    guitar = mt.StringInstrument([
+        parse_note(tool_three_tuning_input_six),
+        parse_note(tool_three_tuning_input_five),
+        parse_note(tool_three_tuning_input_four),
+        parse_note(tool_three_tuning_input_three),
+        parse_note(tool_three_tuning_input_two),
+        parse_note(tool_three_tuning_input_one),
+    ])
+
+    def foo(string_index, fret_input):
+        try:
+            if fret_input in ["x", "X"]:
+                return 'X'
+            
+            value = int(fret_input)
+            result = guitar.note_at_fret(string_index, value)
+
+            if value < 0:
+                messages.error(request, f"Fret value must be must be a interger number 0 or above: {value}")
+
+            return result
+
+        except ValueError:
+            messages.error(request, f"Cannot convert '{fret_input}' into a number. Fret value must be must be a interger number 0 or above")
+            return 'X'
+        
+        
+    tool_three_result_one = str(foo(5, tool_three_fret_input_one))
+    tool_three_result_two = str(foo(4, tool_three_fret_input_two))
+    tool_three_result_three = str(foo(3, tool_three_fret_input_three))
+    tool_three_result_four = str(foo(2, tool_three_fret_input_four))
+    tool_three_result_five = str(foo(1, tool_three_fret_input_five))
+    tool_three_result_six = str(foo(0, tool_three_fret_input_six))
+
     response = {
         "chords_in_key_generator_results": key_generator_results,
         "mode_generator_results": mode_generator_results,
+
+        "tool_three_result_one": tool_three_result_one,
+        "tool_three_result_two": tool_three_result_two,
+        "tool_three_result_three": tool_three_result_three,
+        "tool_three_result_four": tool_three_result_four,
+        "tool_three_result_five": tool_three_result_five,
+        "tool_three_result_six": tool_three_result_six,
     }
 
     return JsonResponse(response)
