@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	
+		<link rel="stylesheet" href="../CSS/github-markdown.css">
+		<link rel="stylesheet" href="../CSS/documentation-styles.css" />
+	
+
+	<title>Music Theory Docs - string_instrument</title>
+</head>
+
+<body>
+	<nav class="header">
+		
+			<a href="../index.html">Home</a>
+			<a href="../documentation/examples.html">Examples</a>
+			<a href="../documentation/mnemonics.html">Mnemonics</a>
+							
+	</nav>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<h2>Modules</h2>
+			<ul>
+				
+					
+						<li><a href="../documentation/chord_type.html">chord_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/chords.html">chords</a></li>
+										
+				
+					
+						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
+										
+				
+					
+						<li><a href="../documentation/intervals.html">intervals</a></li>
+										
+				
+					
+						<li><a href="../documentation/key_type.html">key_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/keys.html">keys</a></li>
+										
+				
+					
+						<li><a href="../documentation/notes.html">notes</a></li>
+										
+				
+					
+						<li><a href="../documentation/progressions.html">progressions</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_diatonic.html">scale_diatonic</a></li>
+										
+				
+					
+						<li><a href="../documentation/scale_type.html">scale_type</a></li>
+										
+				
+					
+						<li><a href="../documentation/scales.html">scales</a></li>
+										
+				
+					
+						<li><a href="../documentation/string_instrument.html">string_instrument</a></li>
+										
+				
+					
+						<li><a href="../documentation/utils.html">utils</a></li>
+										
+				
+			</ul>
+		</aside>
+
+		<main class="view-area markdown-body">
+			
+    <h1>string_instrument</h1>
+    <pre>None</pre>
+
+    <div class="toc">
+        
+            <h2>Functions</h2>
+            <ul>
+            
+                <li><a href="#function-extract_frets">extract_frets</a></li>
+            
+                <li><a href="#function-note_at_fret">note_at_fret</a></li>
+            
+            </ul>
+        
+
+
+        
+            <h2>Classes</h2>
+            <ul>
+                
+                    <li>
+                    <a href="#class-StringInstrument">StringInstrument</a>
+                        <ul>
+                            
+                            <li><a href="#method-StringInstrument-__init__">__init__</a></li>
+                            
+                            <li><a href="#method-StringInstrument-from_tuning_intervals">from_tuning_intervals</a></li>
+                            
+                            <li><a href="#method-StringInstrument-add_capo">add_capo</a></li>
+                            
+                            <li><a href="#method-StringInstrument-adjust_string">adjust_string</a></li>
+                            
+                            <li><a href="#method-StringInstrument-detune">detune</a></li>
+                            
+                            <li><a href="#method-StringInstrument-note_at_fret">note_at_fret</a></li>
+                            
+                            <li><a href="#method-StringInstrument-notes_in_chord">notes_in_chord</a></li>
+                            
+                            <li><a href="#method-StringInstrument-intervals_in_chord">intervals_in_chord</a></li>
+                            
+                            <li><a href="#method-StringInstrument-__str__">__str__</a></li>
+                            
+                            <li><a href="#method-StringInstrument-__repr__">__repr__</a></li>
+                            
+                        </ul>
+                    </li>
+                
+            </ul>
+        
+    </div>
+
+    
+        
+            <h2 id="function-extract_frets">extract_frets</h2>
+            <pre>None</pre>
+        
+            <h2 id="function-note_at_fret">note_at_fret</h2>
+            <pre>Returns the note on a tuned string at a specific fret.
+
+Example:
+    >>> note_at_fret(Note.E, 5)
+    Note.A
+    
+Args:
+    string_tuning (Note): 
+        The tuning of the string.
+        
+    fret (int):
+        An integer representing the fret number. Must be >= 0, where 0 represents an open string.
+
+Raises:
+    ValueError:
+        If `fret` is a negative. 
+        
+Returns:
+    Note: 
+        The note at the corresponding fret.</pre>
+        
+    
+
+
+    
+        
+            <h2 id="class-StringInstrument">StringInstrument</h2>
+            <pre>None</pre>
+
+            <!-- methods -->
+            
+                
+                    <h3 id="method-StringInstrument-__init__">StringInstrument.__init__</h3>
+                    <pre>Creates the instrument from a list of Notes that represent each string. 
+
+By convention, the first element in the tuning list corresponds to the 
+lowest-pitched (thickest) string, and the last element to the 
+highest-pitched (thinnest) string.
+
+Args:
+    tuning (list[Note]):
+        A list of notes representing each string of the instrument.
+
+Raises:
+    ValueError:
+        If the list of tunings is empty.</pre>
+                
+                    <h3 id="method-StringInstrument-from_tuning_intervals">StringInstrument.from_tuning_intervals</h3>
+                    <pre>None</pre>
+                
+                    <h3 id="method-StringInstrument-add_capo">StringInstrument.add_capo</h3>
+                    <pre>None</pre>
+                
+                    <h3 id="method-StringInstrument-adjust_string">StringInstrument.adjust_string</h3>
+                    <pre>None</pre>
+                
+                    <h3 id="method-StringInstrument-detune">StringInstrument.detune</h3>
+                    <pre>None</pre>
+                
+                    <h3 id="method-StringInstrument-note_at_fret">StringInstrument.note_at_fret</h3>
+                    <pre>Returns the note on a tuned string at a specific fret.
+
+Example:
+    >>> StringInstrument([Note.E, Note.A]).note_at_fret(1, 5)
+    Note.D
+    
+Args:
+    string_index (int): 
+        The index of the string in the instruments tuning. 0 index referes to the first Note in self.tuning.
+        
+    fret (int):
+        An integer representing the fret number. Must be >= 0, where 0 represents an open string.
+
+Raises:
+    ValueError:
+        - If `string_index` is out of range
+        - If `fret` is negative.
+        
+Returns:
+    Note: 
+        The note at the corresponding fret.</pre>
+                
+                    <h3 id="method-StringInstrument-notes_in_chord">StringInstrument.notes_in_chord</h3>
+                    <pre>None</pre>
+                
+                    <h3 id="method-StringInstrument-intervals_in_chord">StringInstrument.intervals_in_chord</h3>
+                    <pre>None</pre>
+                
+                    <h3 id="method-StringInstrument-__str__">StringInstrument.__str__</h3>
+                    <pre>Returns a string representing of the instrument. 
+
+    e.g. str(StringInstrument([Note.B, Note.E, Note.A])) -> B, E, A
+
+Args:
+    None.
+
+Returns:
+    A string.</pre>
+                
+                    <h3 id="method-StringInstrument-__repr__">StringInstrument.__repr__</h3>
+                    <pre>Returns a string representing the instrument. 
+
+    e.g. repr(StringInstrument([Note.B, Note.E, Note.A])) -> StringInstrument(3, [B, E, A])
+
+Args:
+    None.
+
+Returns:
+    A string.</pre>
+                
+            
+
+        
+    
+
+
+		</main>
+	</div>
+	
+	
+    	<script src="/static/JS/debug.js"></script>
+	
+
+<script src="/static/django-browser-reload/reload-listener.js" data-worker-script-path="/static/django-browser-reload/reload-worker.js" data-events-path="/__reload__/events/" defer></script></body>
+
+</html>

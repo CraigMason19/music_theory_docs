@@ -37,10 +37,6 @@
 										
 				
 					
-						<li><a href="../documentation/instrument.html">instrument</a></li>
-										
-				
-					
 						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
 										
 				
@@ -74,6 +70,10 @@
 				
 					
 						<li><a href="../documentation/scales.html">scales</a></li>
+										
+				
+					
+						<li><a href="../documentation/string_instrument.html">string_instrument</a></li>
 										
 				
 					
@@ -134,7 +134,7 @@
         
             <h2 id="function-unique_notes_in_chords">unique_notes_in_chords</h2>
             <pre>Collects all unique notes from the given Chords and returns them as a 
-list, sorted by the the Notes enumeration value.
+list, sorted by the Notes enumeration value.
 
 Example:
     >>> unique_notes_in_chords(
@@ -144,7 +144,7 @@ Example:
     [Note.C, Note.Db, Note.E, Note.A]
 
 Args:
-    *args: 
+    *args (Chord): 
         One or more Chord objects to extract notes from.
 
 Returns:
@@ -211,7 +211,7 @@ Raises:
                     <h3 id="method-Chord-random">Chord.random</h3>
                     <pre>A class method that returns a random chord. 
 
-    e.g. Fdim
+e.g. Fdim
 
 Args:
     None.
@@ -222,7 +222,7 @@ Returns:
                     <h3 id="method-Chord-__eq__">Chord.__eq__</h3>
                     <pre>Equality operator to check that both the note and chord type match. 
 
-    e.g. Chord(F, ChordType.Diminished) == Chord(F, ChordType.Diminished)
+e.g. Chord(F, ChordType.Diminished) == Chord(F, ChordType.Diminished)
 
 Args:
     other:
@@ -234,7 +234,7 @@ Returns:
                     <h3 id="method-Chord-add9">Chord.add9</h3>
                     <pre>Returns an array containing the notes of the chord with the added 9th. 
 
-    e.g. Chord(Note.A).add9() -> [Note.A, Note.Db, Note.E, Note.B]
+e.g. Chord(Note.A).add9() -> [Note.A, Note.Db, Note.E, Note.B]
 
 Args:
     None.
@@ -245,7 +245,7 @@ Returns:
                     <h3 id="method-Chord-add11">Chord.add11</h3>
                     <pre>Returns an array containing the notes of the chord with the added 11th. 
 
-    e.g. Chord(Note.A).add11() -> [Note.A, Note.Db, Note.E, Note.D]
+e.g. Chord(Note.A).add11() -> [Note.A, Note.Db, Note.E, Note.D]
 
 Args:
     None.
@@ -256,7 +256,7 @@ Returns:
                     <h3 id="method-Chord-add13">Chord.add13</h3>
                     <pre>Returns an array containing the notes of the chord with the added 13th. 
 
-    e.g. Chord(Note.A).add13() -> [Note.A, Note.Db, Note.E, Note.Gb]
+e.g. Chord(Note.A).add13() -> [Note.A, Note.Db, Note.E, Note.Gb]
 
 Args:
     None.
@@ -267,7 +267,7 @@ Returns:
                     <h3 id="method-Chord-__str__">Chord.__str__</h3>
                     <pre>Returns a string representing the Chord name and type. 
 
-    e.g. str(Chord(Note.E, ChordType.Dominant7)) -> E7
+e.g. str(Chord(Note.E, ChordType.Dominant7)) -> E7
 
 Args:
     None.
@@ -278,7 +278,7 @@ Returns:
                     <h3 id="method-Chord-__repr__">Chord.__repr__</h3>
                     <pre>Returns a string representing the Chord. 
 
-    e.g. repr(Chord(Note.E, ChordType.Dominant7)) -> Chord(E, Dominant7)
+e.g. repr(Chord(Note.E, ChordType.Dominant7)) -> Chord(E, Dominant7)
 
 Args:
     None.
@@ -296,9 +296,9 @@ Returns:
 	</div>
 	
 	
+    	<script src="/static/JS/debug.js"></script>
+	
 
 <script src="/static/django-browser-reload/reload-listener.js" data-worker-script-path="/static/django-browser-reload/reload-worker.js" data-events-path="/__reload__/events/" defer></script></body>
-
-
 
 </html>

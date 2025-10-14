@@ -37,10 +37,6 @@
 										
 				
 					
-						<li><a href="../documentation/instrument.html">instrument</a></li>
-										
-				
-					
 						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
 										
 				
@@ -77,6 +73,10 @@
 										
 				
 					
+						<li><a href="../documentation/string_instrument.html">string_instrument</a></li>
+										
+				
+					
 						<li><a href="../documentation/utils.html">utils</a></li>
 										
 				
@@ -94,11 +94,10 @@ This module provides:
 - String representations for clean display and debugging.
 
 Example:
-    from music_theory.chord_type import ChordType
-
+    &gt;&gt;&gt; from music_theory.chord_type import ChordType
     &gt;&gt;&gt; ct = ChordType.Major
     &gt;&gt;&gt; str(ct)
-    &#x27;Major&#x27;</pre>
+    Major</pre>
 
     <div class="toc">
         
@@ -167,20 +166,25 @@ Returns:
 e.g. ChordType.Diminished
 
 Returns:
-    A random ChordType</pre>
+    ChordType:
+        A random ChordType</pre>
                 
                     <h3 id="method-ChordType-__str__">ChordType.__str__</h3>
-                    <pre>Returns a string representing the chord type name. 
+                    <pre>Returns a string representing the chord types name. 
 
-e.g. str(ChordType.Major) -> 'Major'
+Example:
+    >>> str(ChordType.Major)
+    Major
 
 Returns:
-    str</pre>
+    str:</pre>
                 
                     <h3 id="method-ChordType-__repr__">ChordType.__repr__</h3>
-                    <pre>Returns a string representing the key types enum. 
+                    <pre>Returns a string representing the chord types enum along with the objects name. 
 
-e.g. repr(ChordType.Major) -> 'ChordType.Major'
+Example:
+    >>> repr(ChordType.Major)
+    ChordType.Major
 
 Returns:
     str:</pre>
@@ -195,9 +199,9 @@ Returns:
 	</div>
 	
 	
+    	<script src="/static/JS/debug.js"></script>
+	
 
 <script src="/static/django-browser-reload/reload-listener.js" data-worker-script-path="/static/django-browser-reload/reload-worker.js" data-events-path="/__reload__/events/" defer></script></body>
-
-
 
 </html>

@@ -37,10 +37,6 @@
 										
 				
 					
-						<li><a href="../documentation/instrument.html">instrument</a></li>
-										
-				
-					
 						<li><a href="../documentation/instrument_creator.html">instrument_creator</a></li>
 										
 				
@@ -77,6 +73,10 @@
 										
 				
 					
+						<li><a href="../documentation/string_instrument.html">string_instrument</a></li>
+										
+				
+					
 						<li><a href="../documentation/utils.html">utils</a></li>
 										
 				
@@ -86,18 +86,20 @@
 		<main class="view-area markdown-body">
 			
     <h1>key_type</h1>
-    <pre>Defines the KeyType enumeration for musical keys, representing either major or minor.
+    <pre>Defines the KeyType enumeration for musical keys, representing either major or 
+minor.
 
 This module provides:
 - An Enum class `KeyType` with two values: Major and Minor.
-- Utility methods to list all key types, select a random key type, and retrieve the parallel (opposite) key.
+- Utility methods to list all key types, select a random key type, and retrieve
+  the parallel (opposite) key.
 - String representations for clean display and debugging.
 
 Example:
-    from music_theory.key_type import KeyType
-
-    kt = KeyType.Major
-    print(f&quot;Selected key: {kt}, Parallel: {kt.parallel}&quot;)</pre>
+    &gt;&gt;&gt; from music_theory.key_type import KeyType
+    &gt;&gt;&gt; kt = KeyType.Major
+    &gt;&gt;&gt; print(f&quot;Selected key: {kt}, Parallel: {kt.parallel}&quot;)
+    Selected key: Major, Parallel: Minor</pre>
 
     <div class="toc">
         
@@ -156,46 +158,38 @@ Methods:
                     <h3 id="method-KeyType-items">KeyType.items</h3>
                     <pre>A class method that returns a list of the key enumerations. 
 
-    e.g. [KeyType.Major, KeyType.Minor ... ]
-
-Args:
-    None.
+Example:
+    >>> KeyType.items()
+    [KeyType.Major, KeyType.Minor]
 
 Returns:
-    A list of key types.</pre>
+    list[KeyTypes]</pre>
                 
                     <h3 id="method-KeyType-random">KeyType.random</h3>
                     <pre>A class method that returns a random key type. 
 
-    e.g. KeyType.Major
-
-Args:
-    None.
-
 Returns:
-    A KeyType.</pre>
+    KeyType</pre>
                 
                     <h3 id="method-KeyType-__str__">KeyType.__str__</h3>
-                    <pre>Returns a string representing the key type name. 
+                    <pre>Returns a string representing the key types enum name. 
 
-    e.g. str(KeyType.Major) -> 'Major'
-
-Args:
-    None.
+Example:
+    >>> str(KeyType.Major)
+    Major
 
 Returns:
-    A string.</pre>
+    str</pre>
                 
                     <h3 id="method-KeyType-__repr__">KeyType.__repr__</h3>
-                    <pre>Returns a string representing the key types enum. 
+                    <pre>Returns a string representing the key types class and enum name. 
 
-    e.g. repr(KeyType.Major) -> 'KeyType.Major'
-
-Args:
-    None.
+Example:
+    >>> repr(KeyType.Major)
+    KeyType.Major
 
 Returns:
-    A string representing the key type's name.</pre>
+    str:</pre>
                 
             
 
@@ -207,9 +201,9 @@ Returns:
 	</div>
 	
 	
+    	<script src="/static/JS/debug.js"></script>
+	
 
 <script src="/static/django-browser-reload/reload-listener.js" data-worker-script-path="/static/django-browser-reload/reload-worker.js" data-events-path="/__reload__/events/" defer></script></body>
-
-
 
 </html>
