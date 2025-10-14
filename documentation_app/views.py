@@ -7,7 +7,7 @@ import re
 # Django
 from django.conf import settings
 from django.contrib import messages
-from django.http import Http404, HttpResponseNotFound
+from django.http import Http404, HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
 
@@ -176,22 +176,52 @@ def mnemonics_view(request):
 
 
 def tools_view(request):
-    # Seperate the values and store them, as we will need to pass them back in the context for the their correct representation.
-    # The default value here will be the default settings on the page
+    is_ajax_request = request.headers.get('x-requested-with') == 'XMLHttpRequest'
+
+    # Return the page, skip calculations
+    if not is_ajax_request:
+        context = {
+            "BAKE_MODE": settings.BAKE_MODE,
+            "doc_root": "../",
+            "available_modules": get_available_modules(),
+
+            "notes": mt.Note.items(),
+            "key_types": mt.KeyType.items(),
+
+            "tool_three_tuning_input_one": mt.Note.E.value,
+            "tool_three_tuning_input_two": mt.Note.B.value,
+            "tool_three_tuning_input_three": mt.Note.G.value,
+            "tool_three_tuning_input_four": mt.Note.D.value,
+            "tool_three_tuning_input_five": mt.Note.A.value,
+            "tool_three_tuning_input_six": mt.Note.E.value,
+        }
+
+        return render(request, "tools.html", context)
+
+    # Tool 1 - Chords in key generator
     tool_one_note_input = int(request.GET.get("tool-one-note-input", mt.Note.C.value))
     tool_one_key_type_input = int(request.GET.get("tool-one-key-type-input", mt.KeyType.Major.value))
     tool_one_dominant_input = request.GET.get("tool-one-dominant-input", "true")
     tool_one_parallel_input = request.GET.get("tool-one-parallel-input", "true") 
 
-    tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
+    n = parse_note(tool_one_note_input)
+    kt = parse_key_type(tool_one_key_type_input) 
+    d = parse_bool(tool_one_dominant_input)
+    p = parse_bool(tool_one_parallel_input)
 
+    key_generator_results = mt.Key(n, kt).to_string_array(dominant=d, parallel=p)
+
+    # Tool 2 - Modes from note generator
+    tool_two_note_input = int(request.GET.get("tool-two-note-input", 0))
+    mode_generator_results = [str(m) for m in modes_from_note(parse_note(tool_two_note_input))] 
+
+    # Tool 3 - Note Finder
     tool_three_tuning_input_one = int(request.GET.get("tool-three-tuning-input-one", mt.Note.E.value))
     tool_three_tuning_input_two = int(request.GET.get("tool-three-tuning-input-two", mt.Note.B.value))
     tool_three_tuning_input_three = int(request.GET.get("tool-three-tuning-input-three", mt.Note.G.value))
     tool_three_tuning_input_four = int(request.GET.get("tool-three-tuning-input-four", mt.Note.D.value))
     tool_three_tuning_input_five = int(request.GET.get("tool-three-tuning-input-five", mt.Note.A.value))
     tool_three_tuning_input_six = int(request.GET.get("tool-three-tuning-input-six", mt.Note.E.value))
-
 
     tool_three_fret_input_one = request.GET.get("tool-three-fret-input-one", 0)
     tool_three_fret_input_two = request.GET.get("tool-three-fret-input-two", 0)
@@ -200,23 +230,6 @@ def tools_view(request):
     tool_three_fret_input_five = request.GET.get("tool-three-fret-input-five", 0)
     tool_three_fret_input_six = request.GET.get("tool-three-fret-input-six", 0)
 
-
-
-    # Now we have that, we can generate the results in the tools.
-
-    # Tool 1
-    n = parse_note(tool_one_note_input)
-    kt = parse_key_type(tool_one_key_type_input) 
-    d = parse_bool(tool_one_dominant_input)
-    p = parse_bool(tool_one_parallel_input)
-
-    key_generator_results = mt.Key(n, kt).to_string_array(dominant=d, parallel=p)
- 
-
-    # Tool 2
-    mode_generator_results = [str(m) for m in modes_from_note(mt.Note.from_index(tool_two_note_input))] 
-
-    # Tool 3
     guitar = mt.StringInstrument([
         parse_note(tool_three_tuning_input_six),
         parse_note(tool_three_tuning_input_five),
@@ -225,7 +238,6 @@ def tools_view(request):
         parse_note(tool_three_tuning_input_two),
         parse_note(tool_three_tuning_input_one),
     ])
-
 
     def foo(string_index, fret_input):
         try:
@@ -244,46 +256,19 @@ def tools_view(request):
             messages.error(request, f"Cannot convert '{fret_input}' into a number. Fret value must be must be a interger number 0 or above")
             return 'X'
         
+        
+    tool_three_result_one = str(foo(5, tool_three_fret_input_one))
+    tool_three_result_two = str(foo(4, tool_three_fret_input_two))
+    tool_three_result_three = str(foo(3, tool_three_fret_input_three))
+    tool_three_result_four = str(foo(2, tool_three_fret_input_four))
+    tool_three_result_five = str(foo(1, tool_three_fret_input_five))
+    tool_three_result_six = str(foo(0, tool_three_fret_input_six))
 
-    tool_three_result_one = foo(5, tool_three_fret_input_one)
-    tool_three_result_two = foo(4, tool_three_fret_input_two)
-    tool_three_result_three = foo(3, tool_three_fret_input_three)
-    tool_three_result_four = foo(2, tool_three_fret_input_four)
-    tool_three_result_five = foo(1, tool_three_fret_input_five)
-    tool_three_result_six = foo(0, tool_three_fret_input_six)
+    message_list = [{ "tags": m.tags, "text": m.message } for m in messages.get_messages(request)]
 
-    context = {
-        "available_modules": get_available_modules(),
-        "notes": mt.Note.items(),
-        "key_types": mt.KeyType.items(),
-
-        # Tool 1
-        "tool_one_note_input": tool_one_note_input,
-        "tool_one_key_type_input": tool_one_key_type_input,
-        "tool_one_dominant_input": tool_one_dominant_input,
-        "tool_one_parallel_input": tool_one_parallel_input,
-
-        "key_generator_results": "\n".join(key_generator_results),
-
-        # Tool 2
-        "tool_two_note_input": tool_two_note_input,
-
-        "mode_generator_results": "\n".join(mode_generator_results),
-
-        # Tool 3
-        "tool_three_tuning_input_one": tool_three_tuning_input_one,
-        "tool_three_tuning_input_two": tool_three_tuning_input_two,
-        "tool_three_tuning_input_three": tool_three_tuning_input_three,
-        "tool_three_tuning_input_four": tool_three_tuning_input_four,
-        "tool_three_tuning_input_five": tool_three_tuning_input_five,
-        "tool_three_tuning_input_six": tool_three_tuning_input_six,
-
-        "tool_three_fret_input_one": tool_three_fret_input_one,
-        "tool_three_fret_input_two": tool_three_fret_input_two,
-        "tool_three_fret_input_three": tool_three_fret_input_three,
-        "tool_three_fret_input_four": tool_three_fret_input_four,
-        "tool_three_fret_input_five": tool_three_fret_input_five,
-        "tool_three_fret_input_six": tool_three_fret_input_six,
+    response = {
+        "chords_in_key_generator_results": key_generator_results,
+        "mode_generator_results": mode_generator_results,
 
         "tool_three_result_one": tool_three_result_one,
         "tool_three_result_two": tool_three_result_two,
@@ -291,6 +276,8 @@ def tools_view(request):
         "tool_three_result_four": tool_three_result_four,
         "tool_three_result_five": tool_three_result_five,
         "tool_three_result_six": tool_three_result_six,
+
+        "messages": message_list,
     }
 
-    return render(request, "tools.html", context)
+    return JsonResponse(response)
