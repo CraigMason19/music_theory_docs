@@ -10,6 +10,8 @@ const toolThreeResultFour = document.getElementById("tool-three-result-four");
 const toolThreeResultFive = document.getElementById("tool-three-result-five");
 const toolThreeResultSix = document.getElementById("tool-three-result-six");
 
+const messageContainer = document.getElementById("message-container");
+
 toolInputs.forEach(input => {
     input.addEventListener("change", fetchToolResults);
 });
@@ -17,11 +19,6 @@ toolInputs.forEach(input => {
 // Run on page load to show correct reults
 window.addEventListener("DOMContentLoaded", fetchToolResults);
 window.addEventListener("DOMContentLoaded", animateAccordianPanels);
-
-
-
-
-
 
 /**
  * Fetches tool results from the Django backend using a AJAX request.
@@ -44,9 +41,31 @@ function fetchToolResults() {
     })
     .then(res => res.json())
     .then(data => {
+        displayMessages(data)
         displayResults(data)
     })
     .catch(err => console.error(err));
+}
+
+/**
+ * Displays any messages from Django
+ *
+ * @param {Object} data - The JSON data returned from the server.
+ */
+function displayMessages(data) {
+    const container = document.getElementById("message-container");
+    container.innerHTML = ""; // Clear old messages
+
+    data.messages.forEach(msg => {
+        const box = document.createElement("div");
+        box.className = `box message message-${msg.tags}`;
+
+        const pre = document.createElement("pre");
+        pre.innerHTML = `<strong>${msg.tags.charAt(0).toUpperCase() + msg.tags.slice(1)}</strong> - ${msg.text}`;
+
+        box.appendChild(pre);
+        container.appendChild(box);
+    });
 }
 
 /**

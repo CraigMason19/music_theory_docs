@@ -79,14 +79,8 @@
     <h2 class="accordion-header" id="note-finder">Note Finder</h2>
     <div class="accordion-panel">   
 
-        {% if messages %}
-            {% for message in messages %}
-                <div class="box message message-{{message.tags}}">
-                    <pre><strong>{{ message.tags|capfirst }}</strong> - {{ message|safe }}</pre>
-                </div>
-            {% endfor %}
-        {% endif %}
-     
+        <div id="message-container"></div>
+
         <div class="tool-input">
             <table>
                 <tr>

@@ -264,6 +264,8 @@ def tools_view(request):
     tool_three_result_five = str(foo(1, tool_three_fret_input_five))
     tool_three_result_six = str(foo(0, tool_three_fret_input_six))
 
+    message_list = [{ "tags": m.tags, "text": m.message } for m in messages.get_messages(request)]
+
     response = {
         "chords_in_key_generator_results": key_generator_results,
         "mode_generator_results": mode_generator_results,
@@ -274,6 +276,8 @@ def tools_view(request):
         "tool_three_result_four": tool_three_result_four,
         "tool_three_result_five": tool_three_result_five,
         "tool_three_result_six": tool_three_result_six,
+
+        "messages": message_list,
     }
 
     return JsonResponse(response)
