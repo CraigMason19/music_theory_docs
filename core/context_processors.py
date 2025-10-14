@@ -2,5 +2,6 @@ from django.conf import settings
 
 def global_settings(request):
     return {
-        'debug': settings.DEBUG
+        'DEBUG': settings.DEBUG,
+        "BAKE_MODE": settings.BAKE_MODE,
     }
