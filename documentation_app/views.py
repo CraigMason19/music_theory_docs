@@ -86,7 +86,6 @@ def documentation_view(request):
     html_content = markdown.markdown(clean_md, extensions=["fenced_code", "tables", "toc"])
 
     context = {
-        "BAKE_MODE": settings.BAKE_MODE,
         "doc_root": "",
         "html_content": html_content,
         "available_modules": get_available_modules(),
@@ -101,7 +100,6 @@ def module_view(request, module_name):
         raise Http404(f"No such module: {module_name}")
 
     context = {
-        "BAKE_MODE": settings.BAKE_MODE,
         "doc_root": "../",
         "module_name": module_name,
         "doc_structure": build_dynamic_doc_structure(module),
@@ -134,7 +132,6 @@ def examples_view(request):
     )
 
     context = {
-        "BAKE_MODE": settings.BAKE_MODE,
         "doc_root": "../",
         "html_content": html_content,
         "available_modules": get_available_modules(),
@@ -166,7 +163,6 @@ def mnemonics_view(request):
     )
 
     context = {
-        "BAKE_MODE": settings.BAKE_MODE,
         "doc_root": "../",
         "html_content": html_content,
         "available_modules": get_available_modules(),
@@ -181,7 +177,6 @@ def tools_view(request):
     # Return the page, skip calculations
     if not is_ajax_request:
         context = {
-            "BAKE_MODE": settings.BAKE_MODE,
             "doc_root": "../",
             "available_modules": get_available_modules(),
 
