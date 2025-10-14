@@ -88,7 +88,6 @@ def documentation_view(request):
     context = {
         "doc_root": "",
         "html_content": html_content,
-        "available_modules": get_available_modules(),
     }
 
     return render(request, "documentation.html", context)
@@ -103,7 +102,6 @@ def module_view(request, module_name):
         "doc_root": "../",
         "module_name": module_name,
         "doc_structure": build_dynamic_doc_structure(module),
-        "available_modules": get_available_modules(),
     }
 
     return render(request, "module_docs.html", context)
@@ -134,7 +132,6 @@ def examples_view(request):
     context = {
         "doc_root": "../",
         "html_content": html_content,
-        "available_modules": get_available_modules(),
     }
 
     return render(request, "examples.html", context)
@@ -165,7 +162,6 @@ def mnemonics_view(request):
     context = {
         "doc_root": "../",
         "html_content": html_content,
-        "available_modules": get_available_modules(),
     }
 
     return render(request, "mnemonics.html", context)
@@ -178,7 +174,6 @@ def tools_view(request):
     if not is_ajax_request:
         context = {
             "doc_root": "../",
-            "available_modules": get_available_modules(),
 
             "notes": mt.Note.items(),
             "key_types": mt.KeyType.items(),
