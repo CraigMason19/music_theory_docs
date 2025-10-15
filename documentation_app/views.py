@@ -229,7 +229,7 @@ def tools_view(request):
         parse_note(tool_three_tuning_input_one),
     ])
 
-    def foo(string_index, fret_input):
+    def note_name_at_fret(string_index: int, fret_input: str) -> str:
         try:
             if fret_input in ["x", "X"]:
                 return 'X'
@@ -240,19 +240,19 @@ def tools_view(request):
             if value < 0:
                 messages.error(request, f"Fret value must be must be a interger number 0 or above: {value}")
 
-            return result
+            return str(result)
 
         except ValueError:
             messages.error(request, f"Cannot convert '{fret_input}' into a number. Fret value must be must be a interger number 0 or above")
             return 'X'
         
         
-    tool_three_result_one = str(foo(5, tool_three_fret_input_one))
-    tool_three_result_two = str(foo(4, tool_three_fret_input_two))
-    tool_three_result_three = str(foo(3, tool_three_fret_input_three))
-    tool_three_result_four = str(foo(2, tool_three_fret_input_four))
-    tool_three_result_five = str(foo(1, tool_three_fret_input_five))
-    tool_three_result_six = str(foo(0, tool_three_fret_input_six))
+    tool_three_result_one = note_name_at_fret(5, tool_three_fret_input_one)
+    tool_three_result_two = note_name_at_fret(4, tool_three_fret_input_two)
+    tool_three_result_three = note_name_at_fret(3, tool_three_fret_input_three)
+    tool_three_result_four = note_name_at_fret(2, tool_three_fret_input_four)
+    tool_three_result_five = note_name_at_fret(1, tool_three_fret_input_five)
+    tool_three_result_six = note_name_at_fret(0, tool_three_fret_input_six)
 
     message_list = [{ "tags": m.tags, "text": m.message } for m in messages.get_messages(request)]
 
