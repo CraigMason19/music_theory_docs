@@ -6,6 +6,7 @@
     /* --color-sidebar: linear-gradient(170deg,rgba(245, 222, 179, 1) 0%, rgba(219, 175, 114, 1) 100%); */
     --color-sidebar: linear-gradient(180deg, #ffebc5 0%, #ECC06F 100%);
     --color-table-header: #bee3f1;
+    --color-accordian-header-hover-color: #bee3f1;
 
 
     /* --color-sidebar: linear-gradient(170deg,rgba(42, 123, 155, 1) 0%, rgba(30, 84, 105, 1) 100%); */
