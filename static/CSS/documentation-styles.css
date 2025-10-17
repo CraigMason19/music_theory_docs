@@ -90,6 +90,14 @@ body {
     background-color: aquamarine;
 } */
 
+
+
+
+
+
+
+/* Accordian */
+
 /* ▼ ▲ */
 .accordion-header:before {
     content: '▼';
@@ -100,33 +108,41 @@ body {
 }
 
 .active:before {
-    content: "▲"; /* Unicode character for "minus" sign (-) */
+    content: "▲";
   } 
 
-  .active, .accordion-header:hover {
+.active, .accordion-header:hover {
 	cursor: pointer;
-  }
+}
 
-  .accordion-header:hover {
-    background-color: #D1ECF1;
-  }
+.accordion-header:hover {
+    background-color: var(--color-accordian-header-hover-color);
+}
 
- 
-
-  .accordion-panel {
+.accordion-panel {
 	max-height: 0;
 	overflow: hidden;
 	transition: max-height 0.2s ease-out;
 	/* background-color: goldenrod; */
-  }
+}
 
-  .accordion-panel.no-transition {
+.accordion-panel.no-transition {
 	transition: none; /* temporarily disable transition */
-  }
+}
 
-  .accordion-panel pre {
+.accordion-panel pre {
 	margin: 0%;
-  }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 .tool-input {
