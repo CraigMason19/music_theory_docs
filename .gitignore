@@ -12,3 +12,5 @@ documentation_app/migrations/__pycache__/
 bake_app/__pycache__/
 core/__pycache__/
 playground.py
+_examples/
+_notes/
