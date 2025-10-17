@@ -16,9 +16,7 @@ toolInputs.forEach(input => {
     input.addEventListener("change", fetchToolResults);
 });
 
-// Run on page load to show correct reults
 window.addEventListener("DOMContentLoaded", fetchToolResults);
-window.addEventListener("DOMContentLoaded", animateAccordianPanels);
 
 /**
  * Fetches tool results from the Django backend using a AJAX request.
@@ -41,8 +39,9 @@ function fetchToolResults() {
     })
     .then(res => res.json())
     .then(data => {
-        displayMessages(data)
-        displayResults(data)
+        displayMessages(data);
+        displayResults(data);
+        animateAccordianPanels();
     })
     .catch(err => console.error(err));
 }
