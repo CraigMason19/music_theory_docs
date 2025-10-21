@@ -41,7 +41,6 @@ function fetchToolResults() {
     .then(data => {
         displayMessages(data);
         displayResults(data);
-        animateAccordianPanels();
     })
     .catch(err => console.error(err));
 }
@@ -82,38 +81,4 @@ function displayResults(data) {
     toolThreeResultFour.textContent = data.tool_three_result_four;
     toolThreeResultFive.textContent = data.tool_three_result_five;
     toolThreeResultSix.textContent = data.tool_three_result_six;
-}
-
-function animateAccordianPanels() {
-    const accordionHeaders = document.getElementsByClassName("accordion-header");
-
-    for (let ah of accordionHeaders) {
-        const panel = ah.nextElementSibling;
-
-        if(panel != null) {
-            // temporarily disable transition
-            panel.classList.add("no-transition");
-
-            // open all panels by default
-            panel.style.maxHeight = panel.scrollHeight + "px";
-            ah.classList.add("active");
-
-            // allow browser to paint, then re-enable transition
-            requestAnimationFrame(() => {
-                panel.classList.remove("no-transition");
-            });
-
-            // click toggle
-            ah.addEventListener("click", function() {
-                this.classList.toggle("active");
-                
-                if (panel.style.maxHeight && panel.style.maxHeight !== "0px") {
-                    panel.style.maxHeight = "0px"; // collapse
-                } 
-                else {
-                    panel.style.maxHeight = panel.scrollHeight + "px"; // expand
-                }
-            });
-        }
-    }
 }

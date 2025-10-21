@@ -96,52 +96,6 @@ body {
 
 
 
-/* Accordian */
-
-/* ▼ ▲ */
-.accordion-header:before {
-    content: '▼';
-    font-size: 1rem;
-    text-align: center;
-    text-decoration: none;
-    margin-right: 0.5rem;
-}
-
-.active:before {
-    content: "▲";
-  } 
-
-.active, .accordion-header:hover {
-	cursor: pointer;
-}
-
-.accordion-header:hover {
-    background-color: var(--color-accordian-header-hover-color);
-}
-
-.accordion-panel {
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.2s ease-out;
-	/* background-color: goldenrod; */
-}
-
-.accordion-panel.no-transition {
-	transition: none; /* temporarily disable transition */
-}
-
-.accordion-panel pre {
-	margin: 0%;
-}
-
-
-
-
-
-
-
-
-
 
 
 
