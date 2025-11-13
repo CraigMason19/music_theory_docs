@@ -10,6 +10,8 @@ const toolThreeResultFour = document.getElementById("tool-three-result-four");
 const toolThreeResultFive = document.getElementById("tool-three-result-five");
 const toolThreeResultSix = document.getElementById("tool-three-result-six");
 
+const diatonicScaleDegreesResults = document.getElementById("diatonic-scale-degrees-results");
+
 const messageContainer = document.getElementById("message-container");
 
 toolInputs.forEach(input => {
@@ -81,4 +83,6 @@ function displayResults(data) {
     toolThreeResultFour.textContent = data.tool_three_result_four;
     toolThreeResultFive.textContent = data.tool_three_result_five;
     toolThreeResultSix.textContent = data.tool_three_result_six;
+
+    diatonicScaleDegreesResults.textContent = data.diatonic_scale_degrees_results.join('\n');
 }

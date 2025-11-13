@@ -13,6 +13,7 @@
         <li><a href="#chords-in-key-generator">Chords in key generator</a></li>
         <li><a href="#modes-from-note-generator">Modes from note generator</a></li>
         <li><a href="#note-finder">Note finder</a></li>
+        <li><a href="#diatonic-scale-degrees">Diatonic Scale Degrees</a></li>
         <li><a href="#chord-progression-MIDI-generator">Chord progression MIDI generator</a></li>
     </ul>
 
@@ -151,6 +152,31 @@
         </div>
     
     </details>
+
+    <!-- Tool 4 - Diatonic scale degrees -->
+    <details>
+        <summary id="diatonic-scale-degrees">Diatonic Scale Degrees</summary>
+        <div class="tool-input">
+            <label>Note:</label>
+            <select class="ajax-input" data-key="tool-four-note-input">
+                {% for n in notes %}
+                    <option value="{{ forloop.counter0 }}">{{ n }}</option>
+                {% endfor %}                    
+            </select> 
+            <br>
+
+            <label>Scale Type:</label>
+            <select class="ajax-input" data-key="tool-four-scale-type-input">
+                {% for name, value in diatonic_scale_types.items %}
+                    <option value="{{ value }}">{{ name }}</option>
+                {% endfor %}             
+            </select> 
+            <br>
+        </div>
+        
+        <pre id="diatonic-scale-degrees-results">No results</pre>
+    </details>
+    
 
 </div>
 

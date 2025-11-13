@@ -20,7 +20,7 @@ import music_theory as mt
 from music_theory.scales import modes_from_note 
 from core.doc_extractor import DocExtractor
 from core.mt_modules import get_available_modules
-from core.parser import parse_note, parse_key_type, parse_bool
+from core.parser import parse_note, parse_scale_type, parse_key_type, parse_bool
 
 logger = logging.getLogger(__name__)
 
@@ -177,13 +177,15 @@ def tools_view(request):
 
             "notes": mt.Note.items(),
             "key_types": mt.KeyType.items(),
-
+            
             "tool_three_tuning_input_one": mt.Note.E.value,
             "tool_three_tuning_input_two": mt.Note.B.value,
             "tool_three_tuning_input_three": mt.Note.G.value,
             "tool_three_tuning_input_four": mt.Note.D.value,
             "tool_three_tuning_input_five": mt.Note.A.value,
             "tool_three_tuning_input_six": mt.Note.E.value,
+
+            "diatonic_scale_types": { st.name:st.value for st in mt.DiatonicScale.valid_scale_types() } 
         }
 
         return render(request, "tools.html", context)
@@ -254,6 +256,17 @@ def tools_view(request):
     tool_three_result_five = note_name_at_fret(1, tool_three_fret_input_five)
     tool_three_result_six = note_name_at_fret(0, tool_three_fret_input_six)
 
+    # Tool 4 - Diatonic Scale Generator
+    tool_four_note_input = int(request.GET.get("tool-four-note-input", mt.Note.C.value))
+    tool_four_scale_type_input = int(request.GET.get("tool-four-scale-type-input", mt.ScaleType.Major.value))
+
+    n = parse_note(tool_four_note_input)
+    st = parse_scale_type(tool_four_scale_type_input) 
+
+    ds = mt.DiatonicScale(n, st)    
+    diatonic_scale_degrees_results = ds.to_string_array()
+
+    # Send any messages
     message_list = [{ "tags": m.tags, "text": m.message } for m in messages.get_messages(request)]
 
     response = {
@@ -266,6 +279,8 @@ def tools_view(request):
         "tool_three_result_four": tool_three_result_four,
         "tool_three_result_five": tool_three_result_five,
         "tool_three_result_six": tool_three_result_six,
+
+        "diatonic_scale_degrees_results": diatonic_scale_degrees_results,
 
         "messages": message_list,
     }
