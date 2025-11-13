@@ -18,3 +18,11 @@ def parse_key_type(value: str | int) -> mt.KeyType:
     
     except (ValueError, IndexError):
         raise ValueError(f"Invalid key type index: {value}")
+
+def parse_scale_type(value: str | int) -> mt.ScaleType:
+    try:
+        index = int(value)
+        return mt.ScaleType.items()[index]
+    
+    except (ValueError, IndexError):
+        raise ValueError(f"Invalid scale type index: {value}")
