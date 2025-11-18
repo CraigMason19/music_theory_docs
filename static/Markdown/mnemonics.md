@@ -32,6 +32,7 @@ G C E A
 ### Clef Lines
 | Clef   | Mnemonic                           |
 |--------|------------------------------------|
+| Bass   | Good Boys Don't Frighten Animals   |
 | Bass   | Good Boys Deserve Football Always  |
 | Treble | Every Good Boy Deserves Football   |
 
