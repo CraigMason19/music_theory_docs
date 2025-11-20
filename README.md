@@ -18,8 +18,10 @@ Documentation is extracted from the docstrings in functions, classes, and method
 #### Packages Used
 - [Python-Markdown](https://python-markdown.github.io)
     - To convert markdown files into HTML within Django.
-- [Pygments](https://pygments.org)
+- [pygments](https://pygments.org)
     - For highlighting Python syntax in the examples page.
+- [python-dotenv](https://pypi.org/project/python-dotenv/)
+    - For reading key-value pairs from a .env file.
 
 #### Resources Used
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)
