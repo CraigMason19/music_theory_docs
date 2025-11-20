@@ -10,13 +10,41 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+from dotenv import load_dotenv
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+
+
+#region Environment Variables
+
+# Loads .env in dev, does nothing in prod
+load_dotenv()  
+
+REQUIRED_ENV_VARS = [
+    "DJANGO_SECRET_KEY",
+]
+
+for var in REQUIRED_ENV_VARS:
+    if not os.getenv(var):
+        raise ValueError(f"{var} is not set in the environment!")
+
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+#endregion
+
+
 
 # Custom variables
+
 BAKE_MODE = False
+BASE_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_PORT = "127.0.0.1:8000"
 GITHUB_STATIC_DOCS_DIR = Path(__file__).parent.parent / "docs"
 
@@ -34,16 +62,9 @@ LOGGING = {
     },
 }
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cm(*em2+ituq-9xul#wqhb7vi^3@!k(*qco7mn874$#&dv&$of'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
+
 
 
 # Application definition
